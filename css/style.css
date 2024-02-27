@@ -153,7 +153,7 @@ table th {
   color: #0056b3;
 }
 .small {
-  width: 150px; /* Ubah ukuran sesuai kebutuhan */
+  width: 150px; 
   height: auto; /* Tinggi akan disesuaikan agar proporsi gambar tetap terjaga */
 }
 .center-container {
