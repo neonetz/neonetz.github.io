@@ -8,7 +8,7 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: #f8f9fa;
   color: #343a40;
-  background-image: url(background.jpg);
+  background-image: url('https://media.giphy.com/media/RhS1f7JwQaek6YZi1Y/giphy.gif');
   background-repeat: repeat;
   background-size: cover;
 }
@@ -166,7 +166,7 @@ table th {
   justify-content: center; /* Mengatur konten di tengah secara horizontal */
 }
 header {
-  background-color: #272a33; /* Warna latar belakang */
+  background-color: #13359c; /* Warna latar belakang */
   color: #fff; /* Warna teks */
   padding: 20px 0; /* Padding atas dan bawah */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Efek shadow */
