@@ -94,7 +94,6 @@ footer {
 
 /* Tampilan untuk mobile */
 /* Tampilan untuk mobile */
-/* Tampilan untuk mobile */
 @media screen and (max-width: 768px) {
   .burger-menu {
       display: block;
@@ -108,7 +107,7 @@ footer {
   .menu {
       display: none;
       position: absolute;
-      top: 60px;
+      top: 80px; /* Atur jarak menu dari bagian atas */
       left: 0;
       background-color: #1a1a1a;
       width: 100%;
