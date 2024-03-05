@@ -1,4 +1,3 @@
-
 /* Reset CSS */
 html, body, header, footer, main {
   margin: 0;
@@ -29,13 +28,11 @@ body {
   transform: translateY(-100%); /* Header di luar layar atas saat di-scroll ke bawah */
 }
 
-
 .navbar {
   display: flex;
   justify-content: flex-start; 
   align-items: center;
 }
-
 
 .logo {
   font-size: 1.5rem;
@@ -68,10 +65,10 @@ body {
   padding: 10px 40px; /* Atur jarak atas dan bawah 10px, jarak kiri dan kanan 20px */
   transition: background-color 0.3s ease; /* Tambahkan transisi untuk background-color */
 }
+
 .menu ul li:hover {
   background-color: rgba(255, 255, 255, 0.2); /* Ganti warna latar belakang saat dihover */
 }
-
 
 .menu ul li a {
   text-decoration: none;
@@ -90,43 +87,37 @@ footer {
   position: fixed;
 }
 
-
-
-
 /* Tampilan untuk mobile */
-
 @media screen and (max-width: 768px) {
   .burger-menu {
-      display: block;
-      width: 50px; /* Atur lebar tombol hamburger */
-      z-index: 9999; /* Pastikan tombol hamburger tampil di atas elemen lain */
-      position: flex; 
-      top: 20px; /* Sesuaikan posisi hamburger button */
-      right: 20px; /* Ubah posisi hamburger button menjadi di pojok kanan atas */
+    display: block;
+    width: 50px; /* Atur lebar tombol hamburger */
+    z-index: 9999; /* Pastikan tombol hamburger tampil di atas elemen lain */
+    position: flex; 
+    top: 20px; /* Sesuaikan posisi hamburger button */
+    right: 20px; /* Ubah posisi hamburger button menjadi di pojok kanan atas */
   }
 
   .menu {
-      display: none;
-      position: absolute;
-      top: 80px; /* Atur jarak menu dari bagian atas */
-      right: 0; /* Mengatur agar menu muncul di sebelah kanan */
-      background-color: #1a1a1a;
-      width: 100%;
-      text-align: center;
-      z-index: 999; /* Pastikan menu tampil di atas elemen lain */
+    display: none;
+    position: absolute;
+    top: 80px; /* Atur jarak menu dari bagian atas */
+    right: 0; /* Mengatur agar menu muncul di sebelah kanan */
+    background-color: #1a1a1a;
+    width: 100%;
+    text-align: center;
+    z-index: 999; /* Pastikan menu tampil di atas elemen lain */
   }
 
   .menu ul {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .menu ul li {
-      padding: 20px;
-      width: 100%; /* Menyesuaikan lebar item-menu dengan lebar layar */
+    padding: 20px;
+    width: 100%; /* Menyesuaikan lebar item-menu dengan lebar layar */
   }
 }
-
-
 
 .logo-img {
   width: 40px; 
@@ -152,6 +143,7 @@ footer {
   display: block;
   margin: 0 auto; /* Menengahkan gambar secara horizontal */
 }
+
 #quotes {
   text-align: center;
 }
@@ -168,6 +160,7 @@ footer {
   font-style: italic;
   margin: 0;
 }
+
 #biodata {
   text-align: center;
   margin: 20px 0;
@@ -209,6 +202,7 @@ footer {
 .lesson-info p {
   margin: 5px 0;
 }
+
 #technical-skills {
   background-color: gold;
   padding: 20px;
@@ -240,6 +234,7 @@ footer {
   margin: 5px 0;
   font-weight: bold;
 }
+
 #group-members {
   background-color: gold;
   padding: 20px;
@@ -269,6 +264,7 @@ table th {
 table tbody tr:nth-child(even) {
   background-color: orange;
 }
+
 #internal-video {
   background-color: gold;
   padding: 20px;
@@ -284,23 +280,31 @@ video {
   width: 100%;
   max-width: 600px;
 }
+
+
 #location-map {
-  background-color: gold;
   padding: 20px;
   text-align: center;
 }
 
 .map-box {
-  max-width: 800px;
+  max-width: 100%;
   margin: 0 auto;
 }
+
+.map-box iframe {
+  width: 100%;
+  height: 300px; 
+}
+
+
 #photo-gallery {
   padding: 20px;
 }
+
 #photo-gallery h2 {
   text-align: center; /* Menengahkan teks judul */
 }
-
 
 .gallery {
   display: flex;
@@ -349,3 +353,6 @@ video {
   text-align: center;
   border-radius: 10px;
 }
+
+
+
