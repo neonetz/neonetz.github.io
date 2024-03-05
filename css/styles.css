@@ -1,0 +1,230 @@
+
+/* Reset CSS */
+html, body, header, footer, main {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+#myHeader {
+  background-color: gold;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: transform 0.3s ease; /* Transisi saat header berubah posisi */
+  transform: translateY(0); /* Awalnya header muncul */
+}
+
+.hidden {
+  transform: translateY(-100%); /* Header di luar layar atas saat di-scroll ke bawah */
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+}
+
+
+.logo {
+  font-size: 1.5rem;
+  color: #000000;
+}
+
+.burger-menu {
+  display: none;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.menu ul li {
+  padding: 10px 40px; /* Atur jarak atas dan bawah 10px, jarak kiri dan kanan 20px */
+  transition: background-color 0.3s ease; /* Tambahkan transisi untuk background-color */
+}
+.menu ul li:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Ganti warna latar belakang saat dihover */
+}
+
+
+.menu ul li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.main-content {
+  padding-top: 70px;
+}
+
+footer {
+  background-color: #1a1a1a;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  position: fixed;
+}
+
+
+
+
+/* Tampilan untuk mobile */
+@media screen and (max-width: 768px) {
+  .burger-menu {
+      display: block;
+  }
+
+  .menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      background-color: #1a1a1a;
+      width: 100%;
+      text-align: center;
+  }
+
+  .menu ul {
+      flex-direction: column;
+  }
+
+  .menu ul li {
+      padding: 20px;
+  }
+}
+.logo-img {
+  width: 40px; 
+  height: auto;
+  margin-right: 10px; 
+}
+
+.text-center {
+  text-align: center;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Menengahkan konten secara horizontal */
+}
+
+.centered {
+  text-align: center;
+}
+
+.centered img {
+  display: block;
+  margin: 0 auto; /* Menengahkan gambar secara horizontal */
+}
+#quotes {
+  text-align: center;
+}
+
+.quote-box {
+  background-color: gold;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.quote {
+  font-style: italic;
+  margin: 0;
+}
+#biodata {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.bio-box {
+  background-color: gold;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.bio-box h2 {
+  margin-bottom: 10px;
+}
+
+.bio-info p {
+  margin: 5px 0;
+}
+
+#lesson-learned {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.lesson-box {
+  background-color: gold;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.lesson-box h2 {
+  margin-bottom: 10px;
+}
+
+.lesson-info p {
+  margin: 5px 0;
+}
+#technical-skills {
+  background-color: gold;
+  padding: 20px;
+  text-align: center;
+}
+
+.skill-box {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.skills {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.skill {
+  margin: 10px;
+}
+
+.skill img {
+  width: 100px;
+  height: auto;
+}
+
+.skill p {
+  margin: 5px 0;
+  font-weight: bold;
+}

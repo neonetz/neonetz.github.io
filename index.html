@@ -3,133 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyek1 STr HTML 27 02 2024</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>Adhyaksa</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <div class="logo">
-                <img src="img/logo.jpeg" alt="Logo" class="logo-image">
-                <h4 class="logo-text">Muhammad Adhyaksa Fadillah Proyek 1</h4>
-            </div>
-            <nav>
-                <div class="menu-toggle">
-                    <div class="burger"></div>
-                    <div class="burger"></div>
-                    <div class="burger"></div>
-                </div>
-                <ul class="nav-links">
-                    <li><a href="#" id="home-link">Home</a></li>
-                    <li><a href="#" id="profile-link">Profil Saya</a></li>
-                    <li><a href="#" id="group-link">Kelompok Saya</a></li>
-                    <li><a href="#" id="gallery-link">Gallery</a></li>
-                    <li><a href="#" id="about-link">About</a></li>
+    <header id="myHeader">
+        <div class="navbar">
+            <img src="img/logo.jpeg" alt="Logo" class="logo-img">
+            <div class="logo">Muhammad Adhyaksa Fadillah</div>
+            <button class="burger-menu" onclick="toggleMenu()">☰</button>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#profil">Profile</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
-    </header>    
-    <div class="container">
-        <main>
-            <div id="profile" class="box profile-box">
-                <div class="profile-info">
-                    <h2>Profil Saya</h2>
+    </header>
+    
+    <main class="main-content">
+        <section id="profil">
+            <h2 class="text-center">Profil Saya</h2>
+            <div class="profile-info">
+                <div class="centered">
+                    <img src="img/aksa.jpg" alt="Foto Profil">
+                </div>
+                <div class="details">
                     <p><strong>Nama:</strong> Muhammad Adhyaksa Fadillah</p>
-                    <p><strong>Moto Hidup:</strong> Teknologi untuk Masa Depan</p>
-                    <p><strong>Hobi:</strong> Coding, Mengerjakan Tugas, Membaca, Berenang</p>
-                    <p><strong>Kemampuan Teknis:</strong> HTML, CSS, Java, C, Word, Excel </p>
-                    <p><strong>Lesson Learned:</strong> Belajar adalah proses tak henti-hentinya juga tugas</p>
-                    <p><strong>Harapan setelah lulus dari JTK:</strong> Menjadi ahli dalam bidang teknologi dan berkontribusi pada kemajuan masyarakat</p>
-                </div>
-                <div class="profile-image">
-                    <img src="img/aksa.jpg" alt="Aksa" class="image small"/>
+                    <p><strong>Kelas:</strong> XII-A</p>
+                    <p><strong>NIM:</strong> 1234567890</p>
+                    <p><strong>Jurusan:</strong> Teknik Informatika</p>
+                    <p><strong>Hobi:</strong> Membaca, Berenang, Memasak</p>
                 </div>
             </div>
-            <div class="box flextwo">
-                <article>
-                    <h2>Bio Data Diri</h2>
-                    <p>Aksa adalah seorang mahasiswa yang percaya bahwa teknologi bisa mengubah dunia, dengan begitu saya ingin menjadi salah satu yang membuat teknologi yang mengubah dunia itu</p>
-                </article>
+        </section>
+        <section id="biodata">
+            <div class="bio-box">
+                <h2>Biodata Diri</h2>
+                <div class="bio-info">
+                    <p><strong>Nama:</strong> Muhammad Adhyaksa Fadillah</p>
+                </div>
             </div>
+        </section>
+        
+        <section id="quotes">
+            <div class="quote-box">
+                <p class="quote">"Ini adalah kutipan yang indah"</p>
+            </div>
+        </section>
+    </main>
+    <section id="lesson-learned">
+        <div class="lesson-box">
+            <h2>Lesson Learned</h2>
+            <div class="lesson-info">
+                <p>1. Belajarlah dengan tekun dan konsisten.</p>
+                <p>2. Jangan takut untuk mencoba hal-hal baru.</p>
+                <p>3. Berkomunikasi dengan baik dengan tim.</p>
+                <p>4. Evaluasi dan perbaiki diri secara teratur.</p>
+            </div>
+        </div>
+    </section>
+    <section id="technical-skills">
+        <div class="skill-box">
+            <h2>Kemampuan Teknis</h2>
+            <div class="skills">
+                <div class="skill">
+                    <img src="img/java.png" alt="Java Logo">
+                    <p>Java</p>
+                </div>
+                <div class="skill">
+                    <img src="img/c-.png" alt="C++ Logo">
+                    <p>C++</p>
+                </div>
+                <div class="skill">
+                    <img src="img/letter-c.png" alt="C Logo">
+                    <p>C</p>
+                </div>
+                <div class="skill">
+                    <img src="img/excel.png" alt="Excel Logo">
+                    <p>Excel</p>
+                </div>
+                <div class="skill">
+                    <img src="img/word.png" alt="Word Logo">
+                    <p>Word</p>
+                </div>
+                <div class="skill">
+                    <img src="img/github-logo.png" alt="GitHub Logo">
+                    <p>GitHub</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
 
-            <div class="box flextwo">
-                <article>
-                    <h2>Quotes</h2>
-                    <p><em>"Jika anda lelah maka anda butuh istirahat,Jika anda merasa bodoh maka anda butuh belajar"</em></p>
-                </article>
-            </div>
-            <div class="box flextwo">
-                <article>
-                    <h2>Lesson Learned</h2>
-                    <p><em>"Saya belajar mempelajari cara menggunakan github dengan command push,cd,mkdir dan lain lain,saya juga dapat belajar menggunakan html dan css"</em></p>
-                </article>
-            </div>
-            <aside class="box flexone">
-                <div class="profile-image center-container">
-                    <img src="img/aksa.jpg" alt="Aksa" class="image small"/>
-                </div>
-                <div class="profile-image center-container">
-                <h5>Muhammad Adhyaksa Fadillah</h5>
-            </div>
-            </aside>
-            <!-- Menyisipkan Tabel -->
-            <div class="box">
-                <h2>Anggota B4</h2>
-                <table>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Class</th>
-                    </tr>
-                    <tr>
-                        <td>Muhammad Adhyaksa Fadillah</td>
-                        <td>Anggota</td>
-                    </tr>
-                        <td>Ahmad Fathan Haidar</td>
-                        <td>Kaptain</td>
-                    <tr>
-                        <td>Daffa Muzhaffar F</td>
-                        <td>Anggota</td>
-                    </tr>
-                    <tr>
-                        <td>M.Rafli Fadhillah</td>
-                        <td>Anggota</td>
-                    </tr>
-                    <tr>
-                        <td>Nesta Rizkia Saputra</td>
-                        <td>Anggota</td>
-                    </tr>
-                </table>
-            </div>
-            <!-- Menyisipkan Peta Lokasi -->
-            <div class="box">
-                <h2>Lokasi Kampus Politeknik Negeri Bandung</h2>
-                <div class="map-container">
-                    <iframe src="https://www.google.com/maps/d/embed?mid=1Gt4HhDOHGEOTsp_lWnCzBF23fVU&hl=en_US&ehbc=2E312F" width="640" height="480"></iframe>" width="600" height="450" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                </div>
-            </div>
-            <!-- Menyisipkan Video -->
-            <div class="box">
-                <h2>Video Konten</h2>
-                <div class="video-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/z8GjwQAK2Ds?si=kCdjigfTkIB2opDH" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>                   
-            <!-- Menyisipkan Link -->
-            <div class="box">
-                <h2>Link</h2>
-                <div class="link-container">
-                    <ul>
-                        <li><a href="https://neonetz.github.io/">Link ke Halaman Internal : Github</a></li>
-                        <li><a href="https://www.youtube.com/@AksaTheSlime/videos">Link ke Halaman Eksternal : Youtube</a></li>
-                    </ul>
-                </div>
-            </div>
-        </main>
-        <footer class="box">
-            Muhammad Adhyaksa Fadillah, Di depan Laptop meratapi layar 27 Februari 2024
-        </footer>
-    </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Muhammad Adhyaksa Fadillah</p>
+        </div>
+    </footer>
+
     <script src="js/main.js"></script>
 </body>
 </html>
