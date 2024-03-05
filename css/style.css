@@ -93,9 +93,12 @@ footer {
 
 
 /* Tampilan untuk mobile */
+/* Tampilan untuk mobile */
 @media screen and (max-width: 768px) {
   .burger-menu {
       display: block;
+      width: 50px; /* Atur lebar tombol hamburger */
+      z-index: 9999; /* Pastikan tombol hamburger tampil di atas elemen lain */
   }
 
   .menu {
@@ -106,6 +109,7 @@ footer {
       background-color: #1a1a1a;
       width: 100%;
       text-align: center;
+      z-index: 999; /* Pastikan menu tampil di atas elemen lain */
   }
 
   .menu ul {
@@ -114,8 +118,10 @@ footer {
 
   .menu ul li {
       padding: 20px;
+      width: 100%; /* Menyesuaikan lebar item-menu dengan lebar layar */
   }
 }
+
 .logo-img {
   width: 40px; 
   height: auto;
