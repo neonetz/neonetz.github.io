@@ -94,6 +94,7 @@ footer {
 
 /* Tampilan untuk mobile */
 /* Tampilan untuk mobile */
+/* Tampilan untuk mobile */
 @media screen and (max-width: 768px) {
   .burger-menu {
       display: block;
@@ -101,14 +102,14 @@ footer {
       z-index: 9999; /* Pastikan tombol hamburger tampil di atas elemen lain */
       position: fixed; /* Tambahkan posisi tetap untuk hamburger button */
       top: 20px; /* Sesuaikan posisi hamburger button */
-      left: 20px; /* Sesuaikan posisi hamburger button */
+      right: 20px; /* Ubah posisi hamburger button menjadi di pojok kanan atas */
   }
 
   .menu {
       display: none;
       position: absolute;
       top: 80px; /* Atur jarak menu dari bagian atas */
-      left: 0;
+      right: 0; /* Mengatur agar menu muncul di sebelah kanan */
       background-color: #1a1a1a;
       width: 100%;
       text-align: center;
@@ -124,6 +125,7 @@ footer {
       width: 100%; /* Menyesuaikan lebar item-menu dengan lebar layar */
   }
 }
+
 
 
 .logo-img {
