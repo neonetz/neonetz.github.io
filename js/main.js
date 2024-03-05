@@ -1,6 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Menangkap elemen tombol "Home"
     const homeLink = document.getElementById('home-link');
+    const navLinks = document.querySelector
+    ('.nav-links');
+
+    // Toggle menu saat tombol burger diklik
+    const menuToggle = document.querySelector('.menu-toggle');
+
+    menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active'); // Toggle class 'active' pada menu navigasi
+        menuToggle.classList.toggle('active'); // Toggle class 'active' pada tombol burger
+    });
 
     // Menambahkan event listener untuk tombol "Home"
     homeLink.addEventListener('click', function(event) {

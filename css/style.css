@@ -218,3 +218,50 @@ nav ul li a {
 nav ul li a:hover {
   background-color: #40445a; /* Warna latar belakang saat hover */
 }
+
+/* Tampilan mobile */
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none; /* Sembunyikan menu navigasi */
+        flex-direction: column; /* Ubah tata letak menjadi vertikal */
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #13359c;
+        padding: 20px;
+        box-sizing: border-box;
+        z-index: 1;
+    }
+    
+    .nav-links li {
+        margin-bottom: 10px;
+    }
+    
+    .menu-toggle {
+        display: flex; /* Tampilkan tombol burger */
+        flex-direction: column;
+        cursor: pointer;
+    }
+    
+    .burger {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 3px 0;
+        border-radius: 5px;
+    }
+}
+
+/* Animasi untuk tombol burger */
+.menu-toggle.active .burger:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active .burger:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .burger:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
