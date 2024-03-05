@@ -22,6 +22,7 @@ body {
   width: 100%;
   transition: transform 0.3s ease; /* Transisi saat header berubah posisi */
   transform: translateY(0); /* Awalnya header muncul */
+  border-bottom: 1px solid grey;
 }
 
 .hidden {
@@ -93,14 +94,13 @@ footer {
 
 
 /* Tampilan untuk mobile */
-/* Tampilan untuk mobile */
-/* Tampilan untuk mobile */
+
 @media screen and (max-width: 768px) {
   .burger-menu {
       display: block;
       width: 50px; /* Atur lebar tombol hamburger */
       z-index: 9999; /* Pastikan tombol hamburger tampil di atas elemen lain */
-      position: fixed; /* Tambahkan posisi tetap untuk hamburger button */
+      position: flex; 
       top: 20px; /* Sesuaikan posisi hamburger button */
       right: 20px; /* Ubah posisi hamburger button menjadi di pojok kanan atas */
   }
@@ -239,4 +239,113 @@ footer {
 .skill p {
   margin: 5px 0;
   font-weight: bold;
+}
+#group-members {
+  background-color: gold;
+  padding: 20px;
+  text-align: center;
+}
+
+.table-box {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+table th {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: orange;
+}
+#internal-video {
+  background-color: gold;
+  padding: 20px;
+  text-align: center;
+}
+
+.video-box {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+video {
+  width: 100%;
+  max-width: 600px;
+}
+#location-map {
+  background-color: gold;
+  padding: 20px;
+  text-align: center;
+}
+
+.map-box {
+  max-width: 800px;
+  margin: 0 auto;
+}
+#photo-gallery {
+  padding: 20px;
+}
+#photo-gallery h2 {
+  text-align: center; /* Menengahkan teks judul */
+}
+
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.photo {
+  position: relative;
+  margin: 10px;
+  overflow: hidden;
+}
+
+.photo img {
+  max-width: 200px; /* Ubah ukuran gambar sesuai kebutuhan */
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.photo:hover img {
+  transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Ubah opacity sesuai kebutuhan */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.photo:hover .overlay {
+  opacity: 1;
+}
+
+#post-graduation {
+  padding: 20px;
+}
+
+.gold-box {
+  background-color: gold;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
 }
