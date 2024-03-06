@@ -94,7 +94,7 @@ footer {
 /* Tampilan untuk mobile */
 @media screen and (max-width: 768px) {
   .logo {
-    font-size: 1rem; /* Ukuran font yang lebih kecil untuk layar mobile */
+    font-size: 1.5rem; /* Ukuran font yang lebih kecil untuk layar mobile */
   }
   .burger-menu {
     display: block;
@@ -104,7 +104,9 @@ footer {
     top: 20px; /* Sesuaikan posisi hamburger button */
     right: 20px; /* Ubah posisi hamburger button menjadi di pojok kanan atas */
   }
-
+  footer {
+    padding: 15px; /* Mengurangi padding pada footer untuk perangkat mobile */
+  }
   .menu {
     display: none;
     position: absolute;
