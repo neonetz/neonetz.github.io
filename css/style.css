@@ -95,7 +95,7 @@ footer {
 /* Tampilan untuk mobile */
 @media screen and (max-width: 768px) {
   .logo {
-    font-size: 1.5rem; /* Ukuran font yang lebih kecil untuk layar mobile */
+    font-size: 1.2rem; /* Ukuran font yang lebih kecil untuk layar mobile */
   }
   .burger-menu {
     display: block;
