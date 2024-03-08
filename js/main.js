@@ -6,14 +6,19 @@ window.addEventListener("scroll", function() {
 
     if (currentScroll > lastScrollTop) {
         // Scrolling ke bawah
-        header.style.transform = "translateY(-100%)"; // Menghilangkan header dengan menggeser ke atas
+        if (header.style.transform !== "translateY(-100%)") {
+            header.style.transform = "translateY(-100%)"; // Menghilangkan header dengan menggeser ke atas
+        }
     } else {
         // Scrolling ke atas atau di atas
-        header.style.transform = "translateY(0)"; // Menampilkan kembali header
+        if (header.style.transform !== "translateY(0)") {
+            header.style.transform = "translateY(0)"; // Menampilkan kembali header
+        }
     }
     
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-}, false);
+}, { passive: true });
+
 document.getElementById('navbar2-toggler').addEventListener('click', function() {
     var navbarToggler = document.getElementById('navbar2-toggler');
     navbarToggler.classList.toggle('clicked');
