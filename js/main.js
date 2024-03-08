@@ -28,3 +28,11 @@ document.getElementById('navbar2-toggler').addEventListener('click', function() 
 // Tambahkan atribut 'aria-label' untuk memberi tombol label yang dapat diakses
 document.getElementById('navbar2-toggler').setAttribute('aria-label', 'Toggle Navigation');
 
+// Fungsi untuk memuat peta Google Maps setelah halaman selesai dimuat
+window.addEventListener('load', function() {
+    var iframes = document.querySelectorAll('iframe[data-src]');
+    for (var i = 0; i < iframes.length; i++) {
+        iframes[i].setAttribute('src', iframes[i].getAttribute('data-src'));
+    }
+});
+
