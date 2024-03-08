@@ -35,7 +35,7 @@ body {
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #000000;
 }
 
@@ -90,25 +90,25 @@ footer {
   border-top: 5px solid orange; /* Menambahkan border oranye di atas footer */
   font-size: 1rem; /* Ukuran font default */
 }
+.sidebar {
+  display: none;
+  /* other styles */
+}
+
 
 
 /* Tampilan untuk mobile */
 @media screen and (max-width: 768px) {
+
   .logo {
     font-size: 1.2rem; /* Ukuran font yang lebih kecil untuk layar mobile */
   }
-  .burger-menu {
-    display: block;
-    width: 50px; /* Atur lebar tombol hamburger */
-    z-index: 9999; /* Pastikan tombol hamburger tampil di atas elemen lain */
-    position: flex; 
-    top: 20px; /* Sesuaikan posisi hamburger button */
-    right: 20px; /* Ubah posisi hamburger button menjadi di pojok kanan atas */
-  }
+
   footer {
     font-size: 0.8rem;
     padding: 15px; /* Mengurangi padding pada footer untuk perangkat mobile */
   }
+
   .menu {
     display: none;
     position: absolute;
@@ -128,7 +128,54 @@ footer {
     padding: 20px;
     width: 100%; /* Menyesuaikan lebar item-menu dengan lebar layar */
   }
+  navbar2-toggler {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .navbar2-toggler span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #000000;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Efek hover untuk garis hamburger */
+  .navbar2-toggler:hover span {
+    background-color: #eeff00;
+  }
+  
+  /* CSS untuk navigasi */
+  .navbar2-nav {
+    display: none;
+  }
+  
+  .navbar2-nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .navbar2-nav ul li {
+    margin-bottom: 10px;
+  }
+  
+  .navbar2-nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  .navbar2 {
+    display: flex;
+    justify-content: center; /* Menengahkan konten secara horizontal */
+    align-items: center; /* Menengahkan konten secara vertikal */
+  }
+  
 }
+
 
 .logo-img {
   width: 40px; 
@@ -364,6 +411,9 @@ video {
   text-align: center;
   border-radius: 10px;
 }
-
-
+@media screen and (min-width: 769px) {
+  .navbar2 {
+    display: none; /* Menyembunyikan navbar di layar desktop */
+  }
+}
 

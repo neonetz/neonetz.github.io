@@ -14,7 +14,15 @@ window.addEventListener("scroll", function() {
     
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 }, false);
-function toggleMenu() {
-    var menu = document.getElementById('menu');
-    menu.classList.toggle('active');
-}
+document.getElementById('navbar2-toggler').addEventListener('click', function() {
+    var navbarToggler = document.getElementById('navbar2-toggler');
+    navbarToggler.classList.toggle('clicked');
+    
+    var navbarNav = document.getElementById('navbar2-nav');
+    if (navbarNav.style.display === 'block') {
+        navbarNav.style.display = 'none';
+    } else {
+        navbarNav.style.display = 'block';
+    }
+});
+
