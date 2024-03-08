@@ -192,6 +192,7 @@ footer {
 .centered img {
   display: block;
   margin: 0 auto; /* Menengahkan gambar secara horizontal */
+  width: 200px; /* Menetapkan lebar tetap */
 }
 
 #quotes {
@@ -222,6 +223,9 @@ footer {
   padding: 20px;
   max-width: 500px;
   margin: 0 auto;
+}
+.bio-box p {
+  margin: 0; /* Menghilangkan margin yang mungkin mengakibatkan pergeseran */
 }
 
 .bio-box h2 {
