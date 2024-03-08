@@ -25,4 +25,6 @@ document.getElementById('navbar2-toggler').addEventListener('click', function() 
         navbarNav.style.display = 'block';
     }
 });
+// Tambahkan atribut 'aria-label' untuk memberi tombol label yang dapat diakses
+document.getElementById('navbar2-toggler').setAttribute('aria-label', 'Toggle Navigation');
 

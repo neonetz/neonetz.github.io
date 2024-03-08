@@ -39,14 +39,6 @@ body {
   color: #000000;
 }
 
-.burger-menu {
-  display: none;
-  font-size: 1.5rem;
-  color: #fff;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
 
 .menu {
   display: flex;
@@ -92,7 +84,7 @@ footer {
 }
 .sidebar {
   display: none;
-  /* other styles */
+  
 }
 
 
@@ -377,7 +369,7 @@ video {
 }
 
 .photo img {
-  max-width: 200px; /* Ubah ukuran gambar sesuai kebutuhan */
+  max-width: 200px; 
   height: auto;
   transition: transform 0.3s ease;
 }
@@ -392,7 +384,7 @@ video {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Ubah opacity sesuai kebutuhan */
+  background-color: rgba(0, 0, 0, 0.5); 
   opacity: 0;
   transition: opacity 0.3s ease;
 }
