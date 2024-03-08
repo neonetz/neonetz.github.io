@@ -6,12 +6,12 @@ html, body, header, footer, main {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #1a1a1a;
-  color: #fff;
+  background-color: #f3f3f3;
+  color: #333; /* Hitam */
 }
 
 #myHeader {
-  background-color: gold;
+  background-color: #2ecc71; /* Hijau */
   color: #fff;
   padding: 20px;
   text-align: center;
@@ -80,8 +80,8 @@ body {
 }
 
 footer {
-  background-color: #1a1a1a;
-  color: #fff;
+  background-color: #2c3e50; 
+  color: #fff; /* Putih */
   padding: 20px;
   text-align: center;
   position: relative; /* Mengubah posisi footer menjadi relative */
@@ -146,7 +146,7 @@ footer {
   
   /* Efek hover untuk garis hamburger */
   .navbar2-toggler:hover span {
-    background-color: #eeff00;
+    background-color: #3cff00;
   }
   
   /* CSS untuk navigasi */
@@ -207,7 +207,7 @@ footer {
 }
 
 .quote-box {
-  background-color: gold;
+  background-color: lime;
   border-radius: 10px;
   padding: 20px;
   margin: 20px auto;
@@ -225,7 +225,7 @@ footer {
 }
 
 .bio-box {
-  background-color: gold;
+  background-color: lime;
   border-radius: 10px;
   padding: 20px;
   max-width: 500px;
@@ -246,7 +246,7 @@ footer {
 }
 
 .lesson-box {
-  background-color: gold;
+  background-color: lime;
   border-radius: 10px;
   padding: 20px;
   max-width: 500px;
@@ -262,7 +262,7 @@ footer {
 }
 
 #technical-skills {
-  background-color: gold;
+  background-color: limegreen;
   padding: 20px;
   text-align: center;
 }
@@ -294,7 +294,7 @@ footer {
 }
 
 #group-members {
-  background-color: gold;
+  background-color: lime;
   padding: 20px;
   text-align: center;
 }
@@ -324,7 +324,7 @@ table tbody tr:nth-child(even) {
 }
 
 #internal-video {
-  background-color: gold;
+  background-color: limegreen;
   padding: 20px;
   text-align: center;
 }
@@ -406,7 +406,7 @@ video {
 }
 
 .gold-box {
-  background-color: gold;
+  background-color: lime;
   padding: 20px;
   text-align: center;
   border-radius: 10px;
