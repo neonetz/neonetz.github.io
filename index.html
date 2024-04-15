@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adhyaksa</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -15,7 +17,7 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#profil">Profile</a></li>
-                    <li><a href="#group-members">Team</a></li>
+                    <li><a href="#Data_Scrapping_1">Data Scrapping 1</a></li>
                     <li><a href="#photo-gallery">Gallery</a></li>
                     <li><a href="#Footer">About</a></li>
                 </ul>
@@ -31,7 +33,7 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#profil">Profile</a></li>
-                    <li><a href="#group-members">Team</a></li>
+                    <li><a href="#Data_Scrapping_1">Data Scrapping 1</a></li>
                     <li><a href="#photo-gallery">Gallery</a></li>
                     <li><a href="#Footer">About</a></li>
                 </ul>
@@ -161,7 +163,14 @@
             <iframe data-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.1774491109713!2d107.5736702!3d-6.869329100000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e4206d108f7d%3A0x2e387eb8ec71e97d!2sJl.%20Kampus%20Polban%2C%20Ciwaruga%2C%20Kec.%20Parongpong%2C%20Kabupaten%20Bandung%20Barat%2C%20Jawa%20Barat%2040559!5e0!3m2!1sen!2sid!4v1709649670759!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" title="Peta Lokasi Kampus Politeknik Negeri Bandung"></iframe>
         </div>
     </section>
-    
+    <section id="Data_Scrapping_1">
+    <h1 id="judulBerita">Berita Hari Ini</h1>
+
+    <div id="Berita_Republik"></div>
+
+    <h1 id="judulBeritaSpecial">Berita Terpopuler</h1>
+    <div id="Berita_Republik_Special"></div>
+    </section>
     <section id="photo-gallery">
         <h2>Gallery Photo</h2>
         <div class="gallery">
@@ -198,5 +207,7 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script src="python/scrap.js"></script>
+    <script src="python/scrapSpecial.js"></script>,
 </body>
 </html>
