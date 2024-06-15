@@ -452,7 +452,7 @@ hr{
     display: block;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     .responsive-table td:before {
         content: attr(data-label);
         float: left;
@@ -462,12 +462,18 @@ hr{
 
     .responsive-table td {
         display: block;
-        text-align: right;
+        text-align: left;
     }
 
     .responsive-table td:last-child {
         border-bottom: 2px solid #ddd;
     }
+
+    .Profile {
+    display: flex;
+    flex-direction: column;
+        justify-content: center;
+}
 }
 /*Project*/
 .sec-5 .description p {
