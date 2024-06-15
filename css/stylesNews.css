@@ -21,6 +21,7 @@ nav{
     position: fixed;
     width: 100%;
     z-index: 100;
+    top: 0;
 }
 .links-container{
     height:100%;
@@ -257,4 +258,8 @@ hr{
     .col{
     flex-basis: 100%;
 }
+}
+
+#Data_Scrapping_1 {
+    margin-top: 100px;
 }
