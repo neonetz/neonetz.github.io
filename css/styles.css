@@ -453,27 +453,16 @@ hr{
 }
 
 @media screen and (max-width: 768px) {
-    .responsive-table td:before {
-        content: attr(data-label);
-        float: left;
-        text-transform: uppercase;
-        font-weight: bold;
-    }
-
-    .responsive-table td {
-        display: block;
-        text-align: left;
-    }
-
-    .responsive-table td:last-child {
-        border-bottom: 2px solid #ddd;
-    }
-
     .Profile {
     display: flex;
     flex-direction: column;
         justify-content: center;
+    align-items: center;
 }
+    .Profile img{
+         width: 250px;
+    }
+
 }
 /*Project*/
 .sec-5 .description p {
@@ -564,4 +553,25 @@ hr{
                 width: 90%;
             }
         }
+/*BORDER WHITE FOR HOBBY*/
+ .Hobby {
+     display: flex;
+     gap: 20px;
+ }
 
+.Hobby img {
+    width: 200px;
+    border-radius: 70%;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+}
+
+
+@media (max-width: 768px) {
+    .Hobby {
+        flex-direction: column;
+        align-items: center;
+    }
+}
