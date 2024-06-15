@@ -45,6 +45,13 @@ section p{
 .sec-6 .images img{
     max-width: 300px;
     margin: 0 30px;
+    transform: translateX(100%);
+    transition-delay: calc(.2s * var(--i));
+}
+
+.sec-5 .project-box{
+    max-width: 300px;
+    margin: 0 30px;
     transform: translateX(-100%);
     transition-delay: calc(.2s * var(--i));
 }
@@ -105,6 +112,9 @@ section.show-animate .animate{
     transform: translateX(0);
 }
 
+.sec-5.show-animate .project-box{
+    transform: translateX(0);
+}
 .sec-7.show-animate .showRight-animate{
     width: 0;
 }
@@ -120,7 +130,7 @@ html{
 /*NAVBAR FUNCTION IN CSS  */
 nav{
     height: 60px;
-    background-color: black;
+   background:linear-gradient(to right, #00093c, #2d0b00);
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -273,7 +283,7 @@ table td.equal{
 .sec-4 ul {
     list-style-type: none;
     padding: 0;
-    color: blue;
+    color: orangered;
     font-size: 18px;
     line-height: 1.6;
 }
@@ -434,3 +444,118 @@ hr{
     flex-basis: 100%;
 }
 }
+
+/*Responsive Table*/
+.responsive-table {
+    width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+@media screen and (max-width: 600px) {
+    .responsive-table td:before {
+        content: attr(data-label);
+        float: left;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
+    .responsive-table td {
+        display: block;
+        text-align: right;
+    }
+
+    .responsive-table td:last-child {
+        border-bottom: 2px solid #ddd;
+    }
+}
+/*Project*/
+.sec-5 .description p {
+    color: white;
+}
+.container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .project-box {
+            background-color: black;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 300px;
+            max-width: 100%;
+            transition: transform 0.3s;
+        }
+
+        .project-box:hover {
+            transform: scale(1.05);
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.1);
+        }
+
+        .description {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .button-container {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .button-container a {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            padding: 10px 20px;
+            background:rgb(26,26,26);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 1000px;
+            transition: background-color 0.3s;
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .button-container a::after{
+            content: '';
+            position: absolute;
+            height: 110%;
+            width: 102%;
+            border-radius: 1000px;
+            background-image: linear-gradient(to bottom right, #4D4DFF, #FFB366);
+            z-index: -1;
+        }
+
+        .button-container a:hover{
+            z-index: 0;
+            box-shadow: 40px 0 100px #4D4DFF, -40px 0 100px #FFB366;
+        }
+
+        @media (max-width: 600px) {
+            .project-box {
+                width: 90%;
+            }
+        }
+
