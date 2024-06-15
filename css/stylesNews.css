@@ -259,7 +259,58 @@ hr{
     flex-basis: 100%;
 }
 }
-
+/*CSS FOR TABLE*/
 #Data_Scrapping_1 {
     margin-top: 100px;
+}
+#Berita_Republik,#Berita_Republik_Special{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#Berita_Republik table,#Berita_Republik_Special table{
+    width: 70%; /* Mengubah lebar tabel */
+    font-size: 0.8em; /* Mengubah ukuran font */
+    margin: auto; /* Membuat tabel berada di tengah */
+}
+
+#Berita_Republik th, #Berita_Republik td ,#Berita_Republik_Special th, #Berita_Republik_Special td{
+    padding: 5px; /* Mengubah padding di dalam sel tabel */
+}
+
+#judulBerita,#judulBeritaSpecial {
+    text-align: center; /* Menengahkan teks */
+    font-family: Arial, sans-serif; /* Mengubah jenis font */
+    color: #333; /* Mengubah warna teks */
+    font-size: 2em; /* Mengubah ukuran font */
+    text-transform: uppercase; /* Mengubah teks menjadi huruf kapital */
+    letter-spacing: 2px; /* Menambahkan jarak antar huruf */
+}
+/* Mengubah warna latar tabel */
+table {
+    background-color: #f8f8f8;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+}
+
+/* Menambahkan padding pada setiap sel tabel */
+table td, table th {
+    padding: 15px;
+}
+
+/* Menambahkan border pada tabel */
+table, th, td {
+    border: 1px solid #ddd;
+}
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+table {
+    animation-name: fadeIn;
+    animation-duration: 2s;
 }
