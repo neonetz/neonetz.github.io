@@ -283,14 +283,14 @@ hr{
 #judulBerita,#judulBeritaSpecial {
     text-align: center; /* Menengahkan teks */
     font-family: Arial, sans-serif; /* Mengubah jenis font */
-    color: #333; /* Mengubah warna teks */
+    color: white; /* Mengubah warna teks */
     font-size: 2em; /* Mengubah ukuran font */
     text-transform: uppercase; /* Mengubah teks menjadi huruf kapital */
     letter-spacing: 2px; /* Menambahkan jarak antar huruf */
 }
 /* Mengubah warna latar tabel */
 table {
-    background-color: #f8f8f8;
+    background-color: black;
     border-collapse: collapse;
     width: 100%;
     text-align: left;
@@ -303,7 +303,7 @@ table td, table th {
 
 /* Menambahkan border pada tabel */
 table, th, td {
-    border: 1px solid #ddd;
+    border: 1px solid cyan;
 }
 @keyframes fadeIn {
     0% {opacity: 0;}
@@ -313,4 +313,14 @@ table, th, td {
 table {
     animation-name: fadeIn;
     animation-duration: 2s;
+}
+
+#Data_Scrapping_1 h1 {
+    color: rgb(255,255,255);
+}
+#Data_Scrapping_1 table tr {
+    color: white;
+}
+#Data_Scrapping_1 table td {
+    color: white;
 }
