@@ -1,0 +1,260 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/*Reset website */
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+body{
+     background-color: rgb(26,26,26);
+     font-family: 'Poppins','Segoe UI', 'Tahoma', sans-serif;
+}
+/*NAVBAR FUNCTION IN CSS  */
+nav{
+    height: 60px;
+   background:linear-gradient(to right, #00093c, #2d0b00);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+.links-container{
+    height:100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+nav a{
+    height : 100%;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color : blue;
+}
+nav a:hover{
+    background-color: darkblue;
+}
+
+nav .home-link{
+    margin-right: auto;
+}
+
+nav svg{
+    fill: white;
+}
+
+#sidebar-active{
+    display: none;
+}
+
+.open-sidebar-button, .close-sidebar-button{
+    padding: 0 20px;
+    display: none;
+}
+
+/*FOR MOBILE PHONES */
+@media(max-width: 768px){
+    .links-container{
+        flex-direction: column;
+        align-items: flex-start;
+
+        position: fixed;
+        top: 0;
+        right: -100%;
+        z-index: 10;
+        width: 300px;
+
+        background-color: black;
+        box-shadow: -5px 0 5px rgba(0,0,0,0.25);
+        transition: 0.75s ease-out;
+    }
+    nav a{
+        box-sizing: border-box;
+        height: auto;
+        width: 100%;
+        padding: 20px 30px;
+        justify-content: flex-start;
+    }
+    .open-sidebar-button, .close-sidebar-button{
+        padding: 20px;
+    display: block;
+}
+    #sidebar-active:checked ~ .links-container{
+        right: 0;
+    }
+    #sidebar-active:checked ~ #overlay{
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9;
+    }
+}
+.logo {
+    pointer-events: none;
+}
+.logo img {
+    width: 45px;
+    height: auto;
+    padding: 10px;
+}
+.logo h3{
+    color: darkcyan;
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding: 10px;
+}
+
+/*FOOTER*/
+footer{
+    width: 100%;
+    bottom: 0;
+    background:linear-gradient(to right, #00093c, #2d0b00);
+    color: #fff;
+    padding: 100px 0 30px;
+    border-top-left-radius: 125px;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.col img{
+     max-width: 80px;
+    margin-bottom: 30px;
+}
+
+.row-footer{
+    width: 85%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.col{
+    flex-basis: 25%;
+    padding: 10px;
+}
+/*.col:nth-child(2), .col:nth-child(3){
+    flex-basis: 15%;
+}*/
+
+.col h3{
+    width: fit-content;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.email-id{
+    width: fit-content;
+    border-bottom: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+form{
+    padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 50px;
+
+}
+
+form .fa-regular{
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+form input{
+    width: 100%;
+    background: transparent;
+    color: #ccc;
+    border: 0;
+    outline: none;
+}
+
+form button{
+    background: transparent;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+form button .fa-solid{
+    font-size: 16px;
+    color: #ccc;
+}
+
+.social-icons .fa-brands{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    color: #000;
+    background: #fff;
+    margin-right: 15px;
+    cursor: pointer;
+
+}
+
+hr{
+    width: 90%;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    margin: 20px auto;
+}
+
+.copyaksa{
+    text-align: center;
+}
+
+/*ANIMATION FOOTER*/
+.underline{
+    width: 100%;
+    height: 5px;
+    background: #767676;
+    border-radius: 3px;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    overflow: hidden;
+}
+
+.underline span{
+    width: 15px;
+    height: 100%;
+    background: #fff;
+    border-radius: 3px;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    animation: moving 2s linear infinite;
+}
+@keyframes moving {
+    0%{
+        left: -20px;
+    }
+    100%{
+        left: 100%;
+    }
+
+}
+
+@media (max-width: 768px){
+    footer{
+        bottom: unset;
+    }
+    .col{
+    flex-basis: 100%;
+}
+}
