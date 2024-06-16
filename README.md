@@ -7,7 +7,7 @@
 - **Kampus:** <span style="color:purple;">Politeknik Negeri Bandung</span>
 
 ## Deskripsi Website
-Selamat datang di <span style="color:blue;">NEONETZ</span>! Website ini dibuat untuk <span style="color:purple;">Kegabutan saya untuk belajar html,css,javascript dan bootstrap</span>. Melalui proyek ini, saya berharap dapat <span style="color:blue;">[tujuan spesifik atau hasil yang diharapkan dari website Anda]</span>.
+Selamat datang di <span style="color:blue;">NEONETZ</span>! Website ini dibuat untuk <span style="color:purple;">Kegabutan saya untuk belajar html,css,javascript dan bootstrap</span>. Melalui proyek ini, saya berharap dapat <span style="color:blue;">Mengembangkan Skill Saya dalam logika pemograman</span>.
 
 ### Fitur Utama
 - **🔹 Navigasi Mudah:** Pengguna dapat dengan mudah menjelajahi konten dan fitur website.
