@@ -23,3 +23,6 @@ $(function(){
         $("#Berita_Republik").html(str);
     });
 });
+
+
+

@@ -16,3 +16,21 @@ window.onscroll = ()  => {
     })
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const musicButton = document.getElementById('musicButton');
+    const audio = document.getElementById('audio');
+    let isPlaying = false;
+
+
+    musicButton.addEventListener('click', function() {
+        if (isPlaying) {
+            audio.pause();
+            musicButton.classList.remove('playing');
+        } else {
+            audio.play();
+            musicButton.classList.add('playing');
+        }
+        isPlaying = !isPlaying;
+    });
+});
+
