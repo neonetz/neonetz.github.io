@@ -40,15 +40,6 @@ section p{
     font-weight: 600;
 }
 
-
-
-.sec-6 .images img{
-    max-width: 300px;
-    margin: 0 30px;
-    transform: translateX(100%);
-    transition-delay: calc(.2s * var(--i));
-}
-
 .sec-5 .project-box{
     max-width: 300px;
     margin: 0 30px;
@@ -108,12 +99,12 @@ section.show-animate .animate{
     width: 0;
 }
 
-.sec-6.show-animate .images img{
+.sec-5.show-animate .project-box{
     transform: translateX(0);
 }
 
-.sec-5.show-animate .project-box{
-    transform: translateX(0);
+.sec-6 {
+    margin-top: 200px;
 }
 .sec-7.show-animate .showRight-animate{
     width: 0;
@@ -200,6 +191,7 @@ nav svg{
     .open-sidebar-button, .close-sidebar-button{
         padding: 20px;
     display: block;
+        cursor: pointer;
 }
     #sidebar-active:checked ~ .links-container{
         right: 0;
@@ -630,3 +622,33 @@ hr{
     animation-play-state: running;
 }
 
+/*SLIDER FOR IMAGE*/
+.slider {
+  position: relative;
+  max-width: 70%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slide img {
+  width: 100%;
+  display: block;
+}
+@media (max-width: 768px) {
+    .slider {
+        max-width: 100%;
+    }
+}

@@ -34,3 +34,39 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+let counter = 1;
+setInterval(() => {
+    document.getElementById('radio' + counter).checked = true;
+    counter++;
+    if (counter > 4) {
+        counter = 1;
+    }
+}, 5000);
+// script.js
+let currentSlide = 0;
+
+function showSlide(index) {
+  const slides = document.querySelectorAll('.slide');
+  if (index >= slides.length) {
+    currentSlide = 0;
+  } else if (index < 0) {
+    currentSlide = slides.length - 1;
+  } else {
+    currentSlide = index;
+  }
+  const newTransform = -currentSlide * 100;
+  document.querySelector('.slides').style.transform = `translateX(${newTransform}%)`;
+}
+
+function changeSlide(direction) {
+  showSlide(currentSlide + direction);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  showSlide(currentSlide);
+  setInterval(() => {
+    changeSlide(1);
+  }, 3000); // Auto-slide interval
+});
+
+
