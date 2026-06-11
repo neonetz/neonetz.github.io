@@ -1,0 +1,162 @@
+/**
+ * Portfolio Data
+ * Content data separated from structure (High Cohesion)
+ * Easy to update without touching HTML
+ */
+
+export const portfolioData = {
+    meta: {
+        title: 'Neonetz - Portfolio',
+        description: 'Personal portfolio of Muhammad Adhyaksa Fadillah - A passionate developer building digital experiences.',
+        author: 'Neonetz',
+        image: '/img/logo.jpeg'
+    },
+
+    header: {
+        logo: {
+            src: '/img/logo.jpeg',
+            alt: 'Neonetz Logo'
+        },
+        name: 'NEONETZ'
+    },
+
+    hero: {
+        title: 'Welcome, I\'m Aksa',
+        subtitles: [
+            'A passionate developer',
+            'Building digital experiences',
+            'Turning ideas into reality',
+            'Coding with purpose'
+        ],
+        cta: {
+            primary: {
+                text: 'View Projects',
+                href: '#projects'
+            },
+            secondary: {
+                text: 'Contact Me',
+                href: '#footer'
+            }
+        }
+    },
+
+    about: {
+        image: '/img/aksa.webp',
+        name: 'Muhammad Adhyaksa Fadillah',
+        info: [
+            { label: 'Class', value: 'D41B' },
+            { label: 'NIM', value: '231524051' },
+            { label: 'Major', value: 'D4 Teknik Informatika' },
+            { label: 'Campus', value: 'Politeknik Negeri Bandung' }
+        ]
+    },
+
+    skills: [
+        { name: 'C++', icon: '/img/c-.webp' },
+        { name: 'Java', icon: '/img/java.webp' },
+        { name: 'C', icon: '/img/letter-c.webp' },
+        { name: 'Python', icon: '/img/python.png' },
+        { name: 'Excel', icon: '/img/excel.webp' },
+        { name: 'Word', icon: '/img/word.webp' },
+        { name: 'GitHub', icon: '/img/github.png' },
+        { name: 'HTML/CSS', icon: '/img/html.png' }
+    ],
+
+    hobbies: [
+        { name: 'Gaming', icon: '/img/console.png' },
+        { name: 'Coding', icon: '/img/coding.png' },
+        { name: 'Swimming', icon: '/img/swimming.png' }
+    ],
+
+    campus: {
+        name: 'Politeknik Negeri Bandung',
+        logo: '/img/POLBAN-removebg-preview.png',
+        features: [
+            'Accreditation A',
+            'Modern and Complete Facilities',
+            'Industry Collaboration',
+            'High Graduate Employability',
+            'Comprehensive Career Support'
+        ]
+    },
+
+    projects: [
+        {
+            title: 'Data Scraping MyAnimeList',
+            description: 'Web scraping project to extract anime data and statistics from MyAnimeList platform.',
+            image: '/img/python.png',
+            tags: ['Python', 'Web Scraping', 'Data'],
+            link: '#',
+            status: 'in-progress'
+        },
+        {
+            title: 'Data Scraping Berita',
+            description: 'News article scraping application for data aggregation and analysis.',
+            image: '/img/newsBerita.png',
+            tags: ['Python', 'BeautifulSoup', 'API'],
+            link: 'indexBerita.html'
+        },
+        {
+            title: 'Data Smartphones Tokopedia',
+            description: 'E-commerce product data extraction from Tokopedia marketplace.',
+            image: '/img/tokpedscrap.PNG',
+            tags: ['Python', 'Selenium', 'E-commerce'],
+            link: '#',
+            status: 'in-progress'
+        },
+        {
+            title: 'Data Laptop Tokopedia (Team)',
+            description: 'Collaborative project for laptop price comparison and analysis.',
+            image: '/img/tokpedscrap.PNG',
+            tags: ['Python', 'Team Project', 'Data Analysis'],
+            link: 'https://peitann.github.io/b4deadline/tokpedScraping.html'
+        },
+        {
+            title: 'Morse Code Program (Team)',
+            description: 'Interactive Morse code encoder/decoder with audio support.',
+            image: '/img/MorseCode.png',
+            tags: ['C++', 'Data Structures', 'Team Project'],
+            link: 'https://github.com/Mazdeus/SDA_Tubes_Sandi_Morse'
+        },
+        {
+            title: 'Money Tracker (Team)',
+            description: 'Personal finance tracking web application for expense management.',
+            image: '/img/money_tracking_web.PNG',
+            tags: ['Web', 'JavaScript', 'Team Project'],
+            link: 'https://peitann.github.io/b4deadline/moneyTracking.html#first'
+        }
+    ],
+
+    gallery: [
+        { src: '/img/Gallery 4.webp', alt: 'Gallery Image 1' },
+        { src: '/img/Gallery 5.webp', alt: 'Gallery Image 2' }
+    ],
+
+    footer: {
+        logo: '/img/logo.jpeg',
+        description: 'A personal portfolio showcasing projects and skills. Built with passion and dedication to the craft of software development.',
+        campus: {
+            name: 'Politeknik Negeri Bandung',
+            address: 'Bandung, Indonesia',
+            email: 'aksafadillah@gmail.com',
+            phone: '+62 81772321546'
+        },
+        social: [
+            { name: 'YouTube', icon: 'fa-youtube', url: 'https://www.youtube.com/channel/UCc6bteP-SQe7_I-4vv8u4jQ' },
+            { name: 'Instagram', icon: 'fa-instagram', url: 'https://www.instagram.com/aksadailylife?igsh=cmlmYWpmanFkanc4' },
+            { name: 'GitHub', icon: 'fa-github', url: 'https://github.com/neonetz' }
+        ],
+        copyright: 'Aksa Memandangi Laptop - 2024'
+    },
+
+    navigation: [
+        { label: 'Home', href: '#hero' },
+        { label: 'About', href: '#about' },
+        { label: 'Skills', href: '#skills' },
+        { label: 'Projects', href: '#projects' },
+        { label: 'Gallery', href: '#gallery' },
+        { label: 'Contact', href: '#footer' }
+    ]
+};
+
+export default portfolioData;
