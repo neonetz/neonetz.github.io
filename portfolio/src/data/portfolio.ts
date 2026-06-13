@@ -43,16 +43,16 @@ export const profile: Profile = {
   Committed to writing clean, maintainable code and staying updated with the latest technologies.`,
   avatar: "/img/aksa.webp",
   location: "Indonesia",
-  email: "adhyaksa@example.com",
+  email: "aksafadillah@gmail.com",
   skills: [
-    { name: "HTML/CSS", level: 95, category: "frontend" },
-    { name: "JavaScript", level: 90, category: "frontend" },
-    { name: "React.js", level: 85, category: "frontend" },
-    { name: "Python", level: 88, category: "backend" },
-    { name: "Django", level: 75, category: "backend" },
-    { name: "SQL/Database", level: 80, category: "database" },
-    { name: "Git/GitHub", level: 90, category: "devops" },
-    { name: "UI/UX Design", level: 70, category: "other" },
+    { name: "Python (Computer Vision)", level: 90, category: "backend" },
+    { name: "TypeScript / React", level: 85, category: "frontend" },
+    { name: "C (Systems Programming)", level: 80, category: "backend" },
+    { name: "HTML / Tailwind CSS", level: 90, category: "frontend" },
+    { name: "Image Processing / OpenCV", level: 85, category: "other" },
+    { name: "Godot Engine", level: 70, category: "other" },
+    { name: "Git / GitHub", level: 85, category: "devops" },
+    { name: "Networking & Web Servers", level: 75, category: "devops" },
   ],
   socialLinks: [
     { name: "GitHub", url: "https://github.com/neonetz", icon: "github" },
@@ -63,70 +63,65 @@ export const profile: Profile = {
 
 export const projects: Project[] = [
   {
-    id: "portfolio-v1",
-    title: "Personal Portfolio v1",
-    description: "First iteration of my personal portfolio website",
-    longDescription: `A clean and minimalist portfolio website built with vanilla HTML, CSS, and JavaScript. 
-    Features smooth scrolling navigation, responsive design, and a dark theme optimized for readability. 
-    This project showcases my early web development skills and understanding of fundamental web technologies.`,
+    id: "anticheat-system",
+    title: "Anti-Cheat System",
+    description: "Digital image processing project for detecting cheating.",
+    longDescription: `A computer vision-based project developed for an academic assignment (Pengolahan Citra Digital). 
+    It utilizes Python and image processing techniques to analyze visual data and detect potential anomalies or cheating behaviors.`,
     image: "/img/logo.jpeg",
     techStack: [
-      { name: "HTML5", level: 95, category: "frontend" },
-      { name: "CSS3", level: 90, category: "frontend" },
-      { name: "JavaScript", level: 85, category: "frontend" },
+      { name: "Python", level: 90, category: "backend" },
+      { name: "OpenCV", level: 85, category: "backend" },
+      { name: "Image Processing", level: 80, category: "other" },
+    ],
+    githubUrl: "https://github.com/neonetz/AntiCheatSystem",
+    status: "completed",
+  },
+  {
+    id: "virtual-tryon",
+    title: "Virtual Try-On (Godot)",
+    description: "Virtual clothing try-on system integrated with Godot Engine.",
+    longDescription: `An innovative virtual fitting room application. This project connects Python-based computer vision logic with the Godot Engine to render a virtual try-on experience, mapping clothing onto user movements in real-time.`,
+    image: "/img/logo.jpeg",
+    techStack: [
+      { name: "Python", level: 90, category: "backend" },
+      { name: "Godot Engine", level: 75, category: "other" },
+      { name: "Computer Vision", level: 85, category: "backend" },
+    ],
+    githubUrl: "https://github.com/neonetz/Virtual-TryOn-in-Godot",
+    status: "in-progress",
+  },
+  {
+    id: "webserver-c",
+    title: "C Web Server",
+    description: "A custom web server built from scratch using C.",
+    longDescription: `A low-level systems programming project that involves creating a functional HTTP web server entirely in C. 
+    It handles socket programming, network connections, and HTTP request parsing directly at the OS level.`,
+    image: "/img/logo.jpeg",
+    techStack: [
+      { name: "C", level: 85, category: "backend" },
+      { name: "Socket Programming", level: 80, category: "devops" },
+      { name: "HTTP Protocol", level: 75, category: "devops" },
+    ],
+    githubUrl: "https://github.com/neonetz/WebServerC",
+    status: "completed",
+  },
+  {
+    id: "portfolio-website",
+    title: "Interactive Portfolio",
+    description: "Sci-fi themed personal developer portfolio.",
+    longDescription: `The website you are currently viewing. Built with a modern tech stack featuring React, TypeScript, and Tailwind CSS. 
+    It employs a custom sci-fi/terminal aesthetic inspired by video game UI, utilizing Framer Motion for smooth animations and transitions.`,
+    image: "/img/logo.jpeg",
+    techStack: [
+      { name: "React", level: 90, category: "frontend" },
+      { name: "TypeScript", level: 85, category: "frontend" },
+      { name: "Tailwind CSS", level: 95, category: "frontend" },
+      { name: "Framer Motion", level: 80, category: "frontend" },
     ],
     liveUrl: "https://neonetz.github.io",
     githubUrl: "https://github.com/neonetz/neonetz.github.io",
     status: "completed",
-  },
-  {
-    id: "berita-scraper",
-    title: "Berita Scraper",
-    description: "Automated news scraping tool with Django backend",
-    longDescription: `A web scraping application that automatically collects news articles from various Indonesian news websites. 
-    Built with Python and BeautifulSoup for parsing, Django for the web interface, and SQLite for data storage. 
-    Includes scheduled tasks for automatic content updates and a search functionality.`,
-    image: "/img/logo.jpeg",
-    techStack: [
-      { name: "Python", level: 90, category: "backend" },
-      { name: "Django", level: 85, category: "backend" },
-      { name: "BeautifulSoup", level: 80, category: "backend" },
-      { name: "SQLite", level: 75, category: "database" },
-    ],
-    githubUrl: "https://github.com/neonetz/berita-scraper",
-    status: "completed",
-  },
-  {
-    id: "automation-scripts",
-    title: "Automation Scripts",
-    description: "Collection of Python automation utilities",
-    longDescription: `A repository of Python scripts designed to automate repetitive tasks. 
-    Includes file organization scripts, email automation, social media posting tools, and data processing utilities. 
-    Built with modularity in mind for easy customization and reuse.`,
-    image: "/img/logo.jpeg",
-    techStack: [
-      { name: "Python", level: 92, category: "backend" },
-      { name: "Selenium", level: 75, category: "backend" },
-      { name: "Pandas", level: 80, category: "backend" },
-    ],
-    githubUrl: "https://github.com/neonetz/automation-scripts",
-    status: "in-progress",
-  },
-  {
-    id: "music-player",
-    title: "Web Music Player",
-    description: "Custom music player with playlist management",
-    longDescription: `A feature-rich web-based music player built with vanilla JavaScript. 
-    Features include playlist management, shuffle and repeat modes, volume control, 
-    keyboard shortcuts, and a modern dark-themed UI. Uses the Web Audio API for audio processing.`,
-    image: "/img/logo.jpeg",
-    techStack: [
-      { name: "HTML5", level: 90, category: "frontend" },
-      { name: "CSS3", level: 88, category: "frontend" },
-      { name: "JavaScript", level: 90, category: "frontend" },
-      { name: "Web Audio API", level: 70, category: "frontend" },
-    ],
-    status: "archived",
   },
 ];
 
