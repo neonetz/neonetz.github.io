@@ -1,4 +1,4 @@
-import { Navbar } from './components/layouts/Navbar';
+import { Sidebar } from './components/layouts/Sidebar';
 import { Footer } from './components/layouts/Footer';
 import { Hero } from './features/hero/Hero';
 import { Projects } from './features/projects/Projects';
@@ -7,32 +7,49 @@ import { Skills } from './features/skills/Skills';
 import { TechCloud3D } from './features/skills/TechCloud3D';
 import { Contact } from './features/contact/Contact';
 
+function Marquee() {
+  return (
+    <div className="w-full bg-accent-yellow text-black py-2 overflow-hidden flex whitespace-nowrap border-t border-b border-accent-yellow/50">
+      <div className="animate-[marquee_20s_linear_infinite] flex items-center font-black font-mono text-sm tracking-[0.3em] uppercase">
+        {Array(20).fill('// NEONETZ ').map((text, i) => (
+          <span key={i} className="mx-4">{text}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
-    <div className="bg-bg-primary text-text-primary h-screen overflow-y-auto overflow-x-hidden scroll-smooth">
-      <Navbar />
-      <main>
-        <div className="w-full min-h-screen">
-          <Hero />
-        </div>
-        <div className="w-full min-h-screen">
-          <Projects />
-        </div>
-        <div className="w-full min-h-screen bg-bg-secondary">
-          <About />
-        </div>
-        <div className="w-full min-h-screen">
-          <Skills />
-        </div>
+    <div className="bg-bg-primary text-text-primary min-h-screen overflow-x-hidden scroll-smooth flex">
+      <Sidebar />
+      <div className="flex-1 ml-16 md:ml-20 flex flex-col w-[calc(100%-4rem)] md:w-[calc(100%-5rem)]">
+        <main>
+          <div className="w-full min-h-screen">
+            <Hero />
+          </div>
+          <div className="w-full min-h-screen">
+            <Projects />
+          </div>
+          <div className="w-full min-h-screen bg-bg-secondary">
+            <About />
+          </div>
+          <div className="w-full min-h-screen">
+            <Skills />
+          </div>
+          <div className="w-full">
+            <TechCloud3D />
+          </div>
+          <div className="w-full min-h-screen">
+            <Contact />
+          </div>
+        </main>
+        
+        <Marquee />
+        
         <div className="w-full">
-          <TechCloud3D />
+          <Footer />
         </div>
-        <div className="w-full min-h-screen">
-          <Contact />
-        </div>
-      </main>
-      <div className="w-full">
-        <Footer />
       </div>
     </div>
   );
