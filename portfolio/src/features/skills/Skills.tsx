@@ -8,7 +8,7 @@ const skillBarColor = (category: string) => {
     case 'backend': return 'bg-accent-yellow';
     case 'database': return 'bg-accent-teal/70';
     case 'devops': return 'bg-accent-yellow/70';
-    default: return 'bg-border-subtle';
+    default: return 'bg-text-primary';
   }
 };
 
@@ -18,7 +18,7 @@ const skillTextColor = (category: string) => {
     case 'backend': return 'text-accent-yellow';
     case 'database': return 'text-accent-teal/70';
     case 'devops': return 'text-accent-yellow/70';
-    default: return 'text-text-muted';
+    default: return 'text-text-primary';
   }
 };
 
