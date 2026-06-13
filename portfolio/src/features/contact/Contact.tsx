@@ -35,21 +35,21 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative w-full min-h-screen flex flex-col justify-center py-24 bg-bg-primary">
-      <div className="section-wrapper">
+    <section id="contact" className="relative w-full min-h-screen flex flex-col pt-32 pb-16 bg-bg-secondary">
+      <div className="section-wrapper flex-grow flex flex-col items-center justify-center">
         
-        <div className="mb-14 text-center">
+        <div className="mb-14 text-center w-full">
           <p className="text-label mb-2">04 — Commlink</p>
-          <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-text-primary">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-text-primary">
             Get In Touch
           </h2>
           <div className="w-16 h-1 bg-accent-yellow mt-4 mx-auto" />
-          <p className="text-text-muted text-sm mt-5 max-w-md mx-auto">
+          <p className="text-text-muted text-sm md:text-base mt-6 max-w-md mx-auto">
             Have a project in mind or just want to say hello? Send me a message and I'll get back to you.
           </p>
         </div>
 
-        <div className="max-w-xl mx-auto">
+        <div className="w-full max-w-2xl mx-auto">
           <motion.form
             onSubmit={handleSubmit}
             className="space-y-6 bg-bg-secondary p-8 sm:p-12 cut-corner border border-border-subtle"

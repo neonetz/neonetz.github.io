@@ -22,7 +22,7 @@ export function Projects() {
   const [selected, setSelected] = useState<Project>(projects[0]);
 
   return (
-    <section id="projects" className="relative w-full min-h-screen flex flex-col justify-center py-24 bg-bg-primary">
+    <section id="projects" className="relative w-full min-h-screen flex flex-col pt-32 pb-16 bg-bg-primary">
       <div className="section-wrapper">
         
         <div className="mb-14">
