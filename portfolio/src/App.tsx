@@ -6,6 +6,7 @@ import { About } from './features/about/About';
 import { Skills } from './features/skills/Skills';
 import { TechCloud3D } from './features/skills/TechCloud3D';
 import { Contact } from './features/contact/Contact';
+import { LoadingScreen } from './components/ui/LoadingScreen';
 
 function Marquee() {
   return (
@@ -21,7 +22,9 @@ function Marquee() {
 
 function App() {
   return (
-    <div className="bg-bg-primary text-text-primary min-h-screen overflow-x-hidden scroll-smooth flex">
+    <>
+      <LoadingScreen />
+      <div className="bg-bg-primary text-text-primary min-h-screen overflow-x-hidden scroll-smooth flex">
       <Sidebar />
       <div className="flex-1 ml-16 md:ml-20 flex flex-col w-[calc(100%-4rem)] md:w-[calc(100%-5rem)]">
         <main>
@@ -52,6 +55,7 @@ function App() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
