@@ -1,31 +1,96 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { profile } from '../../data/portfolio';
 
 export function Hero() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Set canvas dimensions to window size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Matrix characters (using hex, technical symbols, and numbers)
+    const characters = '0123456789ABCDEF!@#$%^&*()_+-=[]{}|;:,.<>/?¥£€'.split('');
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    
+    // Array for drops - one per column
+    const drops: number[] = [];
+    for (let x = 0; x < columns; x++) {
+      drops[x] = Math.random() * -100; // Start off screen randomly
+    }
+
+    let animationFrameId: number;
+
+    const draw = () => {
+      // Semi-transparent black background to create trail effect
+      ctx.fillStyle = 'rgba(13, 13, 17, 0.1)'; // Matches bg-primary
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.font = `${fontSize}px "JetBrains Mono", monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        // Random character
+        const text = characters[Math.floor(Math.random() * characters.length)];
+        
+        // Color based on theme (muted teal/white for Endfield vibe)
+        const isHead = Math.random() > 0.9;
+        ctx.fillStyle = isHead ? '#ffffff' : '#145c66'; // accent-teal-dim
+        
+        // Occasional yellow glitch
+        if (Math.random() > 0.995) {
+          ctx.fillStyle = '#f0c808'; // accent-yellow
+        }
+
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        // Reset drop to top randomly
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+      
+      animationFrameId = requestAnimationFrame(draw);
+    };
+
+    draw();
+
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   return (
     <section id="home" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-bg-primary">
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen"
-        poster="/img/logo.jpeg"
-      >
-        {/* Placeholder Sci-Fi / Tech Video from Pixabay (Free for use) */}
-        <source src="https://cdn.pixabay.com/video/2020/05/25/40139-424564883_large.mp4" type="video/mp4" />
-      </video>
+      
+      {/* Custom Matrix Canvas Background */}
+      <canvas 
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full opacity-30"
+      />
 
       {/* Grid Overlay & Vignette */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-transparent to-bg-primary opacity-80" />
-      <div className="absolute inset-0 bg-gradient-to-b from-bg-primary via-transparent to-transparent opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-t from-bg-primary via-transparent to-bg-primary opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-b from-bg-primary via-transparent to-transparent opacity-80" />
 
       {/* Content */}
-      <div className="relative w-full z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         
         {/* Top Tactical Label */}
         <motion.div
@@ -43,7 +108,7 @@ export function Hero() {
 
         {/* Main Title (Logo Area) */}
         <motion.h1
-          className="text-6xl md:text-8xl lg:text-[10rem] font-black uppercase tracking-tighter leading-none mb-4 text-text-primary drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+          className="text-6xl md:text-8xl lg:text-[10rem] font-black uppercase tracking-tighter leading-none mb-4 text-text-primary drop-shadow-[0_0_30px_rgba(255,255,255,0.1)]"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
@@ -96,10 +161,10 @@ export function Hero() {
       </div>
 
       {/* Frame Decals */}
-      <div className="absolute top-8 left-8 border-l-4 border-t-4 border-white/20 w-16 h-16 pointer-events-none" />
-      <div className="absolute top-8 right-8 border-r-4 border-t-4 border-white/20 w-16 h-16 pointer-events-none" />
-      <div className="absolute bottom-8 left-8 border-l-4 border-b-4 border-white/20 w-16 h-16 pointer-events-none" />
-      <div className="absolute bottom-8 right-8 border-r-4 border-b-4 border-white/20 w-16 h-16 pointer-events-none" />
+      <div className="absolute top-8 left-8 border-l-4 border-t-4 border-white/10 w-16 h-16 pointer-events-none" />
+      <div className="absolute top-8 right-8 border-r-4 border-t-4 border-white/10 w-16 h-16 pointer-events-none" />
+      <div className="absolute bottom-8 left-8 border-l-4 border-b-4 border-white/10 w-16 h-16 pointer-events-none" />
+      <div className="absolute bottom-8 right-8 border-r-4 border-b-4 border-white/10 w-16 h-16 pointer-events-none" />
     </section>
   );
 }
