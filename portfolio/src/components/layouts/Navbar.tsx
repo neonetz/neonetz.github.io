@@ -31,7 +31,6 @@ export function Navbar() {
       <div className="section-wrapper">
         <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* Logo */}
           <a href="#home" className="flex items-center gap-2 group">
             <div className="w-8 h-8 bg-accent-yellow cut-corner flex items-center justify-center">
               <span className="text-black font-black text-lg leading-none">N</span>
@@ -41,7 +40,6 @@ export function Navbar() {
             </span>
           </a>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <a
@@ -55,18 +53,16 @@ export function Navbar() {
             ))}
           </div>
 
-          {/* Right: Status + CTA */}
           <div className="hidden md:flex items-center gap-6">
-            <div className="flex items-center gap-2 text-text-muted text-[10px] font-mono">
+            <div className="flex items-center gap-2 text-text-muted text-xs font-mono">
               <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
               ONLINE
             </div>
-            <a href="#contact" className="btn-outline text-[10px] px-4 py-2">
+            <a href="#contact" className="btn-outline" style={{ fontSize: '0.65rem', padding: '0.5rem 1.25rem' }}>
               Contact
             </a>
           </div>
 
-          {/* Mobile Toggle */}
           <button
             className="md:hidden p-2 text-text-primary"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -76,7 +72,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -93,7 +88,7 @@ export function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="block py-3 px-4 text-text-muted hover:text-text-primary text-sm font-mono uppercase tracking-widest border-b border-border-subtle last:border-0"
                 >
-                  <span className="text-accent-teal/40 mr-3">{String(i + 1).padStart(2, '0')}</span>
+                  <span className="text-accent-teal/40 mr-3 font-mono text-xs">{String(i + 1).padStart(2, '0')}</span>
                   {link.name}
                 </a>
               ))}

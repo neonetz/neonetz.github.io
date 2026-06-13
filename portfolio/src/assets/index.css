@@ -179,6 +179,15 @@ body {
   opacity: 0.8;
 }
 
+.text-label-sm {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent-yellow);
+  opacity: 0.8;
+}
+
 /* ============================================
    DIVIDER
    ============================================ */

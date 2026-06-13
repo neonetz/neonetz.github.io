@@ -25,19 +25,16 @@ export function Projects() {
     <section id="projects" className="relative w-full min-h-screen flex flex-col justify-center py-24 bg-bg-primary">
       <div className="section-wrapper">
         
-        {/* Section Header */}
-        <div className="mb-16">
-          <p className="text-label mb-3">02 — Archives</p>
+        <div className="mb-14">
+          <p className="text-label mb-2">02 — Archives</p>
           <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-text-primary">
             Featured Projects
           </h2>
           <div className="w-16 h-1 bg-accent-yellow mt-4" />
         </div>
 
-        {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           
-          {/* Project List (Left Sidebar) */}
           <div className="lg:col-span-4 space-y-3">
             {projects.map((project, index) => (
               <button
@@ -50,24 +47,23 @@ export function Projects() {
                 }`}
               >
                 <div className="flex items-start justify-between">
-                  <div>
-                    <span className={`text-[10px] font-mono font-bold tracking-widest ${selected.id === project.id ? 'text-bg-primary/50' : 'text-text-muted'}`}>
+                  <div className="flex-1 min-w-0">
+                    <span className={`text-xs font-mono font-bold tracking-widest ${selected.id === project.id ? 'text-bg-primary/50' : 'text-text-muted'}`}>
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <h3 className={`font-bold text-base mt-1 uppercase tracking-wide ${selected.id === project.id ? 'text-bg-primary' : 'text-text-primary'}`}>
+                    <h3 className={`font-bold text-sm uppercase tracking-wide mt-1 ${selected.id === project.id ? 'text-bg-primary' : 'text-text-primary'}`}>
                       {project.title}
                     </h3>
-                    <p className={`text-xs mt-1 leading-relaxed ${selected.id === project.id ? 'text-bg-primary/60' : 'text-text-muted'}`}>
+                    <p className={`text-xs mt-1 leading-relaxed line-clamp-2 ${selected.id === project.id ? 'text-bg-primary/60' : 'text-text-muted'}`}>
                       {project.description}
                     </p>
                   </div>
-                  <ChevronRight className={`w-4 h-4 mt-1 transition-transform ${selected.id === project.id ? 'text-bg-primary rotate-90' : 'text-text-muted group-hover:text-accent-teal'}`} />
+                  <ChevronRight className={`w-4 h-4 ml-3 mt-2 flex-shrink-0 transition-transform ${selected.id === project.id ? 'text-bg-primary rotate-90' : 'text-text-muted group-hover:text-accent-teal'}`} />
                 </div>
               </button>
             ))}
           </div>
 
-          {/* Project Detail (Right Panel) */}
           <div className="lg:col-span-8">
             <AnimatePresence mode="wait">
               <motion.div
@@ -78,29 +74,26 @@ export function Projects() {
                 transition={{ duration: 0.3 }}
                 className="card-base cut-corner p-8"
               >
-                {/* Header */}
                 <div className="flex items-start justify-between mb-6">
                   <div>
                     <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-text-primary mb-2">
                       {selected.title}
                     </h3>
-                    <span className="text-label text-[10px]">
+                    <span className="text-label-sm">
                       {statusLabel[selected.status]}
                     </span>
                   </div>
-                  <div className="w-3 h-3 bg-accent-yellow" />
+                  <div className="w-3 h-3 bg-accent-yellow flex-shrink-0 mt-1" />
                 </div>
 
                 <div className="divider mb-6" />
 
-                {/* Description */}
                 <p className="text-text-secondary text-sm leading-relaxed mb-8 max-w-2xl">
                   {selected.longDescription}
                 </p>
 
-                {/* Tech Stack */}
                 <div className="mb-8">
-                  <p className="text-label text-[10px] mb-4">Tech Stack</p>
+                  <p className="text-label-sm mb-4">Tech Stack</p>
                   <div className="flex flex-wrap gap-2">
                     {selected.techStack.map((tech) => {
                       const Icon = categoryIcons[tech.category] || Cpu;
@@ -109,7 +102,7 @@ export function Projects() {
                           key={tech.name}
                           className="flex items-center gap-2 px-3 py-2 bg-bg-tertiary border border-border-subtle text-xs font-mono text-text-secondary"
                         >
-                          <Icon className="w-3 h-3 text-accent-teal" />
+                          <Icon className="w-3 h-3 text-accent-teal flex-shrink-0" />
                           {tech.name}
                         </div>
                       );
@@ -117,7 +110,6 @@ export function Projects() {
                   </div>
                 </div>
 
-                {/* Actions */}
                 <div className="flex gap-4">
                   {selected.liveUrl && (
                     <button

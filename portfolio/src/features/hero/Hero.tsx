@@ -49,11 +49,10 @@ export function Hero() {
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-25" />
       <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/50 via-transparent to-bg-primary" />
 
-      <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center">
+      <div className="relative z-10 section-wrapper text-center">
         
-        {/* Status */}
         <motion.div
-          className="flex items-center justify-center gap-3 mb-10"
+          className="flex items-center justify-center gap-3 mb-14"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
@@ -63,19 +62,19 @@ export function Hero() {
           <div className="w-8 h-px bg-accent-yellow/50" />
         </motion.div>
 
-        {/* Name */}
         <motion.h1
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-4"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-5"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7 }}
         >
           {profile.name.split(' ')[0]}
           <br />
-          <span className="text-text-secondary font-bold">{profile.name.split(' ').slice(1).join(' ')}</span>
+          <span className="text-text-secondary font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+            {profile.name.split(' ').slice(1).join(' ')}
+          </span>
         </motion.h1>
 
-        {/* Role */}
         <motion.div
           className="flex items-center justify-center gap-4 mb-8"
           initial={{ opacity: 0 }}
@@ -83,15 +82,14 @@ export function Hero() {
           transition={{ delay: 0.7 }}
         >
           <div className="w-12 h-px bg-accent-teal" />
-          <p className="text-sm sm:text-base font-mono text-accent-teal tracking-[0.3em] uppercase">
+          <p className="font-mono text-sm text-accent-teal tracking-[0.3em] uppercase">
             {profile.role}
           </p>
           <div className="w-12 h-px bg-accent-teal" />
         </motion.div>
 
-        {/* Tagline */}
         <motion.p
-          className="text-text-muted text-sm sm:text-base max-w-lg mx-auto mb-12 leading-relaxed"
+          className="text-text-muted text-sm max-w-lg mx-auto mb-14 leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
@@ -99,7 +97,6 @@ export function Hero() {
           {profile.tagline}
         </motion.p>
 
-        {/* CTA */}
         <motion.div
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
           initial={{ opacity: 0, y: 20 }}
@@ -121,7 +118,6 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-text-muted cursor-pointer"
         initial={{ opacity: 0 }}
@@ -129,13 +125,12 @@ export function Hero() {
         transition={{ delay: 1.5 }}
         onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
       >
-        <span className="text-label text-[10px]">Scroll</span>
+        <span className="text-label-sm">Scroll</span>
         <motion.div animate={{ y: [0, 6, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>
           <ChevronDown className="w-5 h-5 text-accent-yellow" />
         </motion.div>
       </motion.div>
 
-      {/* Corner frame */}
       <div className="absolute top-6 left-6 w-10 h-10 border-l border-t border-white/10" />
       <div className="absolute top-6 right-6 w-10 h-10 border-r border-t border-white/10" />
       <div className="absolute bottom-6 left-6 w-10 h-10 border-l border-b border-white/10" />
