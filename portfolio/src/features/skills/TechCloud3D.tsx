@@ -52,7 +52,7 @@ function ParticleText() {
   );
 }
 
-function ParticleCore({ count = 18000 }) {
+function ParticleCore({ count = 25000 }) {
   const pointsRef = useRef<THREE.Points>(null);
 
   const particlesPosition = useMemo(() => {
@@ -62,23 +62,29 @@ function ParticleCore({ count = 18000 }) {
       const phi = Math.acos(2 * Math.random() - 1);
       
       let x, y, z;
-      if (i < count * 0.3) {
-        const rSphere = 2 + Math.random() * 0.5;
+      
+      if (i < count * 0.4) {
+        // Saturn Planet Body (Dense Sphere)
+        const rSphere = 2.5 + (Math.random() * 0.1); 
         x = rSphere * Math.sin(phi) * Math.cos(theta);
         y = rSphere * Math.sin(phi) * Math.sin(theta);
         z = rSphere * Math.cos(phi);
-      } else if (i < count * 0.7) {
-        const rDisk = 3.5 + Math.random() * 6;
-        const angle = Math.random() * Math.PI * 2;
-        x = Math.cos(angle) * rDisk;
-        z = Math.sin(angle) * rDisk;
-        y = (Math.random() - 0.5) * 0.3; 
       } else {
-        const rDisk = 6 + Math.random() * 8;
+        // Saturn Rings (Wide, flat, with gaps)
+        // Main rings from radius 3.5 to 7.0
+        let rDisk = 3.5 + Math.random() * 3.5;
+        
+        // Create a gap (e.g. Cassini Division) between 5.0 and 5.5
+        if (rDisk > 5.0 && rDisk < 5.5) {
+            rDisk += 0.5; // Push particles outward to create the gap
+        }
+        
         const angle = Math.random() * Math.PI * 2;
         x = Math.cos(angle) * rDisk;
         z = Math.sin(angle) * rDisk;
-        y = (Math.random() - 0.5) * 2;
+        
+        // Extremely thin on the Y axis to look like real planetary rings
+        y = (Math.random() - 0.5) * 0.05; 
       }
 
       positions[i * 3] = x;
@@ -90,18 +96,19 @@ function ParticleCore({ count = 18000 }) {
 
   useFrame((state) => {
     if (pointsRef.current) {
-      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.15;
-      pointsRef.current.rotation.z = Math.sin(state.clock.elapsedTime * 0.1) * 0.15;
+      // Gentle rotation of the entire Saturn system
+      pointsRef.current.rotation.y = state.clock.elapsedTime * 0.05;
     }
   });
 
   return (
-    <group rotation={[0.2, 0, 0.1]}>
+    // Saturn's axial tilt is ~26.7 degrees (0.46 radians)
+    <group rotation={[0.46, 0, -0.2]}>
       <Points ref={pointsRef} positions={particlesPosition} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
           color="#2bc0d4"
-          size={0.03}
+          size={0.02}
           sizeAttenuation={true}
           depthWrite={false}
           blending={THREE.AdditiveBlending}

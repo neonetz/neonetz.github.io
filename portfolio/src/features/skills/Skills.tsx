@@ -35,10 +35,10 @@ export function Skills() {
 
         <div className="max-w-4xl mx-auto w-full">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
               {profile.skills.map((skill, index) => (

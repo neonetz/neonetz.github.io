@@ -53,10 +53,10 @@ export function Contact() {
           <motion.form
             onSubmit={handleSubmit}
             className="space-y-6 bg-bg-secondary p-8 sm:p-12 cut-corner border border-border-subtle"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 40, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="tactical-frame">
               <label className="text-[0.65rem] font-mono text-accent-teal uppercase tracking-widest block mb-2 opacity-80">01 // Your Name</label>

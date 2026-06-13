@@ -18,10 +18,10 @@ export function About() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           <div className="lg:col-span-4">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, x: -40, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col gap-6"
             >
               <div className="relative inline-block self-start">
@@ -63,10 +63,10 @@ export function About() {
 
           <div className="lg:col-span-8">
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              initial={{ opacity: 0, x: 40, filter: 'blur(10px)' }}
+              whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             >
               <div className="card-base cut-corner-sm p-8 md:p-10 mb-12">
                 <div className="flex items-center gap-3 mb-6">
