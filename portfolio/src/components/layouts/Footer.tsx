@@ -29,8 +29,8 @@ export function Footer() {
             </span>
           </div>
 
-          <div className="flex items-center gap-6">
-            {['Home', 'Projects', 'About', 'Contact'].map((link) => (
+          <div className="flex flex-wrap justify-center items-center gap-6">
+            {['Home', 'Projects', 'About', 'Skills', 'Contact'].map((link) => (
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
@@ -48,7 +48,7 @@ export function Footer() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-9 h-9 flex items-center justify-center border border-border-subtle text-text-muted hover:text-accent-teal hover:border-accent-teal transition-all"
+                className="w-9 h-9 flex items-center justify-center border border-border-subtle bg-bg-secondary hover:bg-accent-teal/5 text-text-muted hover:text-accent-teal hover:border-accent-teal transition-all cut-corner-xs"
               >
                 <SocialIcon type={social.icon} />
               </a>
@@ -60,7 +60,7 @@ export function Footer() {
         
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-text-muted text-xs font-mono">
-            © 2024 {profile.name}. All rights reserved.
+            © {new Date().getFullYear()} {profile.name}. All rights reserved.
           </p>
           <p className="text-text-muted text-xs font-mono flex items-center gap-2">
             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
