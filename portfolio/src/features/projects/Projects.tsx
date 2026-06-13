@@ -4,7 +4,7 @@ import { ExternalLink, ChevronRight, Cpu, Globe, Database, Wrench } from 'lucide
 import type { Project } from '../../data/portfolio';
 import { projects } from '../../data/portfolio';
 
-const categoryIcons: Record<string, React.ElementType> = {
+const categoryIcons: Record<string, any> = {
   frontend: Globe,
   backend: Cpu,
   database: Database,
