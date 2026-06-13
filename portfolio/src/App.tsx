@@ -26,7 +26,7 @@ function App() {
       <LoadingScreen />
       <div className="bg-bg-primary text-text-primary min-h-screen overflow-x-hidden scroll-smooth flex">
       <Sidebar />
-      <div className="flex-1 ml-16 md:ml-20 flex flex-col w-[calc(100%-4rem)] md:w-[calc(100%-5rem)]">
+      <div className="flex-1 ml-0 md:ml-20 flex flex-col w-full md:w-[calc(100%-5rem)]">
         <main>
           <div className="w-full min-h-screen">
             <Hero />
