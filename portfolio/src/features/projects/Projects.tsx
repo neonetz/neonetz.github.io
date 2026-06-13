@@ -33,7 +33,7 @@ export function Projects() {
           <div className="w-16 h-1 bg-accent-yellow mt-4" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           
           <div className="lg:col-span-4 space-y-3">
             {projects.map((project, index) => (
@@ -72,7 +72,7 @@ export function Projects() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="card-base cut-corner p-8"
+                className="card-base cut-corner p-6 sm:p-8 lg:p-10"
               >
                 <div className="flex items-start justify-between mb-6">
                   <div>

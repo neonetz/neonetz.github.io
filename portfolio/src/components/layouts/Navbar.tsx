@@ -45,7 +45,7 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="relative text-text-muted hover:text-text-primary text-xs font-mono uppercase tracking-widest transition-colors py-2 group"
+                className="relative text-text-muted hover:text-text-primary text-sm font-mono uppercase tracking-widest transition-colors py-2 group"
               >
                 {link.name}
                 <span className="absolute bottom-0 left-0 w-0 h-px bg-accent-yellow group-hover:w-full transition-all duration-300" />
@@ -58,7 +58,7 @@ export function Navbar() {
               <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
               ONLINE
             </div>
-            <a href="#contact" className="btn-outline" style={{ fontSize: '0.65rem', padding: '0.5rem 1.25rem' }}>
+            <a href="#contact" className="btn-outline" style={{ padding: '0.5rem 1.5rem' }}>
               Contact
             </a>
           </div>

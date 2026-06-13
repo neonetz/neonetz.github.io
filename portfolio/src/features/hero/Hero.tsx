@@ -89,7 +89,7 @@ export function Hero() {
         </motion.div>
 
         <motion.p
-          className="text-text-muted text-sm max-w-lg mx-auto mb-14 leading-relaxed"
+          className="text-text-muted text-sm sm:text-base max-w-lg mx-auto mb-14 leading-relaxed text-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}

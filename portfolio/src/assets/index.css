@@ -126,14 +126,20 @@ body {
    ============================================ */
 .section-wrapper {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 2rem;
 }
 
 @media (min-width: 768px) {
   .section-wrapper {
-    padding: 0 3rem;
+    padding: 0 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-wrapper {
+    padding: 0 6rem;
   }
 }
 

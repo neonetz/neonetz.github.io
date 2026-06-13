@@ -35,7 +35,7 @@ export function About() {
           <div className="w-16 h-1 bg-accent-yellow mt-4" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           
           <motion.div
             initial={{ opacity: 0, x: -30 }}
