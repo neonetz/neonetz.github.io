@@ -93,6 +93,11 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--color-accent-teal-dim); }
 ::-webkit-scrollbar-thumb:hover { background: var(--color-accent-yellow); }
 
+.custom-scrollbar::-webkit-scrollbar { width: 3px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--color-border-subtle); }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--color-accent-teal); }
+
 /* ============================================
    ANIMATIONS
    ============================================ */

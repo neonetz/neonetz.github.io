@@ -20,13 +20,10 @@ const statusLabel: Record<string, string> = {
 
 export function Projects() {
   const [selected, setSelected] = useState<Project>(projects[0]);
-  const [showAll, setShowAll] = useState(false);
-
-  const displayedProjects = showAll ? projects : projects.slice(0, 4);
 
   return (
     <section id="projects" className="relative w-full min-h-screen flex flex-col pt-32 pb-16 bg-bg-primary">
-      <div className="section-wrapper">
+      <div className="section-wrapper flex-grow flex flex-col">
         
         <div className="mb-14">
           <p className="text-label mb-2">02 — Archives</p>
@@ -36,44 +33,40 @@ export function Projects() {
           <div className="w-16 h-1 bg-accent-yellow mt-4" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 flex-grow">
           
-          <div className="lg:col-span-4 space-y-3">
-            {displayedProjects.map((project, index) => (
-              <button
-                key={project.id}
-                onClick={() => setSelected(project)}
-                className={`w-full text-left p-5 transition-all duration-300 group relative border-l-2 ${
-                  selected.id === project.id
-                    ? 'bg-bg-tertiary border-accent-yellow'
-                    : 'bg-transparent border-border-subtle hover:bg-bg-secondary hover:border-accent-teal/50'
-                }`}
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1 min-w-0 pr-4">
-                    <span className={`text-xs font-mono font-bold tracking-widest ${selected.id === project.id ? 'text-accent-yellow' : 'text-text-muted'}`}>
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className={`font-bold text-sm uppercase tracking-wide mt-2 ${selected.id === project.id ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary transition-colors'}`}>
-                      {project.title}
-                    </h3>
-                    <p className={`text-xs mt-2 leading-relaxed line-clamp-2 ${selected.id === project.id ? 'text-text-secondary' : 'text-text-muted'}`}>
-                      {project.description}
-                    </p>
+          <div className="lg:col-span-4">
+            <div 
+              className="space-y-3 overflow-y-auto pr-2 custom-scrollbar" 
+              style={{ maxHeight: 'calc(100vh - 350px)', minHeight: '400px' }}
+            >
+              {projects.map((project, index) => (
+                <button
+                  key={project.id}
+                  onClick={() => setSelected(project)}
+                  className={`w-full text-left p-5 transition-all duration-300 group relative border-l-2 ${
+                    selected.id === project.id
+                      ? 'bg-bg-tertiary border-accent-yellow'
+                      : 'bg-transparent border-border-subtle hover:bg-bg-secondary hover:border-accent-teal/50'
+                  }`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1 min-w-0 pr-4">
+                      <span className={`text-xs font-mono font-bold tracking-widest ${selected.id === project.id ? 'text-accent-yellow' : 'text-text-muted'}`}>
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <h3 className={`font-bold text-sm uppercase tracking-wide mt-2 ${selected.id === project.id ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary transition-colors'}`}>
+                        {project.title}
+                      </h3>
+                      <p className={`text-xs mt-2 leading-relaxed line-clamp-2 ${selected.id === project.id ? 'text-text-secondary' : 'text-text-muted'}`}>
+                        {project.description}
+                      </p>
+                    </div>
+                    <ChevronRight className={`w-4 h-4 mt-1 flex-shrink-0 transition-transform ${selected.id === project.id ? 'text-accent-yellow rotate-90' : 'text-text-muted opacity-0 group-hover:opacity-100 group-hover:text-accent-teal transform translate-x-2 group-hover:translate-x-0'}`} />
                   </div>
-                  <ChevronRight className={`w-4 h-4 mt-1 flex-shrink-0 transition-transform ${selected.id === project.id ? 'text-accent-yellow rotate-90' : 'text-text-muted opacity-0 group-hover:opacity-100 group-hover:text-accent-teal transform translate-x-2 group-hover:translate-x-0'}`} />
-                </div>
-              </button>
-            ))}
-
-            {projects.length > 4 && (
-              <button
-                onClick={() => setShowAll(!showAll)}
-                className="w-full mt-4 p-4 border border-dashed border-border-subtle hover:border-accent-teal text-text-muted hover:text-accent-teal text-xs font-mono tracking-widest uppercase transition-colors"
-              >
-                {showAll ? '— Show Less —' : '— Load More Projects —'}
-              </button>
-            )}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="lg:col-span-8">
