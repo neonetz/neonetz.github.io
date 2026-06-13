@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+/* ============================================
+   ARKNIGHTS ENDFIELD TACTICAL THEME
+   ============================================ */
+
+@theme {
+  --color-bg-primary: #0d0d11;
+  --color-bg-secondary: #15151a;
+  --color-bg-tertiary: #1e1e24;
+  --color-bg-card: #1a1a20;
+  
+  --color-accent-yellow: #f0c808;
+  --color-accent-yellow-dim: #8a7500;
+  --color-accent-teal: #2bc0d4;
+  --color-accent-teal-dim: #145c66;
+  
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #b3b3b3;
+  --color-text-muted: #666666;
+  
+  --color-border-subtle: #333333;
+  --color-border-active: #f0c808;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  /* Subtle dot grid for tactical feel */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ============================================
+   TACTICAL CUT CORNERS (Chamfered)
+   ============================================ */
+.cut-corner {
+  clip-path: polygon(
+    12px 0, 
+    100% 0, 
+    100% calc(100% - 12px), 
+    calc(100% - 12px) 100%, 
+    0 100%, 
+    0 12px
+  );
+}
+
+.cut-corner-reverse {
+  clip-path: polygon(
+    0 0, 
+    calc(100% - 12px) 0, 
+    100% 12px, 
+    100% 100%, 
+    12px 100%, 
+    0 calc(100% - 12px)
+  );
+}
+
+.cut-corner-sm {
+  clip-path: polygon(
+    6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px
+  );
+}
+
+/* ============================================
+   DECORATIVE TACTICAL ELEMENTS
+   ============================================ */
+.tactical-border {
+  position: relative;
+}
+
+.tactical-border::before, .tactical-border::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--color-text-muted);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.tactical-border::before {
+  top: -2px; left: -2px;
+  border-width: 2px 0 0 2px;
+}
+
+.tactical-border::after {
+  bottom: -2px; right: -2px;
+  border-width: 0 2px 2px 0;
+}
+
+/* Large Background Watermark Text */
+.watermark {
+  position: absolute;
+  font-size: 15rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.02);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 0;
+  white-space: nowrap;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.05em;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg-primary); border-left: 1px solid var(--color-border-subtle); }
+::-webkit-scrollbar-thumb { background: var(--color-accent-teal-dim); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-yellow); }
+
+/* Hazard Stripes */
+.hazard-bg {
+  background: repeating-linear-gradient(
+    -45deg,
+    rgba(240, 200, 8, 0.1),
+    rgba(240, 200, 8, 0.1) 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
