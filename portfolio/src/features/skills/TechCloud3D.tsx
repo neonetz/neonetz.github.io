@@ -72,7 +72,7 @@ function ParticleCore({ count = 35000 }) {
 
 export function TechCloud3D() {
   return (
-    <div className="w-full h-[100svh] relative flex items-center justify-center bg-[#08080A] pt-24 pb-16 overflow-hidden">
+    <section id="system" className="w-full h-[100svh] relative flex items-center justify-center bg-[#08080A] pt-24 pb-16 overflow-hidden">
       <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
         <div className="absolute w-[90vw] max-w-[900px] aspect-square rounded-full border border-dashed border-white/10 animate-[spin_120s_linear_infinite]" />
         <div className="absolute w-[70vw] max-w-[700px] aspect-square rounded-full border-t-2 border-r-2 border-transparent border-l-accent-teal/30 border-b-accent-teal/30 animate-[spin_60s_linear_infinite_reverse]" />
@@ -107,6 +107,6 @@ export function TechCloud3D() {
           />
         </Canvas>
       </div>
-    </div>
+    </section>
   );
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, FolderGit2, Fingerprint, Cpu, Mail, Menu, X } from 'lucide-react';
+import { Home, FolderGit2, Fingerprint, Cpu, Mail, Menu, X, Activity } from 'lucide-react';
 import { useScrollSpy } from '../../hooks/useScrollSpy';
 
 const navLinks = [
@@ -8,6 +8,7 @@ const navLinks = [
   { name: 'Projects', id: 'projects', icon: FolderGit2 },
   { name: 'About', id: 'about', icon: Fingerprint },
   { name: 'Skills', id: 'skills', icon: Cpu },
+  { name: 'System', id: 'system', icon: Activity },
   { name: 'Contact', id: 'contact', icon: Mail },
 ];
 
