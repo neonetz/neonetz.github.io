@@ -25,10 +25,10 @@ export function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project>(projects[0]);
 
   return (
-    <section id="projects" className="relative min-h-screen flex flex-col justify-center py-24 bg-bg-primary overflow-hidden">
+    <section id="projects" className="relative w-full min-h-screen flex flex-col justify-center py-24 bg-bg-primary overflow-hidden">
       <div className="watermark top-0 right-0 opacity-5">DATABASE</div>
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative w-full z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle subtitle="PROJECT INVENTORY">
           ARCHIVES
         </SectionTitle>

@@ -6,12 +6,12 @@ import { profile, experiences } from '../../data/portfolio';
 
 export function About() {
   return (
-    <section id="about" className="relative min-h-screen flex flex-col justify-center py-24 bg-bg-secondary">
+    <section id="about" className="relative w-full min-h-screen flex flex-col justify-center py-24 bg-bg-secondary">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent-teal/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-yellow/5 rounded-full blur-3xl" />
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative w-full z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left Column - About Me */}
           <div>
@@ -28,7 +28,7 @@ export function About() {
             >
               {/* Avatar & Basic Info */}
               <div className="flex items-start gap-6">
-                <div className="relative">
+                <div className="relative w-full">
                   <div className="w-32 h-32 cut-corner bg-gradient-to-br from-accent-teal/20 to-accent-yellow/20 border border-border-subtle flex items-center justify-center overflow-hidden">
                     <img src={profile.avatar} alt={profile.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
                   </div>
@@ -78,7 +78,7 @@ export function About() {
                 {experiences.map((exp, index) => (
                   <motion.div
                     key={index}
-                    className="relative pl-8 pb-6 border-l border-border-subtle last:pb-0"
+                    className="relative w-full pl-8 pb-6 border-l border-border-subtle last:pb-0"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}

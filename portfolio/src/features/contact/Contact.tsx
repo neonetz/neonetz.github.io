@@ -60,12 +60,12 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen flex flex-col justify-center py-24 bg-bg-primary overflow-hidden">
+    <section id="contact" className="relative w-full min-h-screen flex flex-col justify-center py-24 bg-bg-primary overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 grid-bg opacity-20" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-teal/5 rounded-full blur-3xl" />
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative w-full z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left Column - Contact Info */}
           <div>
@@ -163,7 +163,7 @@ export function Contact() {
                 <label className="text-text-primary font-mono text-sm uppercase tracking-wider">
                   Sender ID
                 </label>
-                <div className="relative">
+                <div className="relative w-full">
                   <input
                     type="text"
                     value={formState.name}
@@ -183,7 +183,7 @@ export function Contact() {
                 <label className="text-text-primary font-mono text-sm uppercase tracking-wider">
                   Communication Channel
                 </label>
-                <div className="relative">
+                <div className="relative w-full">
                   <input
                     type="email"
                     value={formState.email}
@@ -203,7 +203,7 @@ export function Contact() {
                 <label className="text-text-primary font-mono text-sm uppercase tracking-wider">
                   Message Payload
                 </label>
-                <div className="relative">
+                <div className="relative w-full">
                   <textarea
                     value={formState.message}
                     onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))}

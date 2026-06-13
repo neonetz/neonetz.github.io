@@ -5,7 +5,7 @@ import { profile } from '../../data/portfolio';
 
 export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-bg-primary">
+    <section id="home" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-bg-primary">
       {/* Video Background */}
       <video
         autoPlay
@@ -25,7 +25,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-bg-primary via-transparent to-transparent opacity-50" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+      <div className="relative w-full z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
         
         {/* Top Tactical Label */}
         <motion.div
