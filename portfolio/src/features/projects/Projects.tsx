@@ -40,25 +40,25 @@ export function Projects() {
               <button
                 key={project.id}
                 onClick={() => setSelected(project)}
-                className={`w-full text-left p-5 transition-all duration-300 group ${
+                className={`w-full text-left p-5 transition-all duration-300 group relative border-l-2 ${
                   selected.id === project.id
-                    ? 'bg-text-primary text-bg-primary cut-corner-sm'
-                    : 'bg-bg-secondary border border-border-subtle hover:border-accent-teal/50 cut-corner-sm'
+                    ? 'bg-bg-tertiary border-accent-yellow'
+                    : 'bg-transparent border-border-subtle hover:bg-bg-secondary hover:border-accent-teal/50'
                 }`}
               >
                 <div className="flex items-start justify-between">
-                  <div className="flex-1 min-w-0">
-                    <span className={`text-xs font-mono font-bold tracking-widest ${selected.id === project.id ? 'text-bg-primary/50' : 'text-text-muted'}`}>
+                  <div className="flex-1 min-w-0 pr-4">
+                    <span className={`text-xs font-mono font-bold tracking-widest ${selected.id === project.id ? 'text-accent-yellow' : 'text-text-muted'}`}>
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <h3 className={`font-bold text-sm uppercase tracking-wide mt-1 ${selected.id === project.id ? 'text-bg-primary' : 'text-text-primary'}`}>
+                    <h3 className={`font-bold text-sm uppercase tracking-wide mt-2 ${selected.id === project.id ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary transition-colors'}`}>
                       {project.title}
                     </h3>
-                    <p className={`text-xs mt-1 leading-relaxed line-clamp-2 ${selected.id === project.id ? 'text-bg-primary/60' : 'text-text-muted'}`}>
+                    <p className={`text-xs mt-2 leading-relaxed line-clamp-2 ${selected.id === project.id ? 'text-text-secondary' : 'text-text-muted'}`}>
                       {project.description}
                     </p>
                   </div>
-                  <ChevronRight className={`w-4 h-4 ml-3 mt-2 flex-shrink-0 transition-transform ${selected.id === project.id ? 'text-bg-primary rotate-90' : 'text-text-muted group-hover:text-accent-teal'}`} />
+                  <ChevronRight className={`w-4 h-4 mt-1 flex-shrink-0 transition-transform ${selected.id === project.id ? 'text-accent-yellow rotate-90' : 'text-text-muted opacity-0 group-hover:opacity-100 group-hover:text-accent-teal transform translate-x-2 group-hover:translate-x-0'}`} />
                 </div>
               </button>
             ))}
@@ -100,9 +100,9 @@ export function Projects() {
                       return (
                         <div
                           key={tech.name}
-                          className="flex items-center gap-2 px-3 py-2 bg-bg-tertiary border border-border-subtle text-xs font-mono text-text-secondary"
+                          className="flex items-center gap-2 px-3 py-1.5 border border-accent-teal/20 bg-accent-teal/5 text-xs font-mono text-accent-teal rounded-sm"
                         >
-                          <Icon className="w-3 h-3 text-accent-teal flex-shrink-0" />
+                          <Icon className="w-3 h-3 opacity-70 flex-shrink-0" />
                           {tech.name}
                         </div>
                       );

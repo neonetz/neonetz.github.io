@@ -49,78 +49,87 @@ export function Contact() {
           </p>
         </div>
 
-        <div className="max-w-lg mx-auto">
+        <div className="max-w-xl mx-auto">
           <motion.form
             onSubmit={handleSubmit}
-            className="space-y-5"
+            className="space-y-6 bg-bg-secondary p-8 sm:p-12 cut-corner border border-border-subtle"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div>
-              <label className="text-label-sm block mb-2">Your Name</label>
+            <div className="tactical-frame">
+              <label className="text-[0.65rem] font-mono text-accent-teal uppercase tracking-widest block mb-2 opacity-80">01 // Your Name</label>
               <input
                 type="text"
                 value={form.name}
                 onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
                 placeholder="Enter your name"
                 required
-                className="w-full px-5 py-3.5 bg-bg-secondary border border-border-subtle text-text-primary text-sm placeholder:text-text-muted focus:border-accent-teal focus:outline-none transition-colors cut-corner-xs"
+                className="w-full px-5 py-4 bg-bg-tertiary/50 border border-border-subtle text-text-primary text-sm placeholder:text-text-muted/50 focus:bg-bg-tertiary focus:border-accent-teal focus:outline-none transition-all cut-corner-xs"
               />
             </div>
 
-            <div>
-              <label className="text-label-sm block mb-2">Email Address</label>
+            <div className="tactical-frame">
+              <label className="text-[0.65rem] font-mono text-accent-teal uppercase tracking-widest block mb-2 opacity-80">02 // Email Address</label>
               <input
                 type="email"
                 value={form.email}
                 onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
                 placeholder="Enter your email"
                 required
-                className="w-full px-5 py-3.5 bg-bg-secondary border border-border-subtle text-text-primary text-sm placeholder:text-text-muted focus:border-accent-teal focus:outline-none transition-colors cut-corner-xs"
+                className="w-full px-5 py-4 bg-bg-tertiary/50 border border-border-subtle text-text-primary text-sm placeholder:text-text-muted/50 focus:bg-bg-tertiary focus:border-accent-teal focus:outline-none transition-all cut-corner-xs"
               />
             </div>
 
-            <div>
-              <label className="text-label-sm block mb-2">Message</label>
+            <div className="tactical-frame">
+              <label className="text-[0.65rem] font-mono text-accent-teal uppercase tracking-widest block mb-2 opacity-80">03 // Message</label>
               <textarea
                 value={form.message}
                 onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                 rows={5}
                 placeholder="Tell me about your project..."
                 required
-                className="w-full px-5 py-3.5 bg-bg-secondary border border-border-subtle text-text-primary text-sm placeholder:text-text-muted focus:border-accent-teal focus:outline-none transition-colors resize-none cut-corner-xs"
+                className="w-full px-5 py-4 bg-bg-tertiary/50 border border-border-subtle text-text-primary text-sm placeholder:text-text-muted/50 focus:bg-bg-tertiary focus:border-accent-teal focus:outline-none transition-all resize-none cut-corner-xs"
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={sending || sent}
-              className="btn-primary w-full justify-center mt-2"
-            >
-              {sent ? (
-                <><CheckCircle className="w-4 h-4" /> Message Sent!</>
-              ) : sending ? (
-                'Sending...'
-              ) : (
-                <><Send className="w-4 h-4" /> Send Message</>
-              )}
-            </button>
+            <div className="pt-4 flex justify-end">
+              <button
+                type="submit"
+                disabled={sending || sent}
+                className="btn-primary"
+              >
+                {sent ? (
+                  <><CheckCircle className="w-4 h-4" /> Message Sent!</>
+                ) : sending ? (
+                  'Sending...'
+                ) : (
+                  <><Send className="w-4 h-4" /> Send Message</>
+                )}
+              </button>
+            </div>
           </motion.form>
 
-          <div className="mt-14 pt-10 border-t border-border-subtle text-center">
-            <p className="text-label-sm mb-6">Or find me on</p>
-            <div className="flex items-center justify-center gap-4">
+          <div className="mt-14 pt-10 flex flex-col items-center">
+            <div className="flex items-center justify-center gap-4 w-full max-w-xs mb-8">
+              <div className="h-px bg-border-subtle flex-1" />
+              <p className="text-[0.65rem] font-mono text-text-muted uppercase tracking-[0.2em]">External Links</p>
+              <div className="h-px bg-border-subtle flex-1" />
+            </div>
+            <div className="flex items-center justify-center gap-6">
               {profile.socialLinks.map((social) => (
                 <a
                   key={social.name}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 flex items-center justify-center border border-border-subtle text-text-muted hover:text-accent-teal hover:border-accent-teal transition-all"
+                  className="group flex flex-col items-center gap-3 text-text-muted hover:text-accent-teal transition-all"
                 >
-                  <SocialIcon type={social.icon} />
+                  <div className="w-12 h-12 flex items-center justify-center border border-border-subtle bg-bg-secondary group-hover:border-accent-teal group-hover:bg-accent-teal/5 transition-all cut-corner-xs">
+                    <SocialIcon type={social.icon} />
+                  </div>
+                  <span className="text-[0.65rem] font-mono uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">{social.name}</span>
                 </a>
               ))}
             </div>

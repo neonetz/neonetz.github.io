@@ -6,9 +6,9 @@ const skillBarColor = (category: string) => {
   switch (category) {
     case 'frontend': return 'bg-accent-teal';
     case 'backend': return 'bg-accent-yellow';
-    case 'database': return 'bg-purple-400';
-    case 'devops': return 'bg-green-400';
-    default: return 'bg-pink-400';
+    case 'database': return 'bg-accent-teal/70';
+    case 'devops': return 'bg-accent-yellow/70';
+    default: return 'bg-border-subtle';
   }
 };
 
@@ -16,9 +16,9 @@ const skillTextColor = (category: string) => {
   switch (category) {
     case 'frontend': return 'text-accent-teal';
     case 'backend': return 'text-accent-yellow';
-    case 'database': return 'text-purple-400';
-    case 'devops': return 'text-green-400';
-    default: return 'text-pink-400';
+    case 'database': return 'text-accent-teal/70';
+    case 'devops': return 'text-accent-yellow/70';
+    default: return 'text-text-muted';
   }
 };
 
@@ -42,64 +42,70 @@ export function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col gap-6"
           >
-            <div className="relative mb-8 inline-block">
-              <div className="w-40 h-40 cut-corner overflow-hidden border border-border-subtle">
+            <div className="relative inline-block self-start">
+              <div className="w-32 h-32 sm:w-40 sm:h-40 cut-corner overflow-hidden border border-border-subtle p-1 bg-bg-tertiary">
                 <img 
                   src={profile.avatar} 
                   alt={profile.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover cut-corner"
                 />
               </div>
-              <div className="absolute -top-2 -left-2 w-8 h-8 border-l-2 border-t-2 border-accent-teal pointer-events-none" />
-              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-r-2 border-b-2 border-accent-yellow pointer-events-none" />
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-r border-b border-accent-yellow pointer-events-none" />
             </div>
 
-            <h3 className="text-2xl font-black uppercase tracking-tight text-text-primary mb-1">
-              {profile.name}
-            </h3>
-            <p className="text-accent-teal font-mono text-sm tracking-widest uppercase mb-6">
-              {profile.role}
-            </p>
+            <div>
+              <h3 className="text-2xl sm:text-3xl uppercase tracking-tight text-text-primary mb-1 leading-tight flex flex-col">
+                <span className="font-black">{profile.name.split(' ')[0]}</span>
+                <span className="font-light text-text-secondary text-xl sm:text-2xl tracking-[0.1em]">{profile.name.split(' ').slice(1).join(' ')}</span>
+              </h3>
+              <div className="flex items-center gap-3 mt-4 mb-6">
+                <div className="w-8 h-px bg-accent-teal/50" />
+                <p className="text-accent-teal font-mono text-xs tracking-widest uppercase">
+                  {profile.role}
+                </p>
+              </div>
+            </div>
 
-            <div className="space-y-3 mb-8">
+            <div className="space-y-3">
               <div className="flex items-center gap-3 text-text-muted text-sm">
-                <MapPin className="w-4 h-4 text-accent-teal flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-accent-teal flex-shrink-0 opacity-70" />
                 {profile.location}
               </div>
               <div className="flex items-center gap-3 text-text-muted text-sm">
-                <Mail className="w-4 h-4 text-accent-teal flex-shrink-0" />
+                <Mail className="w-4 h-4 text-accent-teal flex-shrink-0 opacity-70" />
                 {profile.email}
               </div>
             </div>
 
-            <div className="card-base cut-corner-sm p-6 mb-8">
+            <div className="card-base cut-corner-sm p-6 mt-2">
               <div className="flex items-center gap-2 mb-4">
                 <Code className="w-4 h-4 text-accent-teal flex-shrink-0" />
                 <span className="text-label-sm">Biography</span>
               </div>
-              <p className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">
+              <p className="text-text-secondary text-sm leading-loose">
                 {profile.bio}
               </p>
             </div>
 
-            <div>
-              <div className="flex items-center gap-2 mb-6">
+            <div className="mt-10">
+              <div className="flex items-center gap-2 mb-8">
                 <Award className="w-4 h-4 text-accent-yellow flex-shrink-0" />
                 <span className="text-label-sm">Experience</span>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-8">
                 {experiences.map((exp, i) => (
-                  <div key={i} className="relative pl-6 border-l border-border-subtle">
-                    <div className="absolute left-0 top-1 w-2 h-2 -translate-x-[5px] bg-accent-teal" />
-                    <span className="text-xs font-mono text-accent-teal/60 tracking-widest">
+                  <div key={i} className="relative pl-8 border-l border-border-subtle">
+                    <div className="absolute left-0 top-1.5 w-1.5 h-1.5 -translate-x-[4px] bg-accent-teal rotate-45" />
+                    <span className="text-[0.65rem] font-mono text-accent-teal/60 tracking-[0.2em] uppercase">
                       {exp.period}
                     </span>
-                    <h4 className="font-bold text-text-primary text-sm uppercase mt-1">
+                    <h4 className="font-bold text-text-primary text-sm tracking-wide mt-1">
                       {exp.title}
                     </h4>
-                    <p className="text-accent-yellow text-xs mt-0.5">{exp.company}</p>
-                    <p className="text-text-muted text-xs mt-2 leading-relaxed">{exp.description}</p>
+                    <p className="text-accent-yellow text-xs mt-1 mb-2 font-mono uppercase tracking-widest">{exp.company}</p>
+                    <p className="text-text-muted text-xs leading-relaxed">{exp.description}</p>
                   </div>
                 ))}
               </div>
@@ -143,16 +149,16 @@ export function About() {
               ))}
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mt-14">
+            <div className="grid grid-cols-2 gap-6 mt-14">
               {[
                 { label: 'Projects', value: '4+' },
                 { label: 'Technologies', value: '15+' },
-                { label: 'Lines of Code', value: '10K+' },
-                { label: 'Years Coding', value: '3+' },
+                { label: 'Lines Code', value: '10K+' },
+                { label: 'Years', value: '3+' },
               ].map((stat, i) => (
                 <motion.div
                   key={stat.label}
-                  className="card-base cut-corner-xs p-5 text-center"
+                  className="bg-bg-tertiary/50 border border-border-subtle/50 cut-corner-xs p-6 text-center hover:bg-bg-tertiary transition-colors"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
