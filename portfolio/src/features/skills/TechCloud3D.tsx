@@ -1,4 +1,4 @@
-import { Suspense, useRef, useMemo } from 'react';
+import { Suspense, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, PointMaterial, Points } from '@react-three/drei';
 import * as THREE from 'three';
@@ -6,7 +6,7 @@ import * as THREE from 'three';
 function ParticleCore({ count = 35000 }) {
   const pointsRef = useRef<THREE.Points>(null);
 
-  const particlesPosition = useMemo(() => {
+  const [particlesPosition] = useState(() => {
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       const theta = 2 * Math.PI * Math.random();
@@ -43,7 +43,7 @@ function ParticleCore({ count = 35000 }) {
       positions[i * 3 + 2] = z;
     }
     return positions;
-  }, [count]);
+  });
 
   useFrame((state) => {
     if (pointsRef.current) {

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
 import { ExternalLink, ChevronRight, Cpu, Globe, Database, Wrench } from 'lucide-react';
 import type { Project } from '../../data/portfolio';
 import { projects } from '../../data/portfolio';
 import { SciFiReveal } from '../../components/ui/SciFiReveal';
 
-const categoryIcons: Record<string, any> = {
+const categoryIcons: Record<string, LucideIcon> = {
   frontend: Globe,
   backend: Cpu,
   database: Database,

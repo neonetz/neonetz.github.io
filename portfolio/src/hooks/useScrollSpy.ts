@@ -54,6 +54,7 @@ export function useScrollSpy(sectionIds: string[]) {
       window.removeEventListener('resize', handleScroll);
       if (timeoutId) window.cancelAnimationFrame(timeoutId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sectionIds.join(',')]);
 
   return activeSection;
