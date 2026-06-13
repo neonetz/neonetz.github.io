@@ -13,11 +13,11 @@ export function GlitchText({ children, className = '', enableGlitch = true }: Gl
       className={`relative inline-block ${className}`}
       animate={enableGlitch ? {
         textShadow: [
-          '2px 0 #00f0ff, -2px 0 #ff9500',
-          '-2px 0 #00f0ff, 2px 0 #ff9500',
-          '2px 2px #00f0ff, -2px -2px #ff9500',
-          '-2px 2px #00f0ff, 2px -2px #ff9500',
-          '2px 0 #00f0ff, -2px 0 #ff9500',
+          '2px 0 #2bc0d4, -2px 0 #f0c808',
+          '-2px 0 #2bc0d4, 2px 0 #f0c808',
+          '2px 2px #2bc0d4, -2px -2px #f0c808',
+          '-2px 2px #2bc0d4, 2px -2px #f0c808',
+          '2px 0 #2bc0d4, -2px 0 #f0c808',
         ],
       } : {}}
       transition={{ duration: 0.3, repeat: Infinity, repeatDelay: 2 }}

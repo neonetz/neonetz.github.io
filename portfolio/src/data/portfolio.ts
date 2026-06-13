@@ -41,7 +41,7 @@ export const profile: Profile = {
   bio: `A passionate developer with a keen eye for detail and a love for creating seamless digital experiences. 
   Specializing in full-stack development with expertise in building responsive web applications and automation tools. 
   Committed to writing clean, maintainable code and staying updated with the latest technologies.`,
-  avatar: "/img/logo.jpeg",
+  avatar: "/img/aksa.webp",
   location: "Indonesia",
   email: "adhyaksa@example.com",
   skills: [

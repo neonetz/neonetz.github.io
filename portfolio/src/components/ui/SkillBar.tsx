@@ -7,8 +7,8 @@ interface SkillBarProps {
 }
 
 const categoryColors = {
-  frontend: 'from-accent-cyan to-accent-cyan/50',
-  backend: 'from-accent-amber to-accent-amber/50',
+  frontend: 'from-accent-teal to-accent-teal/50',
+  backend: 'from-accent-yellow to-accent-yellow/50',
   database: 'from-purple-500 to-purple-500/50',
   devops: 'from-green-500 to-green-500/50',
   other: 'from-pink-500 to-pink-500/50',
@@ -27,7 +27,7 @@ export function SkillBar({ skill, index }: SkillBarProps) {
         <span className="text-text-primary font-medium text-sm uppercase tracking-wide">
           {skill.name}
         </span>
-        <span className="text-accent-cyan font-mono text-xs">
+        <span className="text-accent-teal font-mono text-xs">
           {skill.level}%
         </span>
       </div>

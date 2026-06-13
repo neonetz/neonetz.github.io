@@ -60,12 +60,12 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-24 bg-bg-primary overflow-hidden">
+    <section id="contact" className="relative min-h-screen flex flex-col justify-center py-24 bg-bg-primary overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 grid-bg opacity-20" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-cyan/5 rounded-full blur-3xl" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-teal/5 rounded-full blur-3xl" />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left Column - Contact Info */}
           <div>
@@ -81,9 +81,9 @@ export function Contact() {
               transition={{ duration: 0.6 }}
             >
               {/* Status Display */}
-              <div className="p-6 rounded-lg bg-bg-secondary border border-border-subtle">
+              <div className="p-6 cut-corner-sm bg-bg-secondary border border-border-subtle">
                 <div className="flex items-center gap-3 mb-4">
-                  <Radio className="w-5 h-5 text-accent-cyan animate-pulse" />
+                  <Radio className="w-5 h-5 text-accent-teal animate-pulse" />
                   <span className="text-text-primary font-mono text-sm uppercase tracking-wider">
                     Connection Status
                   </span>
@@ -92,11 +92,11 @@ export function Contact() {
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-text-muted text-sm">Signal Strength</span>
-                    <span className="text-accent-cyan font-mono text-sm">Excellent</span>
+                    <span className="text-accent-teal font-mono text-sm">Excellent</span>
                   </div>
                   <div className="h-2 bg-bg-tertiary rounded-full overflow-hidden">
                     <motion.div
-                      className="h-full bg-gradient-to-r from-accent-cyan to-accent-amber"
+                      className="h-full bg-gradient-to-r from-accent-teal to-accent-yellow"
                       initial={{ width: '0%' }}
                       whileInView={{ width: '85%' }}
                       viewport={{ once: true }}
@@ -119,14 +119,14 @@ export function Contact() {
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 rounded-lg bg-bg-secondary border border-border-subtle hover:border-accent-cyan/50 transition-all group"
+                      className="flex items-center gap-4 p-4 cut-corner-sm bg-bg-secondary border border-border-subtle hover:border-accent-teal/50 transition-all group"
                       initial={{ opacity: 0, x: -30 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
                       whileHover={{ x: 8 }}
                     >
-                      <div className="w-12 h-12 rounded bg-bg-tertiary flex items-center justify-center group-hover:bg-accent-cyan/10 transition-colors">
+                      <div className="w-12 h-12 rounded bg-bg-tertiary flex items-center justify-center group-hover:bg-accent-teal/10 transition-colors">
                         <SocialIcon type={social.icon} />
                       </div>
                       <div>
@@ -168,7 +168,7 @@ export function Contact() {
                     type="text"
                     value={formState.name}
                     onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
-                    className="w-full px-4 py-3 bg-bg-secondary border border-border-subtle rounded-lg text-text-primary placeholder-text-muted focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan/50 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-bg-secondary border border-border-subtle cut-corner-sm text-text-primary placeholder-text-muted focus:border-accent-teal focus:ring-1 focus:ring-accent-teal/50 transition-all outline-none"
                     placeholder="Enter your name"
                     required
                   />
@@ -188,7 +188,7 @@ export function Contact() {
                     type="email"
                     value={formState.email}
                     onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
-                    className="w-full px-4 py-3 bg-bg-secondary border border-border-subtle rounded-lg text-text-primary placeholder-text-muted focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan/50 transition-all outline-none"
+                    className="w-full px-4 py-3 bg-bg-secondary border border-border-subtle cut-corner-sm text-text-primary placeholder-text-muted focus:border-accent-teal focus:ring-1 focus:ring-accent-teal/50 transition-all outline-none"
                     placeholder="Enter your email"
                     required
                   />
@@ -208,7 +208,7 @@ export function Contact() {
                     value={formState.message}
                     onChange={(e) => setFormState(prev => ({ ...prev, message: e.target.value }))}
                     rows={5}
-                    className="w-full px-4 py-3 bg-bg-secondary border border-border-subtle rounded-lg text-text-primary placeholder-text-muted focus:border-accent-cyan focus:ring-1 focus:ring-accent-cyan/50 transition-all outline-none resize-none"
+                    className="w-full px-4 py-3 bg-bg-secondary border border-border-subtle cut-corner-sm text-text-primary placeholder-text-muted focus:border-accent-teal focus:ring-1 focus:ring-accent-teal/50 transition-all outline-none resize-none"
                     placeholder="Enter your message"
                     required
                   />

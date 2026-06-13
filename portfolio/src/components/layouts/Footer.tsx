@@ -34,7 +34,7 @@ export function Footer() {
   return (
     <footer className="relative bg-bg-secondary border-t border-border-subtle">
       {/* Decorative top border */}
-      <div className="h-px bg-gradient-to-r from-transparent via-accent-cyan/50 to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-accent-teal/50 to-transparent" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -42,7 +42,7 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <span className="font-mono font-bold text-xl text-text-primary">
-                NEONETZ<span className="text-accent-cyan">.DEV</span>
+                NEONETZ<span className="text-accent-teal">.DEV</span>
               </span>
             </div>
             <p className="text-text-muted text-sm max-w-xs">
@@ -61,7 +61,7 @@ export function Footer() {
                 <li key={link}>
                   <a 
                     href={`#${link.toLowerCase()}`}
-                    className="text-text-muted hover:text-accent-cyan text-sm transition-colors"
+                    className="text-text-muted hover:text-accent-teal text-sm transition-colors"
                   >
                     {link}
                   </a>
@@ -83,7 +83,7 @@ export function Footer() {
                     href={social.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded bg-bg-tertiary border border-border-subtle flex items-center justify-center text-text-muted hover:text-accent-cyan hover:border-accent-cyan/50 transition-all"
+                    className="w-10 h-10 rounded bg-bg-tertiary border border-border-subtle flex items-center justify-center text-text-muted hover:text-accent-teal hover:border-accent-teal/50 transition-all"
                     whileHover={{ y: -4, boxShadow: '0 4px 20px rgba(0, 240, 255, 0.2)' }}
                     whileTap={{ scale: 0.95 }}
                   >

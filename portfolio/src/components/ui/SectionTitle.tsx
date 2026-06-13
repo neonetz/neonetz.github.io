@@ -31,13 +31,13 @@ export function SectionTitle({
       {/* Decorative line */}
       <div className="flex items-center gap-4 mb-4">
         <motion.div 
-          className="h-px w-12 bg-gradient-to-r from-accent-cyan to-transparent"
+          className="h-px w-12 bg-gradient-to-r from-accent-teal to-transparent"
           initial={{ width: 0 }}
           whileInView={{ width: 48 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         />
-        <span className="text-accent-cyan font-mono text-xs uppercase tracking-[0.3em]">
+        <span className="text-accent-teal font-mono text-xs uppercase tracking-[0.3em]">
           // SECTION
         </span>
       </div>
@@ -56,7 +56,7 @@ export function SectionTitle({
       
       {/* Bottom decorative line */}
       <motion.div 
-        className="h-px w-24 bg-gradient-to-r from-accent-amber to-transparent mt-4"
+        className="h-px w-24 bg-gradient-to-r from-accent-yellow to-transparent mt-4"
         initial={{ width: 0 }}
         whileInView={{ width: 96 }}
         viewport={{ once: true }}

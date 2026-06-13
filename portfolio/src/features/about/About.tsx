@@ -6,12 +6,12 @@ import { profile, experiences } from '../../data/portfolio';
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 bg-bg-secondary">
+    <section id="about" className="relative min-h-screen flex flex-col justify-center py-24 bg-bg-secondary">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent-cyan/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-amber/5 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent-teal/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-yellow/5 rounded-full blur-3xl" />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Left Column - About Me */}
           <div>
@@ -29,34 +29,34 @@ export function About() {
               {/* Avatar & Basic Info */}
               <div className="flex items-start gap-6">
                 <div className="relative">
-                  <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-accent-cyan/20 to-accent-amber/20 border border-accent-cyan/30 flex items-center justify-center overflow-hidden">
-                    <img src={profile.avatar} alt={profile.name} className="w-full h-full object-cover" />
+                  <div className="w-32 h-32 cut-corner bg-gradient-to-br from-accent-teal/20 to-accent-yellow/20 border border-border-subtle flex items-center justify-center overflow-hidden">
+                    <img src={profile.avatar} alt={profile.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
                   </div>
                   {/* Decorative corners */}
-                  <div className="absolute -top-1 -left-1 w-4 h-4 border-l-2 border-t-2 border-accent-cyan" />
-                  <div className="absolute -bottom-1 -right-1 w-4 h-4 border-r-2 border-b-2 border-accent-amber" />
+                  <div className="absolute -top-2 -left-2 w-6 h-6 border-l-2 border-t-2 border-accent-teal" />
+                  <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-2 border-b-2 border-accent-yellow" />
                 </div>
                 
-                <div className="flex-1 space-y-3">
+                <div className="flex-1 space-y-3 mt-2">
                   <div className="flex items-center gap-3 text-text-secondary">
-                    <User className="w-4 h-4 text-accent-cyan" />
-                    <span className="text-sm">{profile.name}</span>
+                    <User className="w-4 h-4 text-accent-teal" />
+                    <span className="text-sm font-bold">{profile.name}</span>
                   </div>
                   <div className="flex items-center gap-3 text-text-secondary">
-                    <MapPin className="w-4 h-4 text-accent-cyan" />
+                    <MapPin className="w-4 h-4 text-accent-teal" />
                     <span className="text-sm">{profile.location}</span>
                   </div>
                   <div className="flex items-center gap-3 text-text-secondary">
-                    <Mail className="w-4 h-4 text-accent-cyan" />
+                    <Mail className="w-4 h-4 text-accent-teal" />
                     <span className="text-sm">{profile.email}</span>
                   </div>
                 </div>
               </div>
 
               {/* Bio */}
-              <div className="p-6 rounded-lg bg-bg-tertiary border border-border-subtle">
+              <div className="p-6 cut-corner-sm bg-bg-tertiary border border-border-subtle">
                 <div className="flex items-center gap-2 mb-4">
-                  <Code className="w-4 h-4 text-accent-cyan" />
+                  <Code className="w-4 h-4 text-accent-teal" />
                   <span className="text-text-primary font-mono text-sm uppercase tracking-wider">
                     Biography Data
                   </span>
@@ -69,7 +69,7 @@ export function About() {
               {/* Experience Timeline */}
               <div className="space-y-4">
                 <div className="flex items-center gap-2">
-                  <Award className="w-4 h-4 text-accent-amber" />
+                  <Award className="w-4 h-4 text-accent-yellow" />
                   <span className="text-text-primary font-mono text-sm uppercase tracking-wider">
                     Experience Log
                   </span>
@@ -85,15 +85,15 @@ export function About() {
                     transition={{ delay: index * 0.2 }}
                   >
                     {/* Timeline dot */}
-                    <div className="absolute left-0 top-0 w-3 h-3 -translate-x-[7px] rounded-full bg-accent-cyan border-2 border-bg-secondary" />
+                    <div className="absolute left-0 top-0 w-3 h-3 -translate-x-[7px] rounded-full bg-accent-teal border-2 border-bg-secondary" />
                     
-                    <span className="text-accent-cyan/50 font-mono text-xs">
+                    <span className="text-accent-teal/50 font-mono text-xs font-bold">
                       {exp.period}
                     </span>
-                    <h4 className="text-text-primary font-bold mt-1">
+                    <h4 className="text-text-primary font-bold mt-1 uppercase">
                       {exp.title}
                     </h4>
-                    <span className="text-accent-amber text-sm">
+                    <span className="text-accent-yellow text-sm">
                       {exp.company}
                     </span>
                     <p className="text-text-muted text-sm mt-2">
@@ -119,9 +119,9 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               {/* Skills Grid */}
-              <div className="p-6 rounded-lg bg-bg-tertiary border border-border-subtle">
+              <div className="p-6 cut-corner-sm bg-bg-tertiary border border-border-subtle">
                 <div className="flex items-center gap-2 mb-6">
-                  <BookOpen className="w-4 h-4 text-accent-cyan" />
+                  <BookOpen className="w-4 h-4 text-accent-teal" />
                   <span className="text-text-primary font-mono text-sm uppercase tracking-wider">
                     Technical Specifications
                   </span>
@@ -137,8 +137,8 @@ export function About() {
               {/* Skill Categories Legend */}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {[
-                  { category: 'Frontend', color: 'accent-cyan', icon: '🌐' },
-                  { category: 'Backend', color: 'accent-amber', icon: '⚙️' },
+                  { category: 'Frontend', color: 'accent-teal', icon: '🌐' },
+                  { category: 'Backend', color: 'accent-yellow', icon: '⚙️' },
                   { category: 'Database', color: 'purple-500', icon: '💾' },
                   { category: 'DevOps', color: 'green-500', icon: '🚀' },
                   { category: 'Other', color: 'pink-500', icon: '📦' },
@@ -169,13 +169,13 @@ export function About() {
                 ].map((stat, index) => (
                   <motion.div
                     key={stat.label}
-                    className="p-6 rounded-lg bg-gradient-to-br from-bg-tertiary to-bg-primary border border-border-subtle text-center"
+                    className="p-6 cut-corner-sm bg-gradient-to-br from-bg-tertiary to-bg-primary border border-border-subtle text-center"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4 + index * 0.1 }}
                   >
-                    <div className="text-3xl font-bold text-accent-cyan mb-1">
+                    <div className="text-3xl font-bold text-accent-teal mb-1">
                       {stat.value}
                     </div>
                     <div className="text-text-muted text-xs uppercase tracking-wider">
