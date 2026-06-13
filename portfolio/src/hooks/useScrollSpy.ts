@@ -4,32 +4,56 @@ export function useScrollSpy(sectionIds: string[]) {
   const [activeSection, setActiveSection] = useState<string>(sectionIds[0] || '');
 
   useEffect(() => {
-    // This creates an invisible horizontal line slightly above the vertical center.
-    // Whichever section intersects this line becomes the active section.
-    // -40% top margin, -50% bottom margin = a 10% high window just above the center.
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-            // Debounce or directly update URL hash without jumping
-            window.history.replaceState(null, '', `#${entry.target.id}`);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-30% 0px -60% 0px",
-        threshold: 0
+    let timeoutId: number;
+
+    const handleScroll = () => {
+      // Throttle slightly for performance
+      if (timeoutId) {
+        window.cancelAnimationFrame(timeoutId);
       }
-    );
 
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
+      timeoutId = window.requestAnimationFrame(() => {
+        let currentSection = sectionIds[0];
+        
+        // The trigger line is 33% down the viewport
+        const triggerPoint = window.innerHeight / 3;
 
-    return () => observer.disconnect();
+        for (const id of sectionIds) {
+          const element = document.getElementById(id);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            // If the top of the section is above our trigger line, 
+            // it becomes the current candidate.
+            // Since sections are ordered top-to-bottom, the last one 
+            // that passes this test is the one currently occupying the screen.
+            if (rect.top <= triggerPoint) {
+              currentSection = id;
+            }
+          }
+        }
+
+        setActiveSection((prev) => {
+          if (prev !== currentSection) {
+            // Only update history if it actually changed to avoid spamming the browser
+            window.history.replaceState(null, '', `#${currentSection}`);
+            return currentSection;
+          }
+          return prev;
+        });
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+    
+    // Initial check after a slight delay to allow layout to settle
+    setTimeout(handleScroll, 100);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      if (timeoutId) window.cancelAnimationFrame(timeoutId);
+    };
   }, [sectionIds.join(',')]);
 
   return activeSection;
