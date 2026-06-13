@@ -49,47 +49,48 @@ export function Hero() {
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-25" />
       <div className="absolute inset-0 bg-gradient-to-b from-bg-primary/50 via-transparent to-bg-primary" />
 
-      <div className="relative z-10 section-wrapper text-center">
+      <div className="relative z-10 section-wrapper text-center flex flex-col items-center">
         
         <motion.div
-          className="flex items-center justify-center gap-3 mb-14"
+          className="flex items-center justify-center gap-4 mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          <div className="w-8 h-px bg-accent-yellow/50" />
-          <span className="text-label">System Online — Ready</span>
-          <div className="w-8 h-px bg-accent-yellow/50" />
+          <div className="w-12 h-px bg-accent-yellow/40" />
+          <span className="text-label text-accent-yellow/80">System Online — Ready</span>
+          <div className="w-12 h-px bg-accent-yellow/40" />
         </motion.div>
 
         <motion.h1
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-[0.9] mb-5"
+          className="flex flex-col items-center justify-center mb-10"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7 }}
         >
-          {profile.name.split(' ')[0]}
-          <br />
-          <span className="text-text-secondary font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+          <span className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black uppercase tracking-tight text-text-primary leading-none">
+            {profile.name.split(' ')[0]}
+          </span>
+          <span className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-light text-text-secondary uppercase tracking-[0.25em] mt-3 sm:mt-4 ml-2">
             {profile.name.split(' ').slice(1).join(' ')}
           </span>
         </motion.h1>
 
         <motion.div
-          className="flex items-center justify-center gap-4 mb-8"
+          className="flex items-center justify-center gap-6 mb-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.7 }}
         >
-          <div className="w-12 h-px bg-accent-teal" />
-          <p className="font-mono text-sm text-accent-teal tracking-[0.3em] uppercase">
+          <div className="hidden sm:block w-16 h-px bg-accent-teal/60" />
+          <p className="font-mono text-sm md:text-base text-accent-teal tracking-[0.4em] uppercase font-semibold">
             {profile.role}
           </p>
-          <div className="w-12 h-px bg-accent-teal" />
+          <div className="hidden sm:block w-16 h-px bg-accent-teal/60" />
         </motion.div>
 
         <motion.p
-          className="text-text-muted text-sm sm:text-base max-w-lg mx-auto mb-14 leading-relaxed text-center"
+          className="text-text-muted text-sm md:text-base max-w-xl mx-auto mb-12 leading-relaxed text-center font-light"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
@@ -98,20 +99,20 @@ export function Hero() {
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}
         >
           <button
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-primary"
+            className="btn-primary w-full sm:w-auto"
           >
             View Projects
           </button>
           <button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-outline"
+            className="btn-outline w-full sm:w-auto"
           >
             Contact Me
           </button>
