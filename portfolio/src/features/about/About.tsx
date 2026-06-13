@@ -37,10 +37,10 @@ export function About() {
 
               <div>
                 <h3 className="text-2xl sm:text-3xl uppercase tracking-tight text-text-primary mb-1 leading-tight flex flex-col">
-                  <span className="font-black">{profile.name.split(' ')[0]}</span>
-                  <span className="font-light text-text-secondary text-xl sm:text-2xl tracking-[0.1em]">{profile.name.split(' ').slice(1).join(' ')}</span>
+                  <span className="font-black text-4xl sm:text-5xl mb-1">NEONETZ</span>
+                  <span className="font-light text-text-secondary text-base sm:text-lg tracking-[0.15em]">{profile.name}</span>
                 </h3>
-                <div className="flex items-center gap-3 mt-4 mb-6">
+                <div className="flex items-center gap-3 mt-5 mb-6">
                   <div className="w-8 h-px bg-accent-teal/50" />
                   <p className="text-accent-teal font-mono text-sm tracking-widest uppercase">
                     {profile.role}

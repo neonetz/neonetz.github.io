@@ -68,11 +68,11 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.7 }}
         >
-          <span className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black uppercase tracking-tight text-text-primary leading-none">
-            {profile.name.split(' ')[0]}
+          <span className="text-6xl sm:text-7xl md:text-8xl lg:text-[7rem] font-black uppercase tracking-tight text-text-primary leading-none">
+            NEONETZ
           </span>
-          <span className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-light text-text-secondary uppercase tracking-[0.25em] mt-3 sm:mt-4 ml-2">
-            {profile.name.split(' ').slice(1).join(' ')}
+          <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-text-secondary uppercase tracking-[0.3em] mt-4 sm:mt-6 ml-2">
+            {profile.name}
           </span>
         </motion.h1>
 
