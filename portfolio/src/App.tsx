@@ -4,6 +4,7 @@ import { Hero } from './features/hero/Hero';
 import { Projects } from './features/projects/Projects';
 import { About } from './features/about/About';
 import { Skills } from './features/skills/Skills';
+import { TechCloud3D } from './features/skills/TechCloud3D';
 import { Contact } from './features/contact/Contact';
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
         </div>
         <div className="w-full min-h-screen">
           <Skills />
+        </div>
+        <div className="w-full">
+          <TechCloud3D />
         </div>
         <div className="w-full min-h-screen">
           <Contact />
