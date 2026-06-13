@@ -30,7 +30,7 @@ export function About() {
               <div className="flex items-start gap-6">
                 <div className="relative">
                   <div className="w-24 h-24 rounded-lg bg-gradient-to-br from-accent-cyan/20 to-accent-amber/20 border border-accent-cyan/30 flex items-center justify-center overflow-hidden">
-                    <User className="w-12 h-12 text-accent-cyan" />
+                    <img src={profile.avatar} alt={profile.name} className="w-full h-full object-cover" />
                   </div>
                   {/* Decorative corners */}
                   <div className="absolute -top-1 -left-1 w-4 h-4 border-l-2 border-t-2 border-accent-cyan" />
