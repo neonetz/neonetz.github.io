@@ -4,56 +4,31 @@ export function useScrollSpy(sectionIds: string[]) {
   const [activeSection, setActiveSection] = useState<string>(sectionIds[0] || '');
 
   useEffect(() => {
-    let timeoutId: number;
-
-    const handleScroll = () => {
-      if (timeoutId) {
-        window.cancelAnimationFrame(timeoutId);
-      }
-
-      timeoutId = window.requestAnimationFrame(() => {
-        let bestSection = sectionIds[0];
-        let maxVisibleHeight = 0;
-
-        for (const id of sectionIds) {
-          const element = document.getElementById(id);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            
-            // Calculate how many vertical pixels of this section are actually inside the viewport
-            const visibleTop = Math.max(0, rect.top);
-            const visibleBottom = Math.min(window.innerHeight, rect.bottom);
-            const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-
-            // Whichever section takes up the MOST space on screen is the active one
-            if (visibleHeight > maxVisibleHeight) {
-              maxVisibleHeight = visibleHeight;
-              bestSection = id;
-            }
+    // We use IntersectionObserver with a strict center band.
+    // This is hardware-accelerated and fires reliably even during Safari momentum scrolling.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+            window.history.replaceState(null, '', `#${entry.target.id}`);
           }
-        }
-
-        setActiveSection((prev) => {
-          if (prev !== bestSection) {
-            window.history.replaceState(null, '', `#${bestSection}`);
-            return bestSection;
-          }
-          return prev;
         });
-      });
-    };
+      },
+      {
+        // Creates a horizontal band exactly in the middle 10% of the screen.
+        // top: -45%, bottom: -45% leaves the middle 10% as the detection zone.
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: 0
+      }
+    );
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-    
-    // Check initial state
-    setTimeout(handleScroll, 100);
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-      if (timeoutId) window.cancelAnimationFrame(timeoutId);
-    };
+    return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sectionIds.join(',')]);
 
