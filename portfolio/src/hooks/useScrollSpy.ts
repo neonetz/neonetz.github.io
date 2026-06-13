@@ -7,36 +7,36 @@ export function useScrollSpy(sectionIds: string[]) {
     let timeoutId: number;
 
     const handleScroll = () => {
-      // Throttle slightly for performance
       if (timeoutId) {
         window.cancelAnimationFrame(timeoutId);
       }
 
       timeoutId = window.requestAnimationFrame(() => {
-        let currentSection = sectionIds[0];
-        
-        // The trigger line is 33% down the viewport
-        const triggerPoint = window.innerHeight / 3;
+        let bestSection = sectionIds[0];
+        let maxVisibleHeight = 0;
 
         for (const id of sectionIds) {
           const element = document.getElementById(id);
           if (element) {
             const rect = element.getBoundingClientRect();
-            // If the top of the section is above our trigger line, 
-            // it becomes the current candidate.
-            // Since sections are ordered top-to-bottom, the last one 
-            // that passes this test is the one currently occupying the screen.
-            if (rect.top <= triggerPoint) {
-              currentSection = id;
+            
+            // Calculate how many vertical pixels of this section are actually inside the viewport
+            const visibleTop = Math.max(0, rect.top);
+            const visibleBottom = Math.min(window.innerHeight, rect.bottom);
+            const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+            // Whichever section takes up the MOST space on screen is the active one
+            if (visibleHeight > maxVisibleHeight) {
+              maxVisibleHeight = visibleHeight;
+              bestSection = id;
             }
           }
         }
 
         setActiveSection((prev) => {
-          if (prev !== currentSection) {
-            // Only update history if it actually changed to avoid spamming the browser
-            window.history.replaceState(null, '', `#${currentSection}`);
-            return currentSection;
+          if (prev !== bestSection) {
+            window.history.replaceState(null, '', `#${bestSection}`);
+            return bestSection;
           }
           return prev;
         });
@@ -46,7 +46,7 @@ export function useScrollSpy(sectionIds: string[]) {
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
     
-    // Initial check after a slight delay to allow layout to settle
+    // Check initial state
     setTimeout(handleScroll, 100);
 
     return () => {
