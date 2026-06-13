@@ -78,27 +78,29 @@ export function About() {
                 </p>
               </div>
 
-              <div>
-                <div className="flex items-center gap-3 mb-8">
-                  <Award className="w-5 h-5 text-accent-yellow flex-shrink-0" />
-                  <span className="text-sm font-mono text-accent-yellow uppercase tracking-widest">Experience Record</span>
+              {experiences.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <Award className="w-5 h-5 text-accent-yellow flex-shrink-0" />
+                    <span className="text-sm font-mono text-accent-yellow uppercase tracking-widest">Experience Record</span>
+                  </div>
+                  <div className="space-y-10">
+                    {experiences.map((exp, i) => (
+                      <div key={i} className="relative pl-8 border-l border-border-subtle">
+                        <div className="absolute left-0 top-1.5 w-2 h-2 -translate-x-[5px] bg-accent-teal rotate-45" />
+                        <span className="text-xs md:text-sm font-mono text-accent-teal/60 tracking-[0.2em] uppercase">
+                          {exp.period}
+                        </span>
+                        <h4 className="font-bold text-text-primary text-base md:text-lg tracking-wide mt-2">
+                          {exp.title}
+                        </h4>
+                        <p className="text-accent-yellow text-xs md:text-sm mt-1 mb-3 font-mono uppercase tracking-widest">{exp.company}</p>
+                        <p className="text-text-muted text-sm md:text-base leading-relaxed max-w-2xl">{exp.description}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="space-y-10">
-                  {experiences.map((exp, i) => (
-                    <div key={i} className="relative pl-8 border-l border-border-subtle">
-                      <div className="absolute left-0 top-1.5 w-2 h-2 -translate-x-[5px] bg-accent-teal rotate-45" />
-                      <span className="text-xs md:text-sm font-mono text-accent-teal/60 tracking-[0.2em] uppercase">
-                        {exp.period}
-                      </span>
-                      <h4 className="font-bold text-text-primary text-base md:text-lg tracking-wide mt-2">
-                        {exp.title}
-                      </h4>
-                      <p className="text-accent-yellow text-xs md:text-sm mt-1 mb-3 font-mono uppercase tracking-widest">{exp.company}</p>
-                      <p className="text-text-muted text-sm md:text-base leading-relaxed max-w-2xl">{exp.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              )}
             </motion.div>
           </div>
         </div>

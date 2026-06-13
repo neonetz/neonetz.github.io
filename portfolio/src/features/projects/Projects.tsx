@@ -20,6 +20,9 @@ const statusLabel: Record<string, string> = {
 
 export function Projects() {
   const [selected, setSelected] = useState<Project>(projects[0]);
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedProjects = showAll ? projects : projects.slice(0, 4);
 
   return (
     <section id="projects" className="relative w-full min-h-screen flex flex-col pt-32 pb-16 bg-bg-primary">
@@ -36,7 +39,7 @@ export function Projects() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
           
           <div className="lg:col-span-4 space-y-3">
-            {projects.map((project, index) => (
+            {displayedProjects.map((project, index) => (
               <button
                 key={project.id}
                 onClick={() => setSelected(project)}
@@ -62,6 +65,15 @@ export function Projects() {
                 </div>
               </button>
             ))}
+
+            {projects.length > 4 && (
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="w-full mt-4 p-4 border border-dashed border-border-subtle hover:border-accent-teal text-text-muted hover:text-accent-teal text-xs font-mono tracking-widest uppercase transition-colors"
+              >
+                {showAll ? '— Show Less —' : '— Load More Projects —'}
+              </button>
+            )}
           </div>
 
           <div className="lg:col-span-8">

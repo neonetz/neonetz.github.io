@@ -63,6 +63,34 @@ export const profile: Profile = {
 
 export const projects: Project[] = [
   {
+    id: "esa-loan-microservices",
+    title: "Loan Microservices",
+    description: "Enterprise architecture assignment focusing on loan management microservices.",
+    longDescription: `A university assignment focusing on Enterprise Architecture (ESA). This project implements a loan microservice architecture, dealing with complex enterprise patterns, distributed systems, and potentially event-driven designs.`,
+    image: "/img/logo.jpeg",
+    techStack: [
+      { name: "TypeScript", level: 85, category: "backend" },
+      { name: "Microservices", level: 80, category: "backend" },
+      { name: "Enterprise Architecture", level: 75, category: "other" },
+    ],
+    githubUrl: "https://github.com/neonetz/esa-loan-microservices",
+    status: "completed",
+  },
+  {
+    id: "esa-e-commerce",
+    title: "E-Commerce Microservices",
+    description: "Implementation of Saga Pattern & Resilience Pattern for E-Commerce.",
+    longDescription: `An advanced microservices project implementing the Saga Pattern and Resilience Patterns for an E-Commerce backend. Built to handle distributed transactions and ensure fault tolerance across multiple independent services.`,
+    image: "/img/logo.jpeg",
+    techStack: [
+      { name: "Microservices", level: 85, category: "backend" },
+      { name: "Saga Pattern", level: 80, category: "backend" },
+      { name: "Resilience Design", level: 75, category: "other" },
+    ],
+    githubUrl: "https://github.com/neonetz/esa-e-commerce",
+    status: "completed",
+  },
+  {
     id: "anticheat-system",
     title: "Anti-Cheat System",
     description: "Digital image processing project for detecting cheating.",
@@ -107,6 +135,20 @@ export const projects: Project[] = [
     status: "completed",
   },
   {
+    id: "project3-odoo",
+    title: "Odoo ERP Template",
+    description: "Template repository for running and configuring Odoo ERP.",
+    longDescription: `A template configuration project for deploying and managing Odoo ERP systems. It involves setting up the environment, modules, and business logic structures for enterprise resource planning.`,
+    image: "/img/logo.jpeg",
+    techStack: [
+      { name: "Odoo", level: 80, category: "other" },
+      { name: "Python", level: 85, category: "backend" },
+      { name: "ERP Systems", level: 70, category: "other" },
+    ],
+    githubUrl: "https://github.com/neonetz/project3-odoo-template",
+    status: "completed",
+  },
+  {
     id: "portfolio-website",
     title: "Interactive Portfolio",
     description: "Sci-fi themed personal developer portfolio.",
@@ -125,17 +167,11 @@ export const projects: Project[] = [
   },
 ];
 
-export const experiences = [
-  {
-    title: "Freelance Developer",
-    company: "Self-Employed",
-    period: "2023 - Present",
-    description: "Developing custom web applications and automation tools for clients",
-  },
-  {
-    title: "Web Development Intern",
-    company: "Tech Startup",
-    period: "2022 - 2023",
-    description: "Assisted in building and maintaining company websites",
-  },
-];
+export interface Experience {
+  title: string;
+  company: string;
+  period: string;
+  description: string;
+}
+
+export const experiences: Experience[] = [];
