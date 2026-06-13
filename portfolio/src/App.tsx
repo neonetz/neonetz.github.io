@@ -8,26 +8,26 @@ import { Contact } from './features/contact/Contact';
 
 function App() {
   return (
-    <div className="bg-bg-primary text-text-primary h-screen overflow-y-auto overflow-x-hidden snap-y snap-mandatory scroll-smooth">
+    <div className="bg-bg-primary text-text-primary h-screen overflow-y-auto overflow-x-hidden scroll-smooth">
       <Navbar />
       <main>
-        <div className="snap-start snap-always w-full min-h-screen">
+        <div className="w-full min-h-screen">
           <Hero />
         </div>
-        <div className="snap-start snap-always w-full min-h-screen">
+        <div className="w-full min-h-screen">
           <Projects />
         </div>
-        <div className="snap-start snap-always w-full min-h-screen bg-bg-secondary">
+        <div className="w-full min-h-screen bg-bg-secondary">
           <About />
         </div>
-        <div className="snap-start snap-always w-full min-h-screen">
+        <div className="w-full min-h-screen">
           <Skills />
         </div>
-        <div className="snap-start snap-always w-full min-h-screen">
+        <div className="w-full min-h-screen">
           <Contact />
         </div>
       </main>
-      <div className="snap-start snap-always w-full">
+      <div className="w-full">
         <Footer />
       </div>
     </div>
