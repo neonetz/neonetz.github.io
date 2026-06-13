@@ -1,11 +1,9 @@
-import { Suspense, useRef, useMemo, useState, useEffect } from 'react';
+import { Suspense, useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, PointMaterial, Points } from '@react-three/drei';
 import * as THREE from 'three';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
-function ParticleCore({ count = 20000 }) {
+function ParticleCore({ count = 25000 }) {
   const pointsRef = useRef<THREE.Points>(null);
 
   const particlesPosition = useMemo(() => {
@@ -16,17 +14,20 @@ function ParticleCore({ count = 20000 }) {
       
       let x, y, z;
       if (i < count * 0.3) {
+        // Inner dense sphere
         const rSphere = 2 + Math.random() * 0.5;
         x = rSphere * Math.sin(phi) * Math.cos(theta);
         y = rSphere * Math.sin(phi) * Math.sin(theta);
         z = rSphere * Math.cos(phi);
       } else if (i < count * 0.7) {
+        // Wide Accretion disk
         const rDisk = 3.5 + Math.random() * 6;
         const angle = Math.random() * Math.PI * 2;
         x = Math.cos(angle) * rDisk;
         z = Math.sin(angle) * rDisk;
         y = (Math.random() - 0.5) * 0.3; 
       } else {
+        // Outer space dust
         const rDisk = 6 + Math.random() * 8;
         const angle = Math.random() * Math.PI * 2;
         x = Math.cos(angle) * rDisk;
@@ -65,53 +66,6 @@ function ParticleCore({ count = 20000 }) {
   );
 }
 
-function ParticleText() {
-  const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
-  const pointsRef = useRef<THREE.Points>(null);
-
-  useEffect(() => {
-    const loader = new FontLoader();
-    // Using relative path to avoid root URL resolution issues on GH Pages
-    loader.load('/fonts/optimer_bold.typeface.json', (font) => {
-      const textGeo = new TextGeometry('NEONETZ', {
-        font: font,
-        size: 2.5,
-        depth: 0.5,
-        curveSegments: 4,
-        bevelEnabled: true,
-        bevelThickness: 0.1,
-        bevelSize: 0.05,
-        bevelSegments: 3
-      });
-      textGeo.center();
-      setGeometry(textGeo);
-    });
-  }, []);
-
-  useFrame((state) => {
-    if (pointsRef.current) {
-      pointsRef.current.position.y = Math.sin(state.clock.elapsedTime * 1.5) * 0.2;
-      const scale = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.05;
-      pointsRef.current.scale.set(scale, scale, scale);
-    }
-  });
-
-  if (!geometry) return null;
-
-  return (
-    <points ref={pointsRef} geometry={geometry}>
-      <pointsMaterial
-        transparent
-        color="#f0c808"
-        size={0.04}
-        sizeAttenuation={true}
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-      />
-    </points>
-  );
-}
-
 export function TechCloud3D() {
   return (
     <div className="w-full h-[100svh] relative flex items-center justify-center bg-[#08080A] pt-24 pb-16 overflow-hidden">
@@ -136,7 +90,6 @@ export function TechCloud3D() {
           <ambientLight intensity={1} />
           
           <Suspense fallback={null}>
-            <ParticleText />
             <ParticleCore count={25000} />
           </Suspense>
           
