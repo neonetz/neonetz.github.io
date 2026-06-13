@@ -1,12 +1,15 @@
+import { lazy, Suspense } from 'react';
 import { Sidebar } from './components/layouts/Sidebar';
 import { Footer } from './components/layouts/Footer';
 import { Hero } from './features/hero/Hero';
 import { Projects } from './features/projects/Projects';
 import { About } from './features/about/About';
 import { Skills } from './features/skills/Skills';
-import { TechCloud3D } from './features/skills/TechCloud3D';
 import { Contact } from './features/contact/Contact';
 import { LoadingScreen } from './components/ui/LoadingScreen';
+
+// Lazy load the heaviest component (Three.js/Fiber) to split the bundle size
+const TechCloud3D = lazy(() => import('./features/skills/TechCloud3D').then(m => ({ default: m.TechCloud3D })));
 
 function Marquee() {
   return (
@@ -41,7 +44,9 @@ function App() {
             <Skills />
           </div>
           <div className="w-full">
-            <TechCloud3D />
+            <Suspense fallback={<div className="w-full h-screen bg-[#08080A] flex items-center justify-center text-accent-yellow font-mono text-sm tracking-widest">INITIALIZING 3D ENGINE...</div>}>
+              <TechCloud3D />
+            </Suspense>
           </div>
           <div className="w-full min-h-screen">
             <Contact />
