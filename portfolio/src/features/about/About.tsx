@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { MapPin, Mail, Code, Award } from 'lucide-react';
 import { profile, experiences } from '../../data/portfolio';
+import { SciFiReveal } from '../../components/ui/SciFiReveal';
 
 export function About() {
   return (
@@ -9,10 +10,18 @@ export function About() {
         
         <div className="mb-14">
           <p className="text-label mb-2">03 — Operator</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-text-primary">
-            About Me
-          </h2>
-          <div className="w-16 h-1 bg-accent-yellow mt-4" />
+          <SciFiReveal>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-text-primary">
+              About Me
+            </h2>
+          </SciFiReveal>
+          <motion.div 
+            className="w-16 h-1 bg-accent-yellow mt-4" 
+            initial={{ scaleX: 0, originX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">

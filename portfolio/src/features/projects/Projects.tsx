@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, ChevronRight, Cpu, Globe, Database, Wrench } from 'lucide-react';
 import type { Project } from '../../data/portfolio';
 import { projects } from '../../data/portfolio';
+import { SciFiReveal } from '../../components/ui/SciFiReveal';
 
 const categoryIcons: Record<string, any> = {
   frontend: Globe,
@@ -27,10 +28,18 @@ export function Projects() {
         
         <div className="mb-14">
           <p className="text-label mb-2">02 — Archives</p>
-          <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-text-primary">
-            Featured Projects
-          </h2>
-          <div className="w-16 h-1 bg-accent-yellow mt-4" />
+          <SciFiReveal>
+            <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-text-primary">
+              Featured Projects
+            </h2>
+          </SciFiReveal>
+          <motion.div 
+            className="w-16 h-1 bg-accent-yellow mt-4" 
+            initial={{ scaleX: 0, originX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 flex-grow">

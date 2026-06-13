@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, CheckCircle } from 'lucide-react';
 import { profile } from '../../data/portfolio';
+import { SciFiReveal } from '../../components/ui/SciFiReveal';
 
 const SocialIcon = ({ type }: { type: string }) => {
   const cls = "w-5 h-5";
@@ -38,12 +39,20 @@ export function Contact() {
     <section id="contact" className="relative w-full min-h-screen flex flex-col pt-32 pb-16 bg-bg-secondary">
       <div className="section-wrapper flex-grow flex flex-col items-center justify-center">
         
-        <div className="mb-14 text-center w-full">
+        <div className="mb-14 text-center flex flex-col items-center w-full">
           <p className="text-label mb-2">04 — Commlink</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-text-primary">
-            Get In Touch
-          </h2>
-          <div className="w-16 h-1 bg-accent-yellow mt-4 mx-auto" />
+          <SciFiReveal>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-text-primary text-center">
+              Get In Touch
+            </h2>
+          </SciFiReveal>
+          <motion.div 
+            className="w-16 h-1 bg-accent-yellow mt-4" 
+            initial={{ scaleX: 0, originX: 0.5 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          />
           <p className="text-text-muted text-sm md:text-base mt-6 max-w-md mx-auto">
             Have a project in mind or just want to say hello? Send me a message and I'll get back to you.
           </p>
