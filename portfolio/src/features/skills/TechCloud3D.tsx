@@ -1,58 +1,9 @@
-import { Suspense, useRef, useMemo, useState, useEffect } from 'react';
+import { Suspense, useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, PointMaterial, Points } from '@react-three/drei';
 import * as THREE from 'three';
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
-import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
-function ParticleText() {
-  const [geometry, setGeometry] = useState<THREE.BufferGeometry | null>(null);
-  const pointsRef = useRef<THREE.Points>(null);
-
-  useEffect(() => {
-    const loader = new FontLoader();
-    // Using a highly reliable CDN to prevent any local routing/CORS 404s on GH pages
-    loader.load('https://unpkg.com/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json', (font) => {
-      const textGeo = new TextGeometry('NEONETZ', {
-        font: font,
-        size: 2.5,
-        depth: 0.5,
-        curveSegments: 3,
-        bevelEnabled: true,
-        bevelThickness: 0.1,
-        bevelSize: 0.05,
-        bevelSegments: 2
-      });
-      textGeo.center();
-      setGeometry(textGeo);
-    });
-  }, []);
-
-  useFrame((state) => {
-    if (pointsRef.current) {
-      pointsRef.current.position.y = Math.sin(state.clock.elapsedTime * 1.5) * 0.2;
-      const scale = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.05;
-      pointsRef.current.scale.set(scale, scale, scale);
-    }
-  });
-
-  if (!geometry) return null;
-
-  return (
-    <points ref={pointsRef} geometry={geometry}>
-      <pointsMaterial
-        transparent
-        color="#f0c808"
-        size={0.06}
-        sizeAttenuation={true}
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-      />
-    </points>
-  );
-}
-
-function ParticleCore({ count = 25000 }) {
+function ParticleCore({ count = 35000 }) {
   const pointsRef = useRef<THREE.Points>(null);
 
   const particlesPosition = useMemo(() => {
@@ -74,7 +25,7 @@ function ParticleCore({ count = 25000 }) {
         // Main rings from radius 3.5 to 7.0
         let rDisk = 3.5 + Math.random() * 3.5;
         
-        // Create a gap (e.g. Cassini Division) between 5.0 and 5.5
+        // Create a gap (Cassini Division) between 5.0 and 5.5
         if (rDisk > 5.0 && rDisk < 5.5) {
             rDisk += 0.5; // Push particles outward to create the gap
         }
@@ -107,12 +58,12 @@ function ParticleCore({ count = 25000 }) {
       <Points ref={pointsRef} positions={particlesPosition} stride={3} frustumCulled={false}>
         <PointMaterial
           transparent
-          color="#2bc0d4"
-          size={0.02}
+          color="#ffffff"
+          size={0.025}
           sizeAttenuation={true}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
-          opacity={0.8}
+          opacity={0.7}
         />
       </Points>
     </group>
@@ -143,8 +94,7 @@ export function TechCloud3D() {
           <ambientLight intensity={1} />
           
           <Suspense fallback={null}>
-            <ParticleText />
-            <ParticleCore count={18000} />
+            <ParticleCore count={35000} />
           </Suspense>
           
           <OrbitControls 
