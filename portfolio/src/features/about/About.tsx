@@ -1,191 +1,168 @@
 import { motion } from 'framer-motion';
-import { User, MapPin, Mail, Code, Award, BookOpen } from 'lucide-react';
-import { SectionTitle } from '../../components/ui/SectionTitle';
-import { SkillBar } from '../../components/ui/SkillBar';
+import { MapPin, Mail, Code, Award } from 'lucide-react';
 import { profile, experiences } from '../../data/portfolio';
+
+const categoryColors: Record<string, string> = {
+  frontend: 'text-accent-teal',
+  backend: 'text-accent-yellow',
+  database: 'text-purple-400',
+  devops: 'text-green-400',
+  other: 'text-pink-400',
+};
 
 export function About() {
   return (
     <section id="about" className="relative w-full min-h-screen flex flex-col justify-center py-24 bg-bg-secondary">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent-teal/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent-yellow/5 rounded-full blur-3xl" />
-      
-      <div className="relative w-full z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left Column - About Me */}
-          <div>
-            <SectionTitle subtitle="Get to know me better">
-              Operator Profile
-            </SectionTitle>
+      <div className="section-wrapper">
+        
+        {/* Section Header */}
+        <div className="mb-16">
+          <p className="text-label mb-3">03 — Operator</p>
+          <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-text-primary">
+            About Me
+          </h2>
+          <div className="w-16 h-1 bg-accent-yellow mt-4" />
+        </div>
 
-            <motion.div
-              className="space-y-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              {/* Avatar & Basic Info */}
-              <div className="flex items-start gap-6">
-                <div className="relative w-full">
-                  <div className="w-32 h-32 cut-corner bg-gradient-to-br from-accent-teal/20 to-accent-yellow/20 border border-border-subtle flex items-center justify-center overflow-hidden">
-                    <img src={profile.avatar} alt={profile.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                  </div>
-                  {/* Decorative corners */}
-                  <div className="absolute -top-2 -left-2 w-6 h-6 border-l-2 border-t-2 border-accent-teal" />
-                  <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-2 border-b-2 border-accent-yellow" />
-                </div>
-                
-                <div className="flex-1 space-y-3 mt-2">
-                  <div className="flex items-center gap-3 text-text-secondary">
-                    <User className="w-4 h-4 text-accent-teal" />
-                    <span className="text-sm font-bold">{profile.name}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-text-secondary">
-                    <MapPin className="w-4 h-4 text-accent-teal" />
-                    <span className="text-sm">{profile.location}</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-text-secondary">
-                    <Mail className="w-4 h-4 text-accent-teal" />
-                    <span className="text-sm">{profile.email}</span>
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+          
+          {/* Left: Profile Card */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Avatar */}
+            <div className="relative mb-8">
+              <div className="w-40 h-40 cut-corner overflow-hidden border border-border-subtle">
+                <img 
+                  src={profile.avatar} 
+                  alt={profile.name}
+                  className="w-full h-full object-cover"
+                />
               </div>
+              {/* Decorative corner */}
+              <div className="absolute -top-2 -left-2 w-8 h-8 border-l-2 border-t-2 border-accent-teal" />
+              <div className="absolute -bottom-2 -right-2 w-8 h-8 border-r-2 border-b-2 border-accent-yellow" />
+            </div>
 
-              {/* Bio */}
-              <div className="p-6 cut-corner-sm bg-bg-tertiary border border-border-subtle">
-                <div className="flex items-center gap-2 mb-4">
-                  <Code className="w-4 h-4 text-accent-teal" />
-                  <span className="text-text-primary font-mono text-sm uppercase tracking-wider">
-                    Biography Data
-                  </span>
-                </div>
-                <p className="text-text-secondary leading-relaxed whitespace-pre-line">
-                  {profile.bio}
-                </p>
+            {/* Name & Info */}
+            <h3 className="text-2xl font-black uppercase tracking-tight text-text-primary mb-1">
+              {profile.name}
+            </h3>
+            <p className="text-accent-teal font-mono text-sm tracking-widest uppercase mb-6">
+              {profile.role}
+            </p>
+
+            {/* Meta info */}
+            <div className="space-y-3 mb-8">
+              <div className="flex items-center gap-3 text-text-muted text-sm">
+                <MapPin className="w-4 h-4 text-accent-teal" />
+                {profile.location}
               </div>
+              <div className="flex items-center gap-3 text-text-muted text-sm">
+                <Mail className="w-4 h-4 text-accent-teal" />
+                {profile.email}
+              </div>
+            </div>
 
-              {/* Experience Timeline */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <Award className="w-4 h-4 text-accent-yellow" />
-                  <span className="text-text-primary font-mono text-sm uppercase tracking-wider">
-                    Experience Log
-                  </span>
-                </div>
-                
-                {experiences.map((exp, index) => (
-                  <motion.div
-                    key={index}
-                    className="relative w-full pl-8 pb-6 border-l border-border-subtle last:pb-0"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.2 }}
-                  >
-                    {/* Timeline dot */}
-                    <div className="absolute left-0 top-0 w-3 h-3 -translate-x-[7px] rounded-full bg-accent-teal border-2 border-bg-secondary" />
-                    
-                    <span className="text-accent-teal/50 font-mono text-xs font-bold">
+            {/* Bio */}
+            <div className="card-base cut-corner-sm p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Code className="w-4 h-4 text-accent-teal" />
+                <span className="text-label text-[10px]">Biography</span>
+              </div>
+              <p className="text-text-secondary text-sm leading-relaxed whitespace-pre-line">
+                {profile.bio}
+              </p>
+            </div>
+
+            {/* Experience */}
+            <div className="mt-8">
+              <div className="flex items-center gap-2 mb-6">
+                <Award className="w-4 h-4 text-accent-yellow" />
+                <span className="text-label text-[10px]">Experience</span>
+              </div>
+              <div className="space-y-6">
+                {experiences.map((exp, i) => (
+                  <div key={i} className="relative pl-6 border-l border-border-subtle">
+                    <div className="absolute left-0 top-0 w-2 h-2 -translate-x-[5px] bg-accent-teal" />
+                    <span className="text-[10px] font-mono text-accent-teal/60 tracking-widest">
                       {exp.period}
                     </span>
-                    <h4 className="text-text-primary font-bold mt-1 uppercase">
+                    <h4 className="font-bold text-text-primary text-sm uppercase mt-1">
                       {exp.title}
                     </h4>
-                    <span className="text-accent-yellow text-sm">
-                      {exp.company}
+                    <p className="text-accent-yellow text-xs mt-0.5">{exp.company}</p>
+                    <p className="text-text-muted text-xs mt-2 leading-relaxed">{exp.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right: Skills */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="mb-8">
+              <span className="text-label text-[10px]">Skill Matrix</span>
+              <h3 className="text-2xl font-black uppercase tracking-tight text-text-primary mt-2">
+                Technical Skills
+              </h3>
+            </div>
+
+            {/* Skills Grid */}
+            <div className="space-y-5">
+              {profile.skills.map((skill, index) => (
+                <div key={skill.name}>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-semibold text-text-primary uppercase tracking-wide">
+                      {skill.name}
                     </span>
-                    <p className="text-text-muted text-sm mt-2">
-                      {exp.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Column - Skills */}
-          <div>
-            <SectionTitle subtitle="My technical capabilities">
-              Skill Matrix
-            </SectionTitle>
-
-            <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              {/* Skills Grid */}
-              <div className="p-6 cut-corner-sm bg-bg-tertiary border border-border-subtle">
-                <div className="flex items-center gap-2 mb-6">
-                  <BookOpen className="w-4 h-4 text-accent-teal" />
-                  <span className="text-text-primary font-mono text-sm uppercase tracking-wider">
-                    Technical Specifications
-                  </span>
-                </div>
-                
-                <div className="space-y-1">
-                  {profile.skills.map((skill, index) => (
-                    <SkillBar key={skill.name} skill={skill} index={index} />
-                  ))}
-                </div>
-              </div>
-
-              {/* Skill Categories Legend */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {[
-                  { category: 'Frontend', color: 'accent-teal', icon: '🌐' },
-                  { category: 'Backend', color: 'accent-yellow', icon: '⚙️' },
-                  { category: 'Database', color: 'purple-500', icon: '💾' },
-                  { category: 'DevOps', color: 'green-500', icon: '🚀' },
-                  { category: 'Other', color: 'pink-500', icon: '📦' },
-                ].map((item) => (
-                  <motion.div
-                    key={item.category}
-                    className="flex items-center gap-2 p-3 rounded bg-bg-primary border border-border-subtle"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                  >
-                    <div className={`w-3 h-3 rounded-full bg-${item.color}`} />
-                    <span className="text-text-secondary text-xs">
-                      {item.category}
+                    <span className={`text-xs font-mono font-bold ${categoryColors[skill.category]}`}>
+                      {skill.level}%
                     </span>
-                  </motion.div>
-                ))}
-              </div>
+                  </div>
+                  <div className="h-1.5 bg-bg-tertiary w-full overflow-hidden">
+                    <motion.div
+                      className={`h-full ${skill.category === 'frontend' ? 'bg-accent-teal' : skill.category === 'backend' ? 'bg-accent-yellow' : 'bg-purple-400'}`}
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${skill.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
 
-              {/* Statistics */}
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { label: 'Projects Completed', value: '4+' },
-                  { label: 'Technologies Used', value: '15+' },
-                  { label: 'Lines of Code', value: '10K+' },
-                  { label: 'Years Coding', value: '3+' },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    className="p-6 cut-corner-sm bg-gradient-to-br from-bg-tertiary to-bg-primary border border-border-subtle text-center"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 + index * 0.1 }}
-                  >
-                    <div className="text-3xl font-bold text-accent-teal mb-1">
-                      {stat.value}
-                    </div>
-                    <div className="text-text-muted text-xs uppercase tracking-wider">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-4 mt-12">
+              {[
+                { label: 'Projects', value: '4+' },
+                { label: 'Technologies', value: '15+' },
+                { label: 'Lines of Code', value: '10K+' },
+                { label: 'Years Coding', value: '3+' },
+              ].map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  className="card-base cut-corner-xs p-6 text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.1 }}
+                >
+                  <div className="text-3xl font-black text-accent-yellow mb-1">{stat.value}</div>
+                  <div className="text-[10px] font-mono text-text-muted uppercase tracking-widest">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

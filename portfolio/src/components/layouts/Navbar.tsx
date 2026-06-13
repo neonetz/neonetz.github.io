@@ -1,115 +1,102 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { Button } from '../ui/Button';
 
 const navLinks = [
-  { name: 'HOME', href: '#home' },
-  { name: 'ARCHIVES', href: '#projects' },
-  { name: 'OPERATOR', href: '#about' },
-  { name: 'COMMLINK', href: '#contact' },
+  { name: 'Home', href: '#home' },
+  { name: 'Projects', href: '#projects' },
+  { name: 'About', href: '#about' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-bg-primary/90 backdrop-blur-md border-b border-white/5' 
-          : 'bg-gradient-to-b from-black/80 to-transparent'
+        scrolled ? 'bg-bg-primary/95 backdrop-blur-md border-b border-border-subtle' : 'bg-transparent'
       }`}
-      initial={{ y: -100 }}
+      initial={{ y: -80 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-[1400px] mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
+      <div className="section-wrapper">
+        <div className="flex items-center justify-between h-16 sm:h-20">
           
-          {/* Logo (Left) */}
-          <motion.a
-            href="#home"
-            className="flex items-center gap-2"
-            whileHover={{ scale: 1.05 }}
-          >
+          {/* Logo */}
+          <a href="#home" className="flex items-center gap-2 group">
             <div className="w-8 h-8 bg-accent-yellow cut-corner flex items-center justify-center">
-              <span className="text-black font-black text-xl">N</span>
+              <span className="text-black font-black text-lg leading-none">N</span>
             </div>
-            <span className="font-black text-xl tracking-widest text-text-primary hidden lg:block">
+            <span className="font-black text-sm sm:text-base tracking-widest text-text-primary hidden sm:block">
               NEONETZ
             </span>
-          </motion.a>
+          </a>
 
-          {/* Centered Navigation (Endfield style) */}
-          <div className="hidden md:flex items-center gap-12 absolute left-1/2 -translate-x-1/2">
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <motion.a
+              <a
                 key={link.name}
                 href={link.href}
-                className="relative text-text-primary/70 hover:text-white font-bold text-sm tracking-[0.2em] transition-colors group py-2"
-                whileHover={{ y: -2 }}
+                className="relative text-text-muted hover:text-text-primary text-xs font-mono uppercase tracking-widest transition-colors py-2 group"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-accent-yellow group-hover:w-full transition-all duration-300 ease-out" />
-              </motion.a>
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-accent-yellow group-hover:w-full transition-all duration-300" />
+              </a>
             ))}
           </div>
 
-          {/* Right Action Buttons */}
-          <div className="hidden md:flex items-center gap-4">
-            <div className="flex items-center gap-2 text-text-muted font-mono text-xs mr-4 border-r border-border-subtle pr-4">
-              <span className="w-2 h-2 bg-accent-teal animate-pulse" />
-              SYS.ONLINE
+          {/* Right: Status + CTA */}
+          <div className="hidden md:flex items-center gap-6">
+            <div className="flex items-center gap-2 text-text-muted text-[10px] font-mono">
+              <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+              ONLINE
             </div>
-            <Button variant="outline" size="sm" onClick={() => document.getElementById('contact')?.scrollIntoView()}>
-              CONNECT
-            </Button>
+            <a href="#contact" className="btn-outline text-[10px] px-4 py-2">
+              Contact
+            </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <motion.button
+          {/* Mobile Toggle */}
+          <button
             className="md:hidden p-2 text-text-primary"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            whileTap={{ scale: 0.95 }}
+            onClick={() => setMobileOpen(!mobileOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {mobileOpen && (
           <motion.div
-            className="md:hidden absolute top-full left-0 right-0 bg-bg-secondary border-b border-border-subtle"
+            className="md:hidden bg-bg-secondary border-t border-border-subtle"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
           >
-            <div className="px-6 py-6 flex flex-col gap-4">
-              {navLinks.map((link) => (
+            <div className="section-wrapper py-6 space-y-1">
+              {navLinks.map((link, i) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-text-primary font-bold text-lg tracking-widest border-b border-border-subtle pb-4"
+                  onClick={() => setMobileOpen(false)}
+                  className="block py-3 px-4 text-text-muted hover:text-text-primary text-sm font-mono uppercase tracking-widest border-b border-border-subtle last:border-0"
                 >
+                  <span className="text-accent-teal/40 mr-3">{String(i + 1).padStart(2, '0')}</span>
                   {link.name}
                 </a>
               ))}
-              <Button variant="primary" className="mt-4 !bg-accent-yellow !text-black w-full" onClick={() => setIsMobileMenuOpen(false)}>
-                CONNECT
-              </Button>
             </div>
           </motion.div>
         )}
