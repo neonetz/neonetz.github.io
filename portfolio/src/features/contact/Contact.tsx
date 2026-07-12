@@ -1,10 +1,20 @@
+import { useRef } from 'react';
 import { profile } from '../../data/portfolio';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { useParallax } from '../../hooks/useParallax';
 
 export function Contact() {
+  const wordmarkRef = useRef<HTMLSpanElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useParallax(wordmarkRef as React.RefObject<HTMLElement>, { speed: 0.3 });
+  useScrollReveal([contentRef as React.RefObject<HTMLElement>], { y: 40, duration: 0.8 });
+
   return (
     <section id="contact" className="hw-contact">
-      {/* Ghost wordmark behind content */}
+      {/* Ghost wordmark behind content with parallax */}
       <span
+        ref={wordmarkRef}
         className="hw-wordmark"
         aria-hidden
         style={{
@@ -20,6 +30,7 @@ export function Contact() {
 
       {/* Foreground content */}
       <div
+        ref={contentRef}
         className="relative flex flex-col items-center"
         style={{ gap: 'calc(40 * var(--u))', zIndex: 3 }}
       >
@@ -32,26 +43,16 @@ export function Contact() {
           <span className="block italic">Something</span>
         </h2>
 
-        <p
-          className="hw-body text-center"
-          style={{ maxWidth: 'calc(560 * var(--u))' }}
-        >
+        <p className="hw-body text-center" style={{ maxWidth: 'calc(560 * var(--u))' }}>
           Open to collaborations, freelance work, and interesting conversations.
           Reach out and let's create together.
         </p>
 
-        <a
-          href={`mailto:${profile.email}`}
-          className="hw-btn hw-btn-primary"
-        >
+        <a href={`mailto:${profile.email}`} className="hw-btn hw-btn-primary">
           Send Email
         </a>
 
-        {/* Social links */}
-        <div
-          className="flex"
-          style={{ gap: 'calc(40 * var(--u))', marginTop: 'calc(20 * var(--u))' }}
-        >
+        <div className="flex" style={{ gap: 'calc(40 * var(--u))', marginTop: 'calc(20 * var(--u))' }}>
           {profile.socialLinks.map((link) => (
             <a
               key={link.name}

@@ -1,12 +1,22 @@
+import { useRef } from 'react';
 import { profile } from '../../data/portfolio';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { useParallax } from '../../hooks/useParallax';
 
 export function About() {
+  const photoRef = useRef<HTMLImageElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useParallax(photoRef as React.RefObject<HTMLElement>, { speed: 0.15 });
+  useScrollReveal([contentRef as React.RefObject<HTMLElement>], { y: 40, duration: 0.8 });
+
   return (
     <section id="about" className="hw-section">
       <div className="hw-about-grid">
-        {/* Left: photo with mix-blend-lighten */}
+        {/* Left: photo with parallax + mix-blend-lighten */}
         <div className="relative" style={{ overflow: 'hidden' }}>
           <img
+            ref={photoRef}
             src={profile.avatar}
             alt={profile.name}
             className="hw-about-img"
@@ -15,7 +25,7 @@ export function About() {
         </div>
 
         {/* Right: bio content */}
-        <div className="flex flex-col" style={{ gap: 'calc(30 * var(--u))' }}>
+        <div ref={contentRef} className="flex flex-col" style={{ gap: 'calc(30 * var(--u))' }}>
           <span className="hw-eyebrow">About</span>
 
           <h2 className="hw-h2">

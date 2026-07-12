@@ -1,28 +1,37 @@
+import { useRef } from 'react';
 import { projects, type Project } from '../../data/portfolio';
+import { useScrollReveal, useScrollRevealChildren } from '../../hooks/useScrollReveal';
 
 function statusLabel(status: Project['status']): string {
   switch (status) {
-    case 'completed':     return 'Completed';
-    case 'in-progress':   return 'In Progress';
-    case 'archived':      return 'Archived';
-    default:              return status;
+    case 'completed':   return 'Completed';
+    case 'in-progress': return 'In Progress';
+    case 'archived':    return 'Archived';
+    default:            return status;
   }
 }
 
 export function Projects() {
+  const headingRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useScrollReveal([headingRef as React.RefObject<HTMLElement>], { y: 30, duration: 0.8 });
+  useScrollRevealChildren(gridRef as React.RefObject<HTMLElement>, '.hw-card', {
+    y: 50,
+    duration: 0.6,
+    stagger: 0.1,
+  });
+
   return (
     <section id="projects" className="hw-section">
-      {/* Eyebrow + heading */}
-      <div className="flex flex-col" style={{ gap: 'calc(20 * var(--u))' }}>
+      <div ref={headingRef} className="flex flex-col" style={{ gap: 'calc(20 * var(--u))' }}>
         <span className="hw-eyebrow">Selected Work</span>
         <h2 className="hw-h2">Projects</h2>
       </div>
 
-      {/* Card grid */}
-      <div className="hw-card-grid" style={{ marginTop: 'calc(60 * var(--u))' }}>
+      <div ref={gridRef} className="hw-card-grid" style={{ marginTop: 'calc(60 * var(--u))' }}>
         {projects.map((project) => (
           <article key={project.id} className="hw-card">
-            {/* Title */}
             <h3
               style={{
                 fontFamily: 'var(--font-display)',
@@ -35,7 +44,6 @@ export function Projects() {
               {project.title}
             </h3>
 
-            {/* Description */}
             <p
               className="opacity-70"
               style={{
@@ -49,7 +57,6 @@ export function Projects() {
               {project.description}
             </p>
 
-            {/* Tech stack */}
             <div className="flex flex-wrap" style={{ gap: 'calc(8 * var(--u))' }}>
               {project.techStack.map((tech) => (
                 <span
@@ -68,10 +75,8 @@ export function Projects() {
               ))}
             </div>
 
-            {/* Spacer */}
             <div className="flex-1" />
 
-            {/* Footer row: status + link */}
             <div
               className="flex justify-between items-center"
               style={{ marginTop: 'calc(20 * var(--u))' }}

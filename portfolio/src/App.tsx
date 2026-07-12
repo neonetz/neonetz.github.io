@@ -1,3 +1,6 @@
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLenis } from './hooks/useLenis';
 import { Navbar } from './components/layouts/Navbar';
 import { Footer } from './components/layouts/Footer';
 import { Noise } from './components/layouts/Noise';
@@ -7,7 +10,11 @@ import { About } from './features/about/About';
 import { Skills } from './features/skills/Skills';
 import { Contact } from './features/contact/Contact';
 
+gsap.registerPlugin(ScrollTrigger);
+
 function App() {
+  useLenis();
+
   return (
     <div className="hw-root">
       <Noise />
