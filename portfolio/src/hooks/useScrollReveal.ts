@@ -37,6 +37,7 @@ export function useScrollReveal(
       const targets = Array.isArray(target) ? target.map((t) => t.current) : target.current;
       if (!targets || (Array.isArray(targets) && targets.every((t) => !t))) return;
 
+      const triggerEl = Array.isArray(targets) ? targets[0] : targets;
       gsap.from(targets, {
         y,
         opacity: 0,
@@ -45,6 +46,7 @@ export function useScrollReveal(
         stagger,
         ease,
         scrollTrigger: {
+          trigger: triggerEl,
           start,
           toggleActions: 'play none none reverse',
         },
