@@ -7,8 +7,8 @@ export function About() {
   const photoRef = useRef<HTMLImageElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  useParallax(photoRef as React.RefObject<HTMLElement>, { speed: 0.15 });
-  useScrollReveal([contentRef as React.RefObject<HTMLElement>], { y: 40, duration: 0.8 });
+  useParallax(photoRef, { speed: 0.15 });
+  useScrollReveal([contentRef], { y: 40, duration: 0.8 });
 
   return (
     <section id="about" className="hw-section">

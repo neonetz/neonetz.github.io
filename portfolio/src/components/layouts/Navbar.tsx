@@ -12,18 +12,21 @@ export function Navbar() {
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 100);
+    const onScroll = () => setVisible(window.scrollY > 100);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  function setVisible(v: boolean) { setScrolled(v); }
+
   return (
     <nav
       ref={navRef}
+      aria-label="Primary"
       className={`hw-nav${scrolled ? ' hw-nav-scrolled' : ''}`}
     >
       {/* Left: nav links */}
-      <div className="flex gap-[calc(40*var(--u))]">
+      <div className="flex gap-[calc(40*var(--u))] flex-wrap">
         <a href="#projects" className="hw-link hw-nav-link font-extrabold" style={navLinkStyle}>
           Projects
         </a>
@@ -32,6 +35,9 @@ export function Navbar() {
         </a>
         <a href="#skills" className="hw-link hw-nav-link font-extrabold" style={navLinkStyle}>
           Skills
+        </a>
+        <a href="#contact" className="hw-link hw-nav-link font-extrabold" style={navLinkStyle}>
+          Contact
         </a>
       </div>
 
@@ -62,14 +68,28 @@ export function Navbar() {
         </a>
       </div>
 
-      {/* Right: social */}
-      <div className="flex justify-end gap-[calc(24*var(--u))] items-start">
+      {/* Right: resume + social */}
+      <div className="flex justify-end items-start gap-[calc(24*var(--u))]">
+        {profile.resumeUrl && (
+          <a
+            href={profile.resumeUrl}
+            download
+            className="hw-btn hw-btn-primary"
+            style={{
+              padding: 'calc(10 * var(--u)) calc(20 * var(--u))',
+              fontSize: 'clamp(0.65rem, calc(14*var(--u)), 0.9rem)',
+            }}
+          >
+            Resume
+          </a>
+        )}
         {profile.socialLinks.map((link) => (
           <a
             key={link.name}
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`${link.name} (opens in new tab)`}
             className="hw-nav-link opacity-70 transition-opacity duration-200 ease-out hover:opacity-100"
             style={navLinkStyle}
           >

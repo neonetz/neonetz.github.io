@@ -27,12 +27,8 @@ export function Skills() {
     {} as Record<string, TechStack[]>,
   );
 
-  useScrollReveal([headingRef as React.RefObject<HTMLElement>], { y: 30, duration: 0.8 });
-  useScrollRevealChildren(gridRef as React.RefObject<HTMLElement>, '.hw-skills-group', {
-    y: 50,
-    duration: 0.6,
-    stagger: 0.12,
-  });
+  useScrollReveal(headingRef, { y: 30, duration: 0.8 });
+  useScrollRevealChildren(gridRef, '.hw-skills-group', { y: 50, duration: 0.6, stagger: 0.12 });
 
   return (
     <section id="skills" className="hw-section">
@@ -41,29 +37,42 @@ export function Skills() {
         <h2 className="hw-h2">Skills</h2>
       </div>
 
-      <div
-        ref={gridRef}
-        className="grid"
-        style={{
-          gridTemplateColumns: 'repeat(auto-fit, minmax(calc(320 * var(--u)), 1fr))',
-          gap: 'calc(60 * var(--u))',
-          marginTop: 'calc(60 * var(--u))',
-        }}
-      >
-        {Object.entries(categories).map(([cat, skills]) => (
-          <div key={cat} className="hw-skills-group">
-            <h3 className="hw-eyebrow" style={{ marginBottom: 'calc(10 * var(--u))' }}>
-              {categoryLabel(cat as TechStack['category'])}
-            </h3>
-            {skills.map((skill) => (
-              <div key={skill.name} className="hw-skill-item">
-                <span>{skill.name}</span>
-                <span className="opacity-60">{skill.level}%</span>
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+      {profile.skills.length === 0 ? (
+        <div
+          style={{
+            marginTop: 'calc(60 * var(--u))',
+            padding: 'calc(60 * var(--u))',
+            border: '1px solid rgba(245,245,245,0.1)',
+            textAlign: 'center',
+          }}
+        >
+          <p className="hw-eyebrow" style={{ opacity: 0.5 }}>Skills coming soon</p>
+        </div>
+      ) : (
+        <div
+          ref={gridRef}
+          className="grid"
+          style={{
+            gridTemplateColumns: 'repeat(auto-fit, minmax(calc(320 * var(--u)), 1fr))',
+            gap: 'calc(60 * var(--u))',
+            marginTop: 'calc(60 * var(--u))',
+          }}
+        >
+          {Object.entries(categories).map(([cat, skills]) => (
+            <div key={cat} className="hw-skills-group">
+              <h3 className="hw-eyebrow" style={{ marginBottom: 'calc(10 * var(--u))' }}>
+                {categoryLabel(cat as TechStack['category'])}
+              </h3>
+              {skills.map((skill) => (
+                <div key={skill.name} className="hw-skill-item">
+                  <span>{skill.name}</span>
+                  <span style={{ opacity: 0.75 }}>{skill.level}%</span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

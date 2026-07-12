@@ -1,8 +1,5 @@
 import { useLayoutEffect, type RefObject } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 type RevealOptions = {
   y?: number;
@@ -15,10 +12,10 @@ type RevealOptions = {
 
 /**
  * Fade + slide-up reveal on scroll into viewport.
- * Pass a ref to a single element or an array of refs.
+ * Generic over element type to avoid 'as' casts at call sites.
  */
-export function useScrollReveal(
-  target: RefObject<HTMLElement | null> | RefObject<HTMLElement | null>[],
+export function useScrollReveal<T extends HTMLElement>(
+  target: RefObject<T | null> | RefObject<T | null>[],
   options: RevealOptions = {},
 ) {
   const {
@@ -54,15 +51,15 @@ export function useScrollReveal(
     });
 
     return () => ctx.revert();
-  }, [target, y, duration, delay, stagger, start, ease]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 }
 
 /**
  * Staggered reveal for multiple child elements within a container.
- * Pass a ref to the container and a selector string for children.
  */
-export function useScrollRevealChildren(
-  containerRef: RefObject<HTMLElement | null>,
+export function useScrollRevealChildren<T extends HTMLElement>(
+  containerRef: RefObject<T | null>,
   selector: string,
   options: RevealOptions = {},
 ) {
@@ -97,5 +94,6 @@ export function useScrollRevealChildren(
     });
 
     return () => ctx.revert();
-  }, [containerRef, selector, y, duration, delay, stagger, start, ease]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 }

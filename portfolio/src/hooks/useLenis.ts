@@ -3,8 +3,6 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
-
 /**
  * Initializes Lenis smooth scroll and syncs it with the GSAP ticker.
  * Returns a ref to the Lenis instance so other components can call scrollTo().

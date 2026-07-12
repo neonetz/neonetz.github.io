@@ -26,6 +26,7 @@ export interface Profile {
   socialLinks: SocialLink[];
   location: string;
   email: string;
+  resumeUrl: string;
 }
 
 export interface SocialLink {
@@ -44,6 +45,7 @@ export const profile: Profile = {
   avatar: "/img/aksa.webp",
   location: "Indonesia",
   email: "aksafadillah@gmail.com",
+  resumeUrl: "/img/resume.pdf",
   skills: [
     { name: "Go", level: 80, category: "backend" },
     { name: "Wails (Desktop Apps)", level: 75, category: "other" },
@@ -103,4 +105,17 @@ export interface Experience {
   description: string;
 }
 
-export const experiences: Experience[] = [];
+export const experiences: Experience[] = [
+  {
+    title: "Software Developer",
+    company: "Freelance",
+    period: "2023 — Present",
+    description: "Building desktop applications, web platforms, and automation tools for clients. Specializing in Go, React, and TypeScript with a focus on performance and user experience.",
+  },
+  {
+    title: "Computer Vision Researcher",
+    company: "Academic",
+    period: "2022 — 2023",
+    description: "Developed image processing and computer vision projects using Python and OpenCV, including anti-cheat detection systems and virtual try-on applications.",
+  },
+];

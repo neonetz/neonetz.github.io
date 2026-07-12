@@ -489,3 +489,132 @@ body {
 .hw-link:hover {
   text-decoration: underline;
 }
+
+/* ============================================
+   ACCESSIBILITY — SKIP LINK
+   ============================================ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--hw-gutter, 2rem);
+  z-index: 200;
+  background: #f5f5f5;
+  color: #0000f2;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ============================================
+   ACCESSIBILITY — FOCUS VISIBLE
+   ============================================ */
+:focus-visible {
+  outline: 2px solid #f5f5f5;
+  outline-offset: 4px;
+}
+
+/* ============================================
+   CONTACT FORM INPUTS
+   ============================================ */
+.hw-input {
+  width: 100%;
+  background: transparent;
+  border: 1px solid rgba(245, 245, 245, 0.25);
+  color: #f5f5f5;
+  padding: calc(16 * var(--u)) calc(20 * var(--u));
+  font-family: var(--font-mono);
+  font-size: var(--hw-text-eyebrow);
+  letter-spacing: 0.08em;
+  text-transform: none;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.hw-input::placeholder {
+  color: rgba(245, 245, 245, 0.35);
+}
+
+.hw-input:focus {
+  border-color: rgba(245, 245, 245, 0.7);
+}
+
+/* ============================================
+   EXPERIENCE TIMELINE
+   ============================================ */
+.hw-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: calc(60 * var(--u));
+}
+
+.hw-timeline-item {
+  display: grid;
+  grid-template-columns: calc(200 * var(--u)) 1fr;
+  gap: calc(40 * var(--u));
+  padding-block: calc(50 * var(--u));
+  border-bottom: 1px solid rgba(245, 245, 245, 0.1);
+  position: relative;
+}
+
+.hw-timeline-item:first-child {
+  border-top: 1px solid rgba(245, 245, 245, 0.1);
+}
+
+@media (max-width: 767px) {
+  .hw-timeline-item {
+    grid-template-columns: 1fr;
+    gap: calc(16 * var(--u));
+  }
+}
+
+.hw-timeline-period {
+  font-family: var(--font-mono);
+  font-size: var(--hw-text-eyebrow);
+  letter-spacing: 0.08em;
+  opacity: 0.55;
+  padding-top: calc(4 * var(--u));
+}
+
+.hw-timeline-content {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--u));
+}
+
+.hw-timeline-title {
+  font-family: var(--font-display);
+  font-size: calc(32 * var(--u));
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 767px) {
+  .hw-timeline-title {
+    font-size: clamp(1.4rem, 5vw, calc(32 * var(--u)));
+  }
+}
+
+.hw-timeline-company {
+  font-family: var(--font-mono);
+  font-size: var(--hw-text-eyebrow);
+  letter-spacing: 0.12em;
+  opacity: 0.6;
+}
+
+.hw-timeline-desc {
+  font-family: var(--font-mono);
+  font-size: var(--hw-text-body);
+  line-height: 1.6;
+  opacity: 0.8;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}

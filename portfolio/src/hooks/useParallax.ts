@@ -1,11 +1,8 @@
 import { useLayoutEffect, type RefObject } from 'react';
 import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 type ParallaxOptions = {
-  speed?: number;   // 0.3 = moves 30% of scroll distance (slower = more depth)
+  speed?: number;
   direction?: 'y' | 'x';
   start?: string;
   end?: string;
@@ -14,10 +11,9 @@ type ParallaxOptions = {
 /**
  * Applies a parallax effect to an element.
  * speed < 1: element moves slower than scroll (depth illusion)
- * speed > 1: element moves faster than scroll
  */
-export function useParallax(
-  targetRef: RefObject<HTMLElement | null>,
+export function useParallax<T extends HTMLElement>(
+  targetRef: RefObject<T | null>,
   options: ParallaxOptions = {},
 ) {
   const {
@@ -28,14 +24,12 @@ export function useParallax(
   } = options;
 
   useLayoutEffect(() => {
-    // Disable parallax on mobile for performance
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (window.innerWidth < 768) return;
 
     const ctx = gsap.context(() => {
       if (!targetRef.current) return;
 
-      // Calculate travel distance based on element height + viewport
       const el = targetRef.current;
       const distance = (el.offsetHeight + window.innerHeight) * speed;
 
@@ -56,5 +50,6 @@ export function useParallax(
     });
 
     return () => ctx.revert();
-  }, [targetRef, speed, direction, start, end]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 }
