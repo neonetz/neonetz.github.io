@@ -1,153 +1,102 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import type { LucideIcon } from 'lucide-react';
-import { ExternalLink, ChevronRight, Cpu, Globe, Database, Wrench } from 'lucide-react';
-import type { Project } from '../../data/portfolio';
-import { projects } from '../../data/portfolio';
-import { SciFiReveal } from '../../components/ui/SciFiReveal';
+import { projects, type Project } from '../../data/portfolio';
 
-const categoryIcons: Record<string, LucideIcon> = {
-  frontend: Globe,
-  backend: Cpu,
-  database: Database,
-  devops: Wrench,
-  other: Cpu,
-};
-
-const statusLabel: Record<string, string> = {
-  completed: 'Completed',
-  'in-progress': 'In Progress',
-  archived: 'Archived',
-};
+function statusLabel(status: Project['status']): string {
+  switch (status) {
+    case 'completed':     return 'Completed';
+    case 'in-progress':   return 'In Progress';
+    case 'archived':      return 'Archived';
+    default:              return status;
+  }
+}
 
 export function Projects() {
-  const [selected, setSelected] = useState<Project>(projects[0]);
-
   return (
-    <section id="projects" className="relative w-full min-h-screen flex flex-col pt-32 pb-16 bg-bg-primary">
-      <div className="section-wrapper flex-grow flex flex-col">
-        
-        <div className="mb-14">
-          <p className="text-label mb-2">02 — Archives</p>
-          <SciFiReveal>
-            <h2 className="text-4xl sm:text-5xl font-black uppercase tracking-tight text-text-primary">
-              Featured Projects
-            </h2>
-          </SciFiReveal>
-          <motion.div 
-            className="w-16 h-1 bg-accent-yellow mt-4" 
-            initial={{ scaleX: 0, originX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-          />
-        </div>
+    <section id="projects" className="hw-section">
+      {/* Eyebrow + heading */}
+      <div className="flex flex-col" style={{ gap: 'calc(20 * var(--u))' }}>
+        <span className="hw-eyebrow">Selected Work</span>
+        <h2 className="hw-h2">Projects</h2>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 flex-grow">
-          
-          <div className="lg:col-span-4">
-            <div 
-              className="space-y-3 overflow-y-auto pr-2 custom-scrollbar" 
-              style={{ maxHeight: 'calc(100vh - 350px)', minHeight: '400px' }}
+      {/* Card grid */}
+      <div className="hw-card-grid" style={{ marginTop: 'calc(60 * var(--u))' }}>
+        {projects.map((project) => (
+          <article key={project.id} className="hw-card">
+            {/* Title */}
+            <h3
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'calc(32 * var(--u))',
+                fontWeight: 400,
+                lineHeight: 1.1,
+                letterSpacing: '0.02em',
+              }}
             >
-              {projects.map((project, index) => (
-                <button
-                  key={project.id}
-                  onClick={() => setSelected(project)}
-                  className={`w-full text-left p-5 transition-all duration-300 group relative border-l-2 ${
-                    selected.id === project.id
-                      ? 'bg-bg-tertiary border-accent-yellow'
-                      : 'bg-transparent border-border-subtle hover:bg-bg-secondary hover:border-accent-teal/50'
-                  }`}
+              {project.title}
+            </h3>
+
+            {/* Description */}
+            <p
+              className="opacity-70"
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: 'calc(15 * var(--u))',
+                lineHeight: 1.5,
+                letterSpacing: '0.02em',
+                textTransform: 'none',
+              }}
+            >
+              {project.description}
+            </p>
+
+            {/* Tech stack */}
+            <div className="flex flex-wrap" style={{ gap: 'calc(8 * var(--u))' }}>
+              {project.techStack.map((tech) => (
+                <span
+                  key={tech.name}
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'calc(12 * var(--u))',
+                    letterSpacing: '0.1em',
+                    padding: 'calc(4 * var(--u)) calc(10 * var(--u))',
+                    border: '1px solid rgba(245,245,245,0.2)',
+                    opacity: 0.7,
+                  }}
                 >
-                  <div className="flex items-start justify-between">
-                    <div className="flex-1 min-w-0 pr-4">
-                      <span className={`text-xs font-mono font-bold tracking-widest ${selected.id === project.id ? 'text-accent-yellow' : 'text-text-muted'}`}>
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <h3 className={`font-bold text-sm uppercase tracking-wide mt-2 ${selected.id === project.id ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary transition-colors'}`}>
-                        {project.title}
-                      </h3>
-                      <p className={`text-xs mt-2 leading-relaxed line-clamp-2 ${selected.id === project.id ? 'text-text-secondary' : 'text-text-muted'}`}>
-                        {project.description}
-                      </p>
-                    </div>
-                    <ChevronRight className={`w-4 h-4 mt-1 flex-shrink-0 transition-transform ${selected.id === project.id ? 'text-accent-yellow rotate-90' : 'text-text-muted opacity-0 group-hover:opacity-100 group-hover:text-accent-teal transform translate-x-2 group-hover:translate-x-0'}`} />
-                  </div>
-                </button>
+                  {tech.name}
+                </span>
               ))}
             </div>
-          </div>
 
-          <div className="lg:col-span-8">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selected.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="card-base cut-corner p-6 sm:p-8 lg:p-10"
-              >
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-text-primary mb-2">
-                      {selected.title}
-                    </h3>
-                    <span className="text-label-sm">
-                      {statusLabel[selected.status]}
-                    </span>
-                  </div>
-                  <div className="w-3 h-3 bg-accent-yellow flex-shrink-0 mt-1" />
-                </div>
+            {/* Spacer */}
+            <div className="flex-1" />
 
-                <div className="divider mb-6" />
-
-                <p className="text-text-secondary text-sm leading-relaxed mb-8 max-w-2xl">
-                  {selected.longDescription}
-                </p>
-
-                <div className="mb-8">
-                  <p className="text-label-sm mb-4">Tech Stack</p>
-                  <div className="flex flex-wrap gap-2">
-                    {selected.techStack.map((tech) => {
-                      const Icon = categoryIcons[tech.category] || Cpu;
-                      return (
-                        <div
-                          key={tech.name}
-                          className="flex items-center gap-2 px-3 py-1.5 border border-accent-teal/20 bg-accent-teal/5 text-xs font-mono text-accent-teal rounded-sm"
-                        >
-                          <Icon className="w-3 h-3 opacity-70 flex-shrink-0" />
-                          {tech.name}
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  {selected.liveUrl && (
-                    <button
-                      onClick={() => window.open(selected.liveUrl, '_blank')}
-                      className="btn-primary"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      Live Demo
-                    </button>
-                  )}
-                  {selected.githubUrl && (
-                    <button
-                      onClick={() => window.open(selected.githubUrl, '_blank')}
-                      className="btn-outline"
-                    >
-                      Source Code
-                    </button>
-                  )}
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
+            {/* Footer row: status + link */}
+            <div
+              className="flex justify-between items-center"
+              style={{ marginTop: 'calc(20 * var(--u))' }}
+            >
+              <span className={`hw-badge hw-badge-${project.status}`}>
+                {statusLabel(project.status)}
+              </span>
+              {project.githubUrl && (
+                <a
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hw-link"
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'calc(14 * var(--u))',
+                    letterSpacing: '0.08em',
+                  }}
+                >
+                  GitHub →
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
