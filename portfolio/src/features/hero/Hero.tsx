@@ -78,11 +78,6 @@ export function Hero() {
           <a href="#contact" className="hw-btn hw-btn-outline">
             Contact Me
           </a>
-          {profile.resumeUrl && (
-            <a href={profile.resumeUrl} download className="hw-btn hw-btn-outline">
-              Download Resume
-            </a>
-          )}
         </div>
       </div>
     </header>

@@ -68,21 +68,8 @@ export function Navbar() {
         </a>
       </div>
 
-      {/* Right: resume + social */}
+      {/* Right: social */}
       <div className="flex justify-end items-start gap-[calc(24*var(--u))]">
-        {profile.resumeUrl && (
-          <a
-            href={profile.resumeUrl}
-            download
-            className="hw-btn hw-btn-primary"
-            style={{
-              padding: 'calc(10 * var(--u)) calc(20 * var(--u))',
-              fontSize: 'clamp(0.65rem, calc(14*var(--u)), 0.9rem)',
-            }}
-          >
-            Resume
-          </a>
-        )}
         {profile.socialLinks.map((link) => (
           <a
             key={link.name}
