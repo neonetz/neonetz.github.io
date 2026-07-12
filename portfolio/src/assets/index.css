@@ -138,12 +138,21 @@ body {
   inset-inline: 0;
   top: var(--hw-frame);
   z-index: 20;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: start;
   padding-inline: var(--hw-gutter);
   padding-top: calc(50 * var(--u));
   transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Desktop: 3-col grid layout */
+.hw-nav-desktop {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: start;
+}
+
+/* Mobile bar — hidden on desktop */
+.hw-nav-mobile {
+  display: none;
 }
 
 .hw-nav.hw-nav-scrolled {
@@ -181,6 +190,78 @@ body {
 
 .hw-nav-link:hover::after {
   width: 100%;
+}
+
+/* ============================================
+   MOBILE NAVIGATION
+   ============================================ */
+@media (max-width: 767px) {
+  .hw-nav {
+    padding-top: calc(20 * var(--u));
+    padding-bottom: calc(20 * var(--u));
+  }
+
+  .hw-nav-desktop {
+    display: none;
+  }
+
+  .hw-nav-mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Force scrolled state on mobile so nav is always fixed with bg */
+  .hw-nav {
+    position: fixed;
+    top: 0;
+    background: rgba(0, 0, 242, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245, 245, 245, 0.08);
+  }
+}
+
+/* Hamburger button */
+.hw-hamburger {
+  background: transparent;
+  border: 1px solid rgba(245, 245, 245, 0.3);
+  color: #f5f5f5;
+  font-family: var(--font-mono);
+  font-size: calc(18 * var(--u));
+  width: calc(40 * var(--u));
+  height: calc(40 * var(--u));
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: border-color 0.2s ease;
+}
+
+.hw-hamburger:hover {
+  border-color: #f5f5f5;
+}
+
+/* Mobile dropdown panel */
+.hw-nav-mobile-panel {
+  position: fixed;
+  top: calc(60 * var(--u) + 20px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 242, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: calc(40 * var(--u)) var(--hw-gutter);
+  z-index: 19;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ============================================
@@ -427,6 +508,14 @@ body {
   letter-spacing: 0.1em;
   border-top: 1px solid rgba(245, 245, 245, 0.12);
   opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+  .hw-footer {
+    flex-direction: column;
+    gap: calc(8 * var(--u));
+    text-align: center;
+  }
 }
 
 /* ============================================
