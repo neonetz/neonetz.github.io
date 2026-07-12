@@ -44,7 +44,14 @@ export const profile: Profile = {
   avatar: "/img/aksa.webp",
   location: "Indonesia",
   email: "aksafadillah@gmail.com",
-  skills: [],
+  skills: [
+    { name: "Go", level: 80, category: "backend" },
+    { name: "Wails (Desktop Apps)", level: 75, category: "other" },
+    { name: "React / TypeScript", level: 85, category: "frontend" },
+    { name: "Tailwind CSS", level: 90, category: "frontend" },
+    { name: "SQLite", level: 70, category: "database" },
+    { name: "Python", level: 85, category: "backend" },
+  ],
   socialLinks: [
     { name: "GitHub", url: "https://github.com/neonetz", icon: "github" },
     { name: "LinkedIn", url: "https://linkedin.com/in/neonetz", icon: "linkedin" },
@@ -52,7 +59,42 @@ export const profile: Profile = {
   ],
 };
 
-export const projects: Project[] = [];
+export const projects: Project[] = [
+  {
+    id: "jazasort",
+    title: "JazaSort",
+    description: "Native Windows desktop file organizer with automatic sorting, duplicate detection, and one-click undo.",
+    longDescription: `A blazingly fast, zero-configuration native Windows desktop application built with Go and Wails. Automatically sorts messy folders (Downloads, Desktop) into organized structures by file type. Features Windows 11 Mica/Acrylic glass UI, SHA-256 duplicate detection, metadata-based sorting for photos and music, one-click undo, and a RAM optimizer.`,
+    image: "/img/logo.jpeg",
+    techStack: [
+      { name: "Go", level: 80, category: "backend" },
+      { name: "Wails", level: 75, category: "other" },
+      { name: "React", level: 85, category: "frontend" },
+      { name: "TypeScript", level: 85, category: "frontend" },
+      { name: "Tailwind CSS", level: 90, category: "frontend" },
+      { name: "Chart.js", level: 70, category: "frontend" },
+    ],
+    githubUrl: "https://github.com/neonetz/JazaSort",
+    status: "completed",
+  },
+  {
+    id: "lymuru",
+    title: "Lymuru",
+    description: "Desktop music downloader supporting Tidal, Amazon Music, Qobuz and Deezer with FLAC/MP3/M4A output.",
+    longDescription: `A native desktop application for searching and downloading high-quality music from multiple providers including Tidal, Amazon Music, Qobuz, and Deezer. Built with Go and Wails with a React 19 frontend. Features include audio conversion (FLAC/MP3/M4A), spectrum analyzer, resampler, synced lyrics via LRCLIB, CJK romanization, download queue with SQLite history, and OS keychain credential management.`,
+    image: "/img/logo.jpeg",
+    techStack: [
+      { name: "Go", level: 80, category: "backend" },
+      { name: "Wails", level: 75, category: "other" },
+      { name: "React", level: 85, category: "frontend" },
+      { name: "TypeScript", level: 85, category: "frontend" },
+      { name: "SQLite", level: 70, category: "database" },
+      { name: "Python", level: 85, category: "backend" },
+    ],
+    githubUrl: "https://github.com/lymuru/lymuru",
+    status: "completed",
+  },
+];
 
 export interface Experience {
   title: string;
