@@ -39,27 +39,12 @@ export function Contact() {
   return (
     <section id="contact" className="hw-contact">
       {/* Ghost wordmark behind content with parallax */}
-      <span
-        ref={wordmarkRef}
-        className="hw-wordmark"
-        aria-hidden
-        style={{
-          position: 'absolute',
-          fontSize: 'calc(280 * var(--u))',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
-      >
+      <span ref={wordmarkRef} className="hw-wordmark hw-contact-wordmark" aria-hidden>
         NEONETZ
       </span>
 
       {/* Foreground content */}
-      <div
-        ref={contentRef}
-        className="relative flex flex-col items-center"
-        style={{ gap: 'calc(40 * var(--u))', zIndex: 3, width: '100%', maxWidth: 'calc(640 * var(--u))' }}
-      >
+      <div ref={contentRef} className="hw-contact-content">
         <span className="hw-eyebrow">
           {profile.socialLinks.map((s) => s.name).join(' • ')}
         </span>
@@ -69,92 +54,70 @@ export function Contact() {
           <span className="block italic">Something</span>
         </h2>
 
-        <p className="hw-body text-center" style={{ maxWidth: 'calc(560 * var(--u))' }}>
+        <p className="hw-body text-center hw-contact-intro">
           Open to collaborations, freelance work, and interesting conversations.
           Reach out and let's create together.
         </p>
 
         {/* Contact form */}
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col"
-          style={{ gap: 'calc(20 * var(--u))', width: '100%' }}
-        >
+        <form onSubmit={handleSubmit} className="hw-contact-form">
           <input
             type="text"
             name="name"
             placeholder="Your Name"
+            aria-label="Your Name"
             required
             className="hw-input"
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'calc(16 * var(--u))',
-            }}
           />
           <input
             type="email"
             name="email"
             placeholder="Your Email"
+            aria-label="Your Email"
             required
             className="hw-input"
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'calc(16 * var(--u))',
-            }}
           />
           <textarea
             name="message"
             placeholder="Your Message"
+            aria-label="Your Message"
             rows={5}
             required
             className="hw-input"
-            style={{
-              fontFamily: 'var(--font-mono)',
-              fontSize: 'calc(16 * var(--u))',
-              resize: 'vertical',
-            }}
           />
           <button
             type="submit"
             className="hw-btn hw-btn-primary"
             disabled={status === 'sending'}
-            style={{ justifyContent: 'center' }}
           >
             {status === 'sending' ? 'Sending...' : 'Send Message'}
           </button>
 
           {status === 'sent' && (
-            <p
-              className="hw-eyebrow text-center"
-              style={{ opacity: 1, color: '#f5f5f5' }}
-            >
+            <p role="status" className="hw-form-status hw-form-status-ok">
               ✓ Message sent! I'll get back to you soon.
             </p>
           )}
           {status === 'error' && (
-            <p
-              className="hw-eyebrow text-center"
-              style={{ opacity: 1, color: '#ff6b6b' }}
-            >
-              ✗ Something went wrong. Please email me directly.
+            <p role="alert" className="hw-form-status hw-form-status-error">
+              ✗ Something went wrong. Please{' '}
+              <a href={`mailto:${profile.email}`} className="hw-form-status-link">
+                email me directly
+              </a>
+              .
             </p>
           )}
         </form>
 
         {/* Social links */}
-        <div className="flex" style={{ gap: 'calc(40 * var(--u))', marginTop: 'calc(20 * var(--u))' }}>
+        <div className="hw-contact-social-row">
           {profile.socialLinks.map((link) => (
             <a
               key={link.name}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hw-link opacity-70 hover:opacity-100 transition-opacity duration-200"
-              style={{
-                fontFamily: 'var(--font-mono)',
-                fontSize: 'calc(16 * var(--u))',
-                letterSpacing: '0.08em',
-              }}
+              className="hw-link hw-contact-social opacity-70 hover:opacity-100 transition-opacity duration-200"
             >
               {link.name}
             </a>

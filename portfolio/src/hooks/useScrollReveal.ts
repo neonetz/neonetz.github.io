@@ -1,5 +1,6 @@
 import { useLayoutEffect, type RefObject } from 'react';
 import { gsap } from 'gsap';
+import { prefersReducedMotion } from '../lib/motion';
 
 type RevealOptions = {
   y?: number;
@@ -28,7 +29,7 @@ export function useScrollReveal<T extends HTMLElement>(
   } = options;
 
   useLayoutEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
       const targets = Array.isArray(target) ? target.map((t) => t.current) : target.current;
@@ -73,7 +74,7 @@ export function useScrollRevealChildren<T extends HTMLElement>(
   } = options;
 
   useLayoutEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
       if (!containerRef.current) return;

@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { prefersReducedMotion } from '../lib/motion';
 
 /**
  * Initializes Lenis smooth scroll and syncs it with the GSAP ticker.
@@ -12,7 +13,7 @@ export function useLenis() {
 
   useEffect(() => {
     // Respect reduced-motion preference
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (prefersReducedMotion()) return;
 
     const lenis = new Lenis({
       lerp: 0.1,

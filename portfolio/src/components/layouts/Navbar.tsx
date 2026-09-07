@@ -1,20 +1,50 @@
 import { useEffect, useState } from 'react';
 import { profile } from '../../data/portfolio';
 
-const navLinkStyle: React.CSSProperties = {
-  fontFamily: 'var(--font-mono)',
-  fontSize: 'clamp(0.8rem, calc(22*var(--u)), 1.35rem)',
-  letterSpacing: '0.03em',
-};
+const SECTION_LINKS = [
+  { href: '#projects', label: 'Projects' },
+  { href: '#about', label: 'About' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#contact', label: 'Contact' },
+];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(() => window.scrollY > 100);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Scroll-spy via IntersectionObserver: a section is active while it crosses a
+  // thin band around the upper third of the viewport. IO is driven by the
+  // compositor, so it works no matter which scroller moves the page.
+  useEffect(() => {
+    const sections = SECTION_LINKS
+      .map((link) => document.getElementById(link.href.slice(1)))
+      .filter((el): el is HTMLElement => el !== null);
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setActiveSection((prev) => {
+          let next = prev;
+          for (const entry of entries) {
+            const id = (entry.target as HTMLElement).id;
+            if (entry.isIntersecting) next = id;
+            else if (next === id) next = null;
+          }
+          return next;
+        });
+      },
+      // Detection band: from 30% to 40% of the viewport height.
+      { rootMargin: '-30% 0px -60% 0px' },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   // Close mobile panel on resize to desktop
@@ -34,22 +64,20 @@ export function Navbar() {
 
   function closeMobile() { setMobileOpen(false); }
 
-  const navLinks = (
-    <>
-      <a href="#projects" onClick={closeMobile} className="hw-link hw-nav-link font-extrabold" style={navLinkStyle}>
-        Projects
+  const navLinks = SECTION_LINKS.map((link) => {
+    const isActive = activeSection === link.href.slice(1);
+    return (
+      <a
+        key={link.href}
+        href={link.href}
+        onClick={closeMobile}
+        aria-current={isActive || undefined}
+        className={`hw-link hw-nav-link${isActive ? ' hw-nav-link-active' : ''}`}
+      >
+        {link.label}
       </a>
-      <a href="#about" onClick={closeMobile} className="hw-link hw-nav-link font-extrabold" style={navLinkStyle}>
-        About
-      </a>
-      <a href="#skills" onClick={closeMobile} className="hw-link hw-nav-link font-extrabold" style={navLinkStyle}>
-        Skills
-      </a>
-      <a href="#contact" onClick={closeMobile} className="hw-link hw-nav-link font-extrabold" style={navLinkStyle}>
-        Contact
-      </a>
-    </>
-  );
+    );
+  });
 
   const socialLinks = (
     <>
@@ -61,7 +89,6 @@ export function Navbar() {
           rel="noopener noreferrer"
           aria-label={`${link.name} (opens in new tab)`}
           className="hw-nav-link opacity-70 transition-opacity duration-200 ease-out hover:opacity-100"
-          style={navLinkStyle}
         >
           {link.name}
         </a>
@@ -70,28 +97,9 @@ export function Navbar() {
   );
 
   const logo = (
-    <a href="#top" onClick={closeMobile} className="hw-link flex flex-col items-center leading-none">
-      <span
-        className="font-extrabold"
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(1.1rem, calc(40*var(--u)), 2.5rem)',
-          letterSpacing: '0.03em',
-        }}
-      >
-        NEONETZ
-      </span>
-      <span
-        className="opacity-70"
-        style={{
-          fontFamily: 'var(--font-mono)',
-          fontSize: 'calc(12 * var(--u))',
-          letterSpacing: '0.14em',
-          marginTop: 'calc(4 * var(--u))',
-        }}
-      >
-        PORTFOLIO
-      </span>
+    <a href="#top" onClick={closeMobile} className="hw-link hw-nav-logo">
+      <span className="hw-nav-logo-title">NEONETZ</span>
+      <span className="hw-nav-logo-sub">PORTFOLIO</span>
     </a>
   );
 
@@ -102,13 +110,9 @@ export function Navbar() {
     >
       {/* Desktop: 3-col grid */}
       <div className="hw-nav-desktop">
-        <div className="flex gap-[calc(40*var(--u))] flex-wrap">
-          {navLinks}
-        </div>
+        <div className="hw-nav-links">{navLinks}</div>
         {logo}
-        <div className="flex justify-end items-start gap-[calc(24*var(--u))]">
-          {socialLinks}
-        </div>
+        <div className="hw-nav-social">{socialLinks}</div>
       </div>
 
       {/* Mobile: hamburger + logo */}
@@ -117,23 +121,19 @@ export function Navbar() {
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
-          className="hw-hamburger"
+          className="hw-icon-btn hw-hamburger"
         >
           {mobileOpen ? '✕' : '☰'}
         </button>
         {logo}
-        <div style={{ width: 'calc(40 * var(--u))' }} aria-hidden />
+        <div className="hw-nav-spacer" aria-hidden />
       </div>
 
       {/* Mobile dropdown panel */}
       {mobileOpen && (
         <div className="hw-nav-mobile-panel">
-          <div className="flex flex-col" style={{ gap: 'calc(24 * var(--u))' }}>
-            {navLinks}
-          </div>
-          <div className="flex" style={{ gap: 'calc(24 * var(--u))', marginTop: 'calc(20 * var(--u))' }}>
-            {socialLinks}
-          </div>
+          <div className="hw-nav-panel-links">{navLinks}</div>
+          <div className="hw-nav-panel-social">{socialLinks}</div>
         </div>
       )}
     </nav>

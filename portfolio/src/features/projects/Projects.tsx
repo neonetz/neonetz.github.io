@@ -1,16 +1,10 @@
 import { useRef, useState } from 'react';
-import { projects, type Project } from '../../data/portfolio';
+import { projects, projectStatusLabels, type Project } from '../../data/portfolio';
 import { useScrollReveal, useScrollRevealChildren } from '../../hooks/useScrollReveal';
+import { EmptyState } from '../../components/ui/EmptyState';
+import { SectionHeading } from '../../components/ui/SectionHeading';
+import { TechChip } from '../../components/ui/TechChip';
 import { ProjectModal } from './ProjectModal';
-
-function statusLabel(status: Project['status']): string {
-  switch (status) {
-    case 'completed':   return 'Completed';
-    case 'in-progress': return 'In Progress';
-    case 'archived':    return 'Archived';
-    default:            return status;
-  }
-}
 
 export function Projects() {
   const headingRef = useRef<HTMLDivElement>(null);
@@ -22,97 +16,44 @@ export function Projects() {
 
   return (
     <section id="projects" className="hw-section">
-      <div ref={headingRef} className="flex flex-col" style={{ gap: 'calc(20 * var(--u))' }}>
-        <span className="hw-eyebrow">Selected Work</span>
-        <h2 className="hw-h2">Projects</h2>
-      </div>
+      <SectionHeading ref={headingRef} eyebrow="Selected Work" title="Projects" />
 
       {projects.length === 0 ? (
-        <div
-          style={{
-            marginTop: 'calc(60 * var(--u))',
-            padding: 'calc(60 * var(--u))',
-            border: '1px solid rgba(245,245,245,0.1)',
-            textAlign: 'center',
-          }}
-        >
-          <p className="hw-eyebrow" style={{ opacity: 0.5 }}>Projects coming soon</p>
-        </div>
+        <EmptyState label="Projects coming soon" />
       ) : (
-        <div ref={gridRef} className="hw-card-grid" style={{ marginTop: 'calc(60 * var(--u))' }}>
+        <div ref={gridRef} className="hw-card-grid hw-section-body">
           {projects.map((project) => (
             <article
               key={project.id}
-              className="hw-card"
-              style={{ cursor: 'pointer' }}
+              className="hw-card hw-card-interactive"
               onClick={() => setActiveProject(project)}
               role="button"
               tabIndex={0}
               aria-label={`View ${project.title} details`}
-              onKeyDown={(e) => e.key === 'Enter' && setActiveProject(project)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveProject(project);
+                }
+              }}
             >
-              <h3
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'calc(32 * var(--u))',
-                  fontWeight: 400,
-                  lineHeight: 1.1,
-                  letterSpacing: '0.02em',
-                }}
-              >
-                {project.title}
-              </h3>
+              <h3 className="hw-project-title">{project.title}</h3>
 
-              <p
-                className="opacity-75"
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 'calc(15 * var(--u))',
-                  lineHeight: 1.5,
-                  letterSpacing: '0.02em',
-                  textTransform: 'none',
-                }}
-              >
-                {project.description}
-              </p>
+              <p className="hw-project-desc opacity-75">{project.description}</p>
 
-              <div className="flex flex-wrap" style={{ gap: 'calc(8 * var(--u))' }}>
-                {project.techStack.map((tech) => (
-                  <span
-                    key={tech.name}
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: 'calc(12 * var(--u))',
-                      letterSpacing: '0.1em',
-                      padding: 'calc(4 * var(--u)) calc(10 * var(--u))',
-                      border: '1px solid rgba(245,245,245,0.2)',
-                      opacity: 0.75,
-                    }}
-                  >
-                    {tech.name}
-                  </span>
+              <div className="hw-chip-row">
+                {project.tech.map((tech) => (
+                  <TechChip key={tech}>{tech}</TechChip>
                 ))}
               </div>
 
               <div className="flex-1" />
 
-              <div
-                className="flex justify-between items-center"
-                style={{ marginTop: 'calc(20 * var(--u))' }}
-              >
+              <div className="hw-project-meta">
                 <span className={`hw-badge hw-badge-${project.status}`}>
-                  {statusLabel(project.status)}
+                  {projectStatusLabels[project.status]}
                 </span>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: 'calc(14 * var(--u))',
-                    letterSpacing: '0.08em',
-                    opacity: 0.6,
-                  }}
-                >
-                  View details →
-                </span>
+                <span className="hw-project-more">View details →</span>
               </div>
             </article>
           ))}

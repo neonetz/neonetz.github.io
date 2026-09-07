@@ -16,7 +16,7 @@ export function Noise() {
 
     let animationId: number;
     let lastTime = 0;
-    const fpsInterval = 1000 / 12; // 12fps — cheap grain
+    const fpsInterval = 1000 / 12; // 12fps, cheap grain
 
     function resize() {
       if (!canvas) return;

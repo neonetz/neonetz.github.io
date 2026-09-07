@@ -1,31 +1,60 @@
-import { useEffect } from 'react';
-import type { Project } from '../../data/portfolio';
+import { useEffect, useRef } from 'react';
+import { projectStatusLabels, type Project } from '../../data/portfolio';
+import { TechChip } from '../../components/ui/TechChip';
 
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
 }
 
-function statusLabel(status: Project['status']): string {
-  switch (status) {
-    case 'completed':   return 'Completed';
-    case 'in-progress': return 'In Progress';
-    case 'archived':    return 'Archived';
-    default:            return status;
-  }
-}
+const FOCUSABLE = 'button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])';
 
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const openerRef = useRef<HTMLElement | null>(null);
+  const onCloseRef = useRef(onClose);
+
+  // Keep the closer in a ref so the open/close effect below depends only on
+  // `project` and cannot be re-triggered by a new inline callback each render.
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
   useEffect(() => {
     if (!project) return;
 
+    openerRef.current = document.activeElement as HTMLElement | null;
+    // Focus the first control (the close button) so Shift+Tab wraps correctly;
+    // focusing the container would let Shift+Tab escape into the page behind.
+    dialogRef.current?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
+
     function handleKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onCloseRef.current();
+        return;
+      }
+      if (e.key !== 'Tab' || !dialogRef.current) return;
+
+      // Keep Tab cycling inside the dialog while it is open
+      const focusables = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE));
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     }
 
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [project, onClose]);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      openerRef.current?.focus();
+    };
+  }, [project]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -38,121 +67,44 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   if (!project) return null;
 
   return (
-    /* Overlay */
+    /* Overlay: click outside the card closes the dialog */
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label={project.title}
       onClick={onClose}
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: 100,
-        background: 'rgba(0,0,242,0.9)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 'calc(40 * var(--u))',
-      }}
+      className="hw-modal-overlay"
     >
-      {/* Card — stop propagation so clicking inside doesn't close */}
-      <div
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          position: 'relative',
-          width: '100%',
-          maxWidth: 'calc(800 * var(--u))',
-          maxHeight: '85vh',
-          overflowY: 'auto',
-          background: '#0000f2',
-          border: '1px solid rgba(245,245,245,0.2)',
-          padding: 'calc(60 * var(--u))',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'calc(30 * var(--u))',
-        }}
-      >
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          aria-label="Close modal"
-          style={{
-            position: 'absolute',
-            top: 'calc(20 * var(--u))',
-            right: 'calc(20 * var(--u))',
-            background: 'transparent',
-            border: '1px solid rgba(245,245,245,0.3)',
-            color: '#f5f5f5',
-            fontFamily: 'var(--font-mono)',
-            fontSize: 'calc(16 * var(--u))',
-            width: 'calc(40 * var(--u))',
-            height: 'calc(40 * var(--u))',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            cursor: 'pointer',
-            letterSpacing: 0,
-            lineHeight: 1,
-          }}
-        >
+      <div onClick={(e) => e.stopPropagation()} className="hw-modal">
+        <button type="button" onClick={onClose} aria-label="Close modal" className="hw-icon-btn hw-modal-close">
           ✕
         </button>
 
-        {/* Title */}
         <h2 className="hw-h2">{project.title}</h2>
 
-        {/* Status badge */}
         <div>
           <span className={`hw-badge hw-badge-${project.status}`}>
-            {statusLabel(project.status)}
+            {projectStatusLabels[project.status]}
           </span>
         </div>
 
-        {/* Image */}
         {project.image && (
-          <img
-            src={project.image}
-            alt={project.title}
-            style={{
-              width: '100%',
-              aspectRatio: '16/9',
-              objectFit: 'cover',
-              display: 'block',
-              border: '1px solid rgba(245,245,245,0.1)',
-            }}
-          />
+          <img src={project.image} alt={project.title} className="hw-modal-img" />
         )}
 
-        {/* Long description */}
         <p className="hw-body">{project.longDescription}</p>
 
-        {/* Tech stack chips */}
-        {project.techStack.length > 0 && (
-          <div className="flex flex-wrap" style={{ gap: 'calc(8 * var(--u))' }}>
-            {project.techStack.map((tech) => (
-              <span
-                key={tech.name}
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 'calc(12 * var(--u))',
-                  letterSpacing: '0.1em',
-                  padding: 'calc(4 * var(--u)) calc(10 * var(--u))',
-                  border: '1px solid rgba(245,245,245,0.2)',
-                  opacity: 0.7,
-                  textTransform: 'uppercase',
-                }}
-              >
-                {tech.name}
-              </span>
+        {project.tech.length > 0 && (
+          <div className="hw-chip-row">
+            {project.tech.map((tech) => (
+              <TechChip key={tech}>{tech}</TechChip>
             ))}
           </div>
         )}
 
-        {/* Action buttons */}
         {(project.githubUrl || project.liveUrl) && (
-          <div className="flex" style={{ gap: 'calc(16 * var(--u))', flexWrap: 'wrap' }}>
+          <div className="hw-modal-actions">
             {project.githubUrl && (
               <a
                 href={project.githubUrl}

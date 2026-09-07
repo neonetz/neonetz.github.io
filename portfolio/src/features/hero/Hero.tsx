@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { profile } from '../../data/portfolio';
+import { prefersReducedMotion } from '../../lib/motion';
 
 export function Hero() {
   const eyebrowRef = useRef<HTMLSpanElement>(null);
@@ -11,7 +12,7 @@ export function Hero() {
   const ctaRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (prefersReducedMotion()) return;
 
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -54,7 +55,7 @@ export function Hero() {
           {profile.role} • {profile.location}
         </span>
 
-        {/* H1 — 3 stacked spans, fluid serif */}
+        {/* H1: 3 stacked spans, fluid serif */}
         <h1 className="hw-h1">
           <span ref={line1Ref} className="block">The Developer</span>
           <span ref={line2Ref} className="block">Who Builds</span>
@@ -62,16 +63,12 @@ export function Hero() {
         </h1>
 
         {/* Body text */}
-        <p ref={bodyRef} className="hw-body" style={{ maxWidth: 'calc(640 * var(--u))' }}>
+        <p ref={bodyRef} className="hw-body hw-hero-body">
           {profile.bio}
         </p>
 
         {/* CTAs */}
-        <div
-          ref={ctaRef}
-          className="flex flex-wrap items-center"
-          style={{ gap: 'calc(20 * var(--u))', marginTop: 'calc(40 * var(--u))' }}
-        >
+        <div ref={ctaRef} className="hw-hero-cta">
           <a href="#projects" className="hw-btn hw-btn-primary">
             View Projects
           </a>

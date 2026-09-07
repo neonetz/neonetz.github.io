@@ -1,5 +1,6 @@
 import { useLayoutEffect, type RefObject } from 'react';
 import { gsap } from 'gsap';
+import { prefersReducedMotion } from '../lib/motion';
 
 type ParallaxOptions = {
   speed?: number;
@@ -24,7 +25,7 @@ export function useParallax<T extends HTMLElement>(
   } = options;
 
   useLayoutEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (prefersReducedMotion()) return;
     if (window.innerWidth < 768) return;
 
     const ctx = gsap.context(() => {

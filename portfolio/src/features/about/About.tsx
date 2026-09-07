@@ -14,7 +14,7 @@ export function About() {
     <section id="about" className="hw-section">
       <div className="hw-about-grid">
         {/* Left: photo with parallax + mix-blend-lighten */}
-        <div className="relative" style={{ overflow: 'hidden' }}>
+        <div className="hw-about-photo">
           <img
             ref={photoRef}
             src={profile.avatar}
@@ -25,7 +25,7 @@ export function About() {
         </div>
 
         {/* Right: bio content */}
-        <div ref={contentRef} className="flex flex-col" style={{ gap: 'calc(30 * var(--u))' }}>
+        <div ref={contentRef} className="hw-about-content">
           <span className="hw-eyebrow">About</span>
 
           <h2 className="hw-h2">
@@ -33,25 +33,23 @@ export function About() {
             <span className="block italic">Experiences</span>
           </h2>
 
-          <p className="hw-body" style={{ maxWidth: 'calc(560 * var(--u))' }}>
-            {profile.bio}
-          </p>
+          <p className="hw-body hw-about-bio">{profile.about}</p>
 
           {/* Info list */}
-          <div className="flex flex-col" style={{ gap: 'calc(2 * var(--u))' }}>
-            <div className="hw-skill-item">
+          <div className="hw-about-info">
+            <div className="hw-line-row">
               <span>Name</span>
               <span>{profile.name}</span>
             </div>
-            <div className="hw-skill-item">
+            <div className="hw-line-row">
               <span>Role</span>
               <span>{profile.role}</span>
             </div>
-            <div className="hw-skill-item">
+            <div className="hw-line-row">
               <span>Location</span>
               <span>{profile.location}</span>
             </div>
-            <div className="hw-skill-item">
+            <div className="hw-line-row">
               <span>Email</span>
               <a href={`mailto:${profile.email}`} className="hw-link">
                 {profile.email}
