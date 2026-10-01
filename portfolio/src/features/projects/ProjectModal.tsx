@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { projectStatusLabels, type Project } from '../../data/portfolio';
 import { TechChip } from '../../components/ui/TechChip';
+import { stopLenis, startLenis } from '../../hooks/useLenis';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -56,12 +57,16 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [project]);
 
-  // Prevent body scroll when modal is open
+  // Prevent body scroll and pause Lenis smooth scroll while modal is open
   useEffect(() => {
     if (!project) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = prev; };
+    stopLenis();
+    return () => {
+      document.body.style.overflow = prev;
+      startLenis();
+    };
   }, [project]);
 
   if (!project) return null;
@@ -75,8 +80,14 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
       aria-label={project.title}
       onClick={onClose}
       className="hw-modal-overlay"
+      data-lenis-prevent="true"
     >
-      <div onClick={(e) => e.stopPropagation()} className="hw-modal">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        onWheel={(e) => e.stopPropagation()}
+        className="hw-modal"
+        data-lenis-prevent="true"
+      >
         <button type="button" onClick={onClose} aria-label="Close modal" className="hw-icon-btn hw-modal-close">
           ✕
         </button>
@@ -88,10 +99,6 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             {projectStatusLabels[project.status]}
           </span>
         </div>
-
-        {project.image && (
-          <img src={project.image} alt={project.title} className="hw-modal-img" />
-        )}
 
         <p className="hw-body">{project.longDescription}</p>
 

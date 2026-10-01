@@ -10,7 +10,6 @@ import { Hero } from './features/hero/Hero';
 import { Projects } from './features/projects/Projects';
 import { About } from './features/about/About';
 import { Skills } from './features/skills/Skills';
-import { Experience } from './features/experience/Experience';
 import { Contact } from './features/contact/Contact';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -26,10 +25,11 @@ function App() {
         <Navbar />
         <main id="main-content">
           <Hero />
-          <Projects />
-          <About />
-          <Skills />
-          <Experience />
+          <div className="hw-paper">
+            <Projects />
+            <About />
+            <Skills />
+          </div>
           <Contact />
         </main>
         <Footer />

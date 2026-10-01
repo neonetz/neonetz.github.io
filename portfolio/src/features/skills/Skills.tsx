@@ -43,7 +43,7 @@ export function Skills() {
 
   return (
     <section id="skills" className="hw-section">
-      <SectionHeading ref={headingRef} eyebrow="Capabilities" title="Skills" />
+      <SectionHeading ref={headingRef} index={3} eyebrow="Capabilities" title="Skills" />
 
       {profile.skills.length === 0 ? (
         <EmptyState label="Skills coming soon" />
@@ -65,7 +65,7 @@ export function Skills() {
                      as the canonical control. */
                   <div
                     key={skill.name}
-                    className="hw-line-row hw-skill-row"
+                    className={`hw-line-row hw-skill-row${stageIndex === index ? ' hw-skill-row-active' : ''}`}
                     onMouseEnter={() => {
                       setStageIndex(index);
                       setRowHover(true);
@@ -74,6 +74,7 @@ export function Skills() {
                     onClick={() => setStageIndex(index)}
                   >
                     <span>{skill.name}</span>
+                    <span className="hw-skill-arrow" aria-hidden>{stageIndex === index ? '→' : '·'}</span>
                   </div>
                 ))}
               </div>

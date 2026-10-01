@@ -26,7 +26,7 @@ export interface ParticleStageOptions {
   padding?: number;
 }
 
-const DOT_RGB = '245, 245, 245';
+const DOT_RGB = '0, 0, 242';
 const SPRING = 0.05;
 const DAMPING = 0.84;
 const REPEL_RADIUS = 90;

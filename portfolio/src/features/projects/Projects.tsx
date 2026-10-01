@@ -16,13 +16,13 @@ export function Projects() {
 
   return (
     <section id="projects" className="hw-section">
-      <SectionHeading ref={headingRef} eyebrow="Selected Work" title="Projects" />
+      <SectionHeading ref={headingRef} index={1} eyebrow="Selected Work" title="Projects" />
 
       {projects.length === 0 ? (
         <EmptyState label="Projects coming soon" />
       ) : (
         <div ref={gridRef} className="hw-card-grid hw-section-body">
-          {projects.map((project) => (
+          {projects.map((project, idx) => (
             <article
               key={project.id}
               className="hw-card hw-card-interactive"
@@ -37,6 +37,13 @@ export function Projects() {
                 }
               }}
             >
+              <div className="hw-project-card-header">
+                <span className="hw-project-index">#{String(idx + 1).padStart(2, '0')}</span>
+                <span className={`hw-badge hw-badge-${project.status}`}>
+                  {projectStatusLabels[project.status]}
+                </span>
+              </div>
+
               <h3 className="hw-project-title">{project.title}</h3>
 
               <p className="hw-project-desc opacity-75">{project.description}</p>
@@ -50,9 +57,6 @@ export function Projects() {
               <div className="flex-1" />
 
               <div className="hw-project-meta">
-                <span className={`hw-badge hw-badge-${project.status}`}>
-                  {projectStatusLabels[project.status]}
-                </span>
                 <span className="hw-project-more">View details →</span>
               </div>
             </article>

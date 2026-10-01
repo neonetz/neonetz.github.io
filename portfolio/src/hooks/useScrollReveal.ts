@@ -43,10 +43,11 @@ export function useScrollReveal<T extends HTMLElement>(
         delay,
         stagger,
         ease,
+        clearProps: 'transform',
         scrollTrigger: {
           trigger: triggerEl,
           start,
-          toggleActions: 'play none none reverse',
+          once: true,
         },
       });
     });
@@ -86,10 +87,11 @@ export function useScrollRevealChildren<T extends HTMLElement>(
         delay,
         stagger,
         ease,
+        clearProps: 'transform',
         scrollTrigger: {
           trigger: containerRef.current,
           start,
-          toggleActions: 'play none none reverse',
+          once: true,
         },
       });
     });

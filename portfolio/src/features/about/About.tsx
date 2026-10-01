@@ -4,24 +4,28 @@ import { useScrollReveal } from '../../hooks/useScrollReveal';
 import { useParallax } from '../../hooks/useParallax';
 
 export function About() {
-  const photoRef = useRef<HTMLImageElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  useParallax(photoRef, { speed: 0.15 });
+  useParallax(cardRef, { speed: 0.04 });
   useScrollReveal([contentRef], { y: 40, duration: 0.8 });
 
   return (
     <section id="about" className="hw-section">
+      <span className="hw-eyebrow hw-about-eyebrow">#02 Dossier</span>
       <div className="hw-about-grid">
-        {/* Left: photo with parallax + mix-blend-lighten */}
-        <div className="hw-about-photo">
+        {/* Left: photo card with subtle archival drift */}
+        <div ref={cardRef} className="hw-about-photo">
           <img
-            ref={photoRef}
             src={profile.avatar}
             alt={profile.name}
             className="hw-about-img"
             loading="lazy"
           />
+          <div className="hw-about-photo-meta">
+            <span>[FIG. 01 — DOSSIER]</span>
+            <span>ID: NEONETZ • 2026</span>
+          </div>
         </div>
 
         {/* Right: bio content */}
@@ -51,7 +55,7 @@ export function About() {
             </div>
             <div className="hw-line-row">
               <span>Email</span>
-              <a href={`mailto:${profile.email}`} className="hw-link">
+              <a href={`mailto:${profile.email}`} className="hw-link hw-about-email">
                 {profile.email}
               </a>
             </div>

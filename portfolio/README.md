@@ -1,73 +1,41 @@
-# React + TypeScript + Vite
+# neonetz-portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio site built with React 19, TypeScript, Vite, and Tailwind CSS v4,
+animated with GSAP + Lenis. Published to GitHub Pages from the repository root.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev       # start Vite dev server
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Build & Deploy
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The site is served from the **repository root**, not from `portfolio/`.
+Deployment copies the Vite build output one level up:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build     # type-check (tsc -b) then build to dist/
+npm run deploy    # copy dist/ to repo root, prune stale hashed assets
 ```
+
+After running `deploy`, commit the changed files in the repository root.
+
+## Other scripts
+
+```bash
+npm run lint      # ESLint (flat config)
+npm run preview   # serve the local build
+npm run logos     # re-download skill brand SVGs into public/skills (Simple Icons)
+```
+
+## Structure
+
+- `src/data/portfolio.ts` — single source of truth for profile, projects, and skills content.
+- `src/features/` — one folder per page section (hero, projects, about, skills, contact).
+- `src/components/` — shared layout (`layouts/`) and generic UI (`ui/`) components.
+- `src/hooks/`, `src/lib/` — GSAP/Lenis motion hooks and helpers.
+- `public/` — static assets copied verbatim into the build (img, skill logos, SEO files).
+- `scripts/deploy.mjs` — copies `dist/` to the repo root for GitHub Pages.
+- `scripts/fetch-skill-logos.mjs` — syncs `public/skills/*.svg` with Simple Icons.

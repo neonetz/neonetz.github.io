@@ -69,8 +69,8 @@ export function Hero() {
 
         {/* CTAs */}
         <div ref={ctaRef} className="hw-hero-cta">
-          <a href="#projects" className="hw-btn hw-btn-primary">
-            View Projects
+          <a href="#projects" className="hw-btn hw-btn-docked">
+            View Projects ↓
           </a>
           <a href="#contact" className="hw-btn hw-btn-outline">
             Contact Me
